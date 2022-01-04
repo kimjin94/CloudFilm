@@ -3,13 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="board" type="board1.model.Board" />
-		<typeAlias alias="rb" type="board1.model.ReplyBoard" />
+		<typeAlias alias="board" type="board1.model.BoardVO" />
 	</typeAliases>
-	<!-- 
-	<mappers>
-		<mapper resource="Board.xml" />
-		<mapper resource="ReplyBoard.xml" />
-	</mappers> 
-	-->
+
 </configuration>

@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script type="text/javascript">
-		location.href = "list";
-	</script>
+	<a href="test">테스트</a>
 </body>
 </html>

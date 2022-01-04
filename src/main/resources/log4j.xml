@@ -11,31 +11,33 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.ch.sboard">
-		<level value="info" />
+	<logger name="com.myshop.cm">
+		<level value="DEBUG" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="DEBUG" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="DEBUG" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="DEBUG" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="DEBUG" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="debug" />
 		<appender-ref ref="console" />
 	</root>
+	
+</log4j:configuration>
 	
 </log4j:configuration>
