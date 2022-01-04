@@ -1,4 +1,4 @@
-package board1.model;
+package com.community.cloudfilm.model;
 
 public class CategoryVO {
 	private int cate_num;

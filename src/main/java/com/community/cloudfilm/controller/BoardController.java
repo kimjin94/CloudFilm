@@ -1,4 +1,4 @@
-package board1.controller;
+package com.community.cloudfilm.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package board1.model;
+package com.community.cloudfilm.model;
 
 import java.util.Date;
 

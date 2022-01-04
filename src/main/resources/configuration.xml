@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="board" type="board1.model.BoardVO" />
+		<typeAlias alias="board" type="com.community.cloudfilm.model.BoardVO" />
 	</typeAliases>
 
 </configuration>
