@@ -10,5 +10,9 @@ public class BoardController {
 	public String test() {
 		return "test";
 	}
+	@RequestMapping("/tboard")
+	public String tboard() {
+		return "tboard";
+	}
 
 }
