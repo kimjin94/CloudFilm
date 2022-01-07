@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="test">테스트</a>
-	<a href="test">테스트</a>
+	<a href="test">테스트</a> <br>
+	<a href="trailerlist">예고편 게시판</a>
 </body>
 </html>

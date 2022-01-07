@@ -11,4 +11,7 @@ public class BoardController {
 		return "test";
 	}
 
+	
+	
+
 }
