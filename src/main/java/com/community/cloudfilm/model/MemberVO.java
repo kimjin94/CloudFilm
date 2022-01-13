@@ -11,6 +11,7 @@ public class MemberVO {
 	private Date mem_date;
 	private int mem_grade;
 	private String mem_yn;
+	private String mem_nick;
 	
 	public int getMem_num() {
 		return mem_num;
@@ -59,5 +60,11 @@ public class MemberVO {
 	}
 	public void setMem_yn(String mem_yn) {
 		this.mem_yn = mem_yn;
+	}
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
 	}
 }
