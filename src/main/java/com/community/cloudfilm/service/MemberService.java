@@ -22,6 +22,14 @@ public class MemberService {
 			System.out.println("id유효성 서비스");
 			return memberDAO.memberIdCheck(mem_id);
 		}
+		//닉네임 중복검사
+//		public int nickCheck(String mem_nick) {
+//			System.out.println("닉네임 중복 서");
+//			return memberDAO.nickCheck(mem_nick);
+//		}
+		public int EmailCheck(String mem_email) {
+			return memberDAO.EmailCheck(mem_email);
+		}
 		//회원가입 member저장
 		public void insertMember(MemberVO member) throws Exception {
 			 memberDAO.insertMember(member);

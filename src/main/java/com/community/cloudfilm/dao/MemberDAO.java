@@ -21,6 +21,17 @@ public class MemberDAO {
 		System.out.println(result);
 		return result;
 	}
+//	@Transactional
+//	public int nickCheck(String mem_nick) {
+//		System.out.println("닉네임 중복 디");
+//		int result = sqlSession.selectOne("memberMapper.nickCheck", mem_nick);
+//		System.out.println(result);
+//		return result;
+//	}
+	public int EmailCheck(String mem_email) {
+		int result = sqlSession.selectOne("memberMapper.emailCheck", mem_email);
+		return result;
+	}
 	//회원가입 저장
 	@Transactional
 	public void insertMember(MemberVO member) throws Exception {

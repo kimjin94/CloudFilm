@@ -44,7 +44,7 @@ public class ReviewController {
 	         UUID uuid = UUID.randomUUID();
 	         String filename = uuid + mf.getOriginalFilename();
 	         int size = (int) mf.getSize();
-	         String path = request.getRealPath("WEB-INF/resources/images/reviewimage");
+	         String path = request.getRealPath("resources/images/reviewimage");
 	         int result = 0;
 	         String file[] = new String[2];
 

@@ -45,7 +45,7 @@ function del(page,board_num){
       				${re.board_cont}
        				</c:if>
        				<c:if test="${!empty re.board_img}">
-					<img src="/resources/images/reviewimage/${re.board_img}" height="100" width="100" />
+					<img src="<%=request.getContextPath() %>/resources/images/reviewimage/${re.board_img}" height="100" width="100" />
        				${re.board_cont}
        				</c:if>
 				</td>

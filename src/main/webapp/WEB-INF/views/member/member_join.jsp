@@ -29,57 +29,109 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 
 
 		
-	//아이디 중복확인
-	$("#mem_id").blur(function() {
-		var mem_id=$('#mem_id').val();
+		//아이디 중복확인
+		$("#mem_id").blur(function() {
+			var mem_id=$('#mem_id').val();
 
-		if($('#mem_id').val()==''){ 
-		$('#id_check').text('아이디를 입력하세요.');
-		$('#id_check').css('color', 'red');
-		}
-		else if(idJ.test($('#mem_id').val())!=true){
-		$('#id_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
-		$('#id_check').css('color', 'red');
-		}
-		else if($('#mem_id').val() != '' ){ 
-			
-		 $.ajax({
-			async : true,
-			type : 'POST',
-			data : {
-				"mem_id" : mem_id,//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다
-			},
-			url : '/idCheck',
-			success : function(data){ 
-				if(data == 1 ){ 
-				  $('#id_check').text('중복된 아이디 입니다.');
-				  	$('#id_check').css('color', 'red');
-				  	$("#usercheck").attr("disabled", true);
-				}else{
-					if(idJ.test(mem_id)){
-					$('#id_check').text('사용가능한 아이디 입니다.');
-					$('#id_check').css('color', 'blue');
-					$("#usercheck").attr("disabled", false);
-				 }
-				 else if(mem_id==''){
-					$('#id_check').text('아이디를 입력해주세요.');
+			if($('#mem_id').val()==''){ 
+			$('#id_check').text('아이디를 입력하세요.');
+			$('#id_check').css('color', 'red');
+			}
+			else if(idJ.test($('#mem_id').val())!=true){
+			$('#id_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+			$('#id_check').css('color', 'red');
+			}
+			else if($('#mem_id').val() != '' ){ 
+				
+			 $.ajax({
+				async : true,
+				type : 'POST',
+				data : {
+					"mem_id" : mem_id,//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다
+				},
+				url : 'idCheck',
+				success : function(data){ 
+					if(data == 1 ){ 
+					  $('#id_check').text('중복된 아이디 입니다.');
+					  	$('#id_check').css('color', 'red');
+					  	$("#usercheck").attr("disabled", true);
+					}else{
+						if(idJ.test(mem_id)){
+						$('#id_check').text('사용가능한 아이디 입니다.');
+						$('#id_check').css('color', 'blue');
+						$("#usercheck").attr("disabled", false);
+					 }
+					 else if(mem_id==''){
+						$('#id_check').text('아이디를 입력해주세요.');
+							$('#id_check').css('color', 'red');
+							$("#usercheck").attr("disabled", true);
+						}
+					 else{
+						$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다.");
 						$('#id_check').css('color', 'red');
 						$("#usercheck").attr("disabled", true);
+						} 
 					}
-				 else{
-					$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다.");
-					$('#id_check').css('color', 'red');
-					$("#usercheck").attr("disabled", true);
-					} 
+				},
+				error:function(e){
+					console.log("실패");
 				}
-			},
-			error:function(e){
-				console.log("실패");
+		
+			  }); //ajax///
+			}//else if
+		});//blur
+		//이메일 중복확인
+		$("#mem_email").blur(function() {
+			var mem_email=$('#mem_email').val();
+
+			if($('#mem_email').val()==''){ 
+			$('#email_check').text('이메일 입력하세요.');
+			$('#email_check').css('color', 'red');
 			}
-	
-		  }); //ajax///
-		}//else if
-	});//blur
+			else if(mailJ.test($('#mem_email').val())!=true){
+			$('#email_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+			$('#email_check').css('color', 'red');
+			}
+			else if($('#mem_email').val() != '' ){ 
+				
+			 $.ajax({
+				async : true,
+				type : 'POST',
+				data : {
+					"mem_email" : mem_email,//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다
+				},
+				url : 'emailCheck',
+				success : function(data){ 
+					if(data == 1 ){ 
+					  $('#email_check').text('중복된 이메일 입니다.');
+					  	$('#email_check').css('color', 'red');
+					  	$("#usercheck").attr("disabled", true);
+					}else{
+						if(mailJ.test(mem_email)){
+						$('#email_check').text('사용가능한 이메일 입니다.');
+						$('#email_check').css('color', 'blue');
+						$("#usercheck").attr("disabled", false);
+					 }
+					 else if(mem_email==''){
+						$('#email_check').text('이메일 입력해주세요.');
+							$('#email_check').css('color', 'red');
+							$("#usercheck").attr("disabled", true);
+						}
+					 else{
+						$('#email_check').text("이메일 소문자와 숫자 4~12자리만 가능합니다.");
+						$('#email_check').css('color', 'red');
+						$("#usercheck").attr("disabled", true);
+						} 
+					}
+				},
+				error:function(e){
+					console.log("실패");
+				}
+		
+			  }); //ajax///
+			}//else if
+		});//blur
+
 
 	var inval_Arr = new Array(5).fill(false)
 		//id 정규식

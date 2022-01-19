@@ -29,13 +29,33 @@ public class MemberController {
 	private MemberService memberService;
 	
 	//id유효성 검사 ajax부분 
-		@RequestMapping(value="/idCheck", method= RequestMethod.POST)
+		@RequestMapping(value="idCheck", method= RequestMethod.POST)
 		// @ResponseBody
 		public String idCheck(@RequestParam("mem_id") String mem_id, Model model) {
 			System.out.println("id유효성 컨트롤러");
 			int result = memberService.memberIdCheck(mem_id);
 			model.addAttribute("result", result);
 			 
+			return "member/idCheckResult";
+		}
+		//닉네임중복 검사 ajax부분 
+//		@RequestMapping(value="nickCheck", method= RequestMethod.POST)
+//		 //@ResponseBody
+//		public String nickCheck(@RequestParam("mem_nick") String mem_nick, Model model) {
+//			System.out.println("닉네임 중복 컨");
+//			int result = memberService.nickCheck(mem_nick);
+//			model.addAttribute("result", result);
+//			
+//			return "member/nickCheckResult";
+//		}
+		//이메일 중복 검사 ajax부분 
+		@RequestMapping(value="/emailCheck", method= RequestMethod.POST)
+		// @ResponseBody
+		public String emailCheck(@RequestParam("mem_email") String mem_email, Model model) {
+			System.out.println("id유효성 컨트롤러");
+			int result = memberService.EmailCheck(mem_email);
+			model.addAttribute("result", result);
+			
 			return "member/idCheckResult";
 		}
 		
