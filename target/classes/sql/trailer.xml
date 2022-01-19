@@ -47,9 +47,9 @@
 		                and b.gb_sort = 'b'
 		        where a.cate_num = 3 
 		        group by 
-		        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
-						 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
-						 a.BOARD_YN, a.INFO_YN, a.MEM_NUM 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM 
 		        order by a.BOARD_num desc
 		    ) board
 		)
