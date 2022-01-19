@@ -18,6 +18,7 @@ public class BoardVO {
 	private String board_yn;
 	private String info_yn;
 	private int mem_num;
+
 	
 	public int getBoard_num() {
 		return board_num;

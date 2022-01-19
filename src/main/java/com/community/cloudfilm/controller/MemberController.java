@@ -421,5 +421,15 @@ public class MemberController {
 			
 		}
 	
-	
+	@RequestMapping(value = "/adminsession")
+	public String adminsession(HttpSession session) {
+		
+		MemberVO member = memberService.getMember();
+		session.setAttribute("member", member);
+		
+		System.out.println(member.getMem_id());
+		
+		return "test";
+	}
+
 }

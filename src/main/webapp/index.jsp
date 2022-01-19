@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +16,18 @@
 	<br><br>
 	<a href="member_join">회원가입</a>
 	<a href="member_login">로그인</a><br>
-<a href="passReCheck">비밀번호 재확인</a><br>
-<a href="member_update">회원정보 수정</a><br>
-<a href="member_idFind">아이디찾기</a><br>
-<a href="member_passFind">비밀번호찾기</a><br>
-<a href="member_delete">탈퇴</a><br>
+	<a href="passReCheck">비밀번호 재확인</a><br>
+	<a href="member_update">회원정보 수정</a><br>
+	<a href="member_idFind">아이디찾기</a><br>
+	<a href="member_passFind">비밀번호찾기</a><br>
+	<a href="member_delete">탈퇴</a><br>
+	
+	
+	<a href="test">테스트</a> 			<br>
+	<a href="trailerlist">예고편 게시판</a>	<br>
+	<a href="adminsession">로그인</a>					<br>
+	<c:if test="${member != null }">
+		${member.mem_id } 님 안녕하세요
+	</c:if>
 </body>
 </html>

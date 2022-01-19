@@ -79,4 +79,10 @@ public class MemberDAO {
 	public Object getmemberInfo(int mem_num) {
 		return sqlSession.selectOne("memberMapper.select_member",mem_num);
 	}
+
+	@Transactional
+	public MemberVO getMember() {
+		return sqlSession.selectOne("memberns.getMember");
+	}
+	
 }
