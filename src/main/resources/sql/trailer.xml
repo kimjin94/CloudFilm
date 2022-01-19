@@ -9,8 +9,15 @@
 		values
 		(board_seq.nextval, '관리자', #{board_title}, #{board_cont},
 		#{board_img}, #{board_video}, #{board_filter}, SYSDATE, 
-		0, 0, 0, 3, 'y', 'n')
+		0, 0, 0, 3, 'y', 'n', 1)
 	</insert>
+	
+	<update id="updateCount" parameterType="int">
+		update board
+		set
+		board_count = board_count+1
+		where board_num = #{board_num}
+	</update>
 	
 	<!-- 예고편 글 갯수 가져오기 -->
 	<select id="getListCount" resultType="int">
@@ -19,16 +26,107 @@
 	
 	<!-- 예고편 리스트 가져오기 -->
 	<select id="getBoardList" parameterType="int" resultType="board">
-		 <![CDATA[
-			select * from (select rownum rnum, board.* from  
-		  	(select * from board order by BOARD_num desc) board) 
-		    where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and b.gb_sort = 'b'
+		        where a.cate_num = 3 
+		        group by 
+		        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+						 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+						 a.BOARD_YN, a.INFO_YN, a.MEM_NUM 
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
 		]]>
+
 	</select>
 	
 	<!-- 예고편 상세페이지 -->
 	<select id="getBoardDetail" parameterType="int" resultType="board">
 		select * from board where board_num = #{board_num}
 	</select>
-
+	
+	<!-- 좋아요 -->
+	<select id="getTrailerGood" parameterType="int" resultType="int">
+		select count(gb_num) from GOODANDBAD where board_num = #{board_num} and GB_SORT = 'g'
+	</select>
+	
+	<!-- 싫어요 -->
+	<select id="getTrailerbad" parameterType="int" resultType="int">
+		select count(gb_num) from GOODANDBAD where board_num = #{board_num} and GB_SORT = 'b'
+	</select>
+	
+	<!-- 추천 insert -->
+	<insert id="insertgood" parameterType="java.util.Map">
+		insert into GOODANDBAD
+		values
+		(gb_seq.nextval,
+		#{board_num},
+		#{mem_num},
+		'g')
+	</insert>
+	
+	<!-- 추천 취소 -->
+	<delete id="deletegood" parameterType="java.util.Map">
+		delete from GOODANDBAD
+		where 
+		board_num = #{board_num} AND
+		mem_num = #{mem_num} AND
+		GB_SORT = 'g'
+	</delete>
+	
+	<!-- 비추 insert -->
+	<insert id="insertbad" parameterType="java.util.Map">
+		insert into GOODANDBAD
+		values
+		(gb_seq.nextval,
+		#{board_num},
+		#{mem_num},
+		'b')
+	</insert>
+	
+	<!-- 비추  delete -->
+	<delete id="deletebad" parameterType="java.util.Map">
+		delete from GOODANDBAD
+		where 
+		board_num = #{board_num} AND
+		mem_num = #{mem_num} AND
+		GB_SORT = 'b'
+	</delete>
+	
+	<!-- 좋아요 눌렀었는지 확인 -->
+	<select id="checkTrailerGood" parameterType="java.util.Map" resultType="int">
+		select count(board_num) from GOODANDBAD
+		where
+		board_num = #{board_num} AND
+		mem_num = #{mem_num} AND
+		GB_SORT = 'g'
+	</select>
+	
+	<!-- 싫어요 눌렀었는지 확인 -->
+	<select id="checkTrailerBad" parameterType="java.util.Map" resultType="int">
+		select count(board_num) from GOODANDBAD
+		where
+		board_num = #{board_num} AND
+		mem_num = #{mem_num} AND
+		GB_SORT = 'b'
+	</select>
 </mapper>

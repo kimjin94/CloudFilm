@@ -17,6 +17,7 @@ public class BoardVO {
 	private int cate_num;
 	private String board_yn;
 	private String info_yn;
+	private String mem_num;
 	
 	public int getBoard_num() {
 		return board_num;
@@ -101,6 +102,12 @@ public class BoardVO {
 	}
 	public void setInfo_yn(String info_yn) {
 		this.info_yn = info_yn;
+	}
+	public String getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(String mem_num) {
+		this.mem_num = mem_num;
 	}
 	
 }

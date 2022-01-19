@@ -42,7 +42,7 @@ margin-top : 5px;
 				<tr>
 					<th rowspan="3" width="160"><img alt="" src="http://i.ytimg.com/vi/${trailerlist.board_video}/hqdefault.jpg" width="160" height="120"></th>
 					<td><a href="trailerDetail?page=${page}&board_num=${trailerlist.board_num}">${trailerlist.board_title} </a></td><tr>
-					<td> 댓글  ${trailerlist.board_count} | ${trailerlist.board_good} | 
+					<td> 댓글 : | 조회수 : ${trailerlist.board_count} | 추천 : ${trailerlist.board_good} 
 						<fmt:formatDate value="${trailerlist.board_date}"
 							pattern="yyyy/MM/dd HH:mm:ss" />
 						</td><tr>

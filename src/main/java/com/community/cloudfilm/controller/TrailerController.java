@@ -58,5 +58,57 @@ public class TrailerController {
 		
 		return trailerdetailM;
 	}
+	
+	// 예고편 추천
+	@RequestMapping(value = "/trailergood")
+	public ModelAndView trailergood(HttpServletRequest request, HttpServletResponse response) {
+		
+		BoardVO board = trailerService.goodtrailer(request, response);
+		
+		ModelAndView trailergoodM = new ModelAndView("trailer/ajax/trailergood");
+		
+		trailergoodM.addObject("board", board);
+		
+		return trailergoodM;
+	}
+	
+	// 예고편 추천 취소
+	@RequestMapping(value = "/trailernogood")
+	public ModelAndView trailernogood(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("컨트롤러");
+		BoardVO board = trailerService.nogoodtrailer(request, response);
+		
+		ModelAndView trailergoodandbadM = new ModelAndView("trailer/ajax/trailergoodandbad");
+		
+		trailergoodandbadM.addObject("board", board);
+		
+		return trailergoodandbadM;
+	}
+	
+	// 예고편 비추
+	@RequestMapping(value = "/trailerbad")
+	public ModelAndView trailerbad(HttpServletRequest request, HttpServletResponse response) {
+		
+		BoardVO board = trailerService.badtrailer(request, response);
+		
+		ModelAndView trailerbadM = new ModelAndView("trailer/ajax/trailerbad");
+		
+		trailerbadM.addObject("board", board);
+		
+		return trailerbadM;
+	}
+	
+	// 예고편 비추 취소
+	@RequestMapping(value = "/trailernobad")
+	public ModelAndView trailernobad(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("컨트롤러");
+		BoardVO board = trailerService.nobadtrailer(request, response);
+		
+		ModelAndView trailergoodandbadM = new ModelAndView("trailer/ajax/trailergoodandbad");
+		
+		trailergoodandbadM.addObject("board", board);
+		
+		return trailergoodandbadM;
+	}
 
 }

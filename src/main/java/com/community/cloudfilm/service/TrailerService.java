@@ -7,12 +7,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.cloudfilm.dao.TrailerDAO;
 import com.community.cloudfilm.model.BoardVO;
+import com.community.cloudfilm.model.MemberVO;
 
 @Service
 public class TrailerService {
@@ -68,7 +70,9 @@ public class TrailerService {
 		return resultMap;
 	}
 
+	// 예고편 상세보기
 	public Map<String, Object> getTrailerDetail(HttpServletRequest request, HttpServletResponse response) {
+		
 		int page = Integer.parseInt(request.getParameter("page"));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		
@@ -77,6 +81,36 @@ public class TrailerService {
 		String board_cont = board.getBoard_cont().replace("\n", "<br/>");
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		
+		int checkTrailerGood = 0;
+		int checkTrailerBad = 0;
+		int mem_num = 0;
+		// 세션에서 로그인한 계정의 정보 받아오기
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member") != null) {
+			MemberVO member = (MemberVO)session.getAttribute("member");
+			// 회원번호 가져오기
+			mem_num = member.getMem_num();
+			
+			resultMap.put("mem_num", mem_num);
+			
+			// 좋아요를 눌렀는지 
+			if(trailerDAO.checkTrailerGood(board_num, mem_num) != 0) {
+				checkTrailerGood = trailerDAO.checkTrailerGood(board_num, mem_num);
+			}
+			//  싫어요를 눌렀는지	
+			if(trailerDAO.checkTrailerBad(board_num, mem_num) != 0) {
+				checkTrailerBad = trailerDAO.checkTrailerBad(board_num, mem_num);
+			}
+		}
+		
+		System.out.println(checkTrailerGood);
+		System.out.println(checkTrailerBad);
+		System.out.println(mem_num);
+		
+		resultMap.put("checkTrailerGood", checkTrailerGood);
+		resultMap.put("checkTrailerBad", checkTrailerBad);
 		resultMap.put("page", page);
 		resultMap.put("board_num", board_num);
 		resultMap.put("board_cont", board_cont);
@@ -85,4 +119,35 @@ public class TrailerService {
 		return resultMap;
 	}
 
+	// 예고편 추천
+	public BoardVO goodtrailer(HttpServletRequest request, HttpServletResponse response) {
+		
+		BoardVO baord = trailerDAO.goodtrailer(request, response);
+		
+		return baord;
+	}
+
+	// 예고편 추천 취소
+	public BoardVO nogoodtrailer(HttpServletRequest request, HttpServletResponse response) {
+		
+		BoardVO board = trailerDAO.nogoodtrailer(request, response);
+		
+		return board;
+	}
+
+	// 예고편 비추
+	public BoardVO badtrailer(HttpServletRequest request, HttpServletResponse response) {
+		
+		BoardVO baord = trailerDAO.badtrailer(request, response);
+		
+		return baord;
+	}
+
+	// 예고편 비추 취소
+	public BoardVO nobadtrailer(HttpServletRequest request, HttpServletResponse response) {
+		
+		BoardVO board = trailerDAO.nobadtrailer(request, response);
+		
+		return board;
+	}
 }
