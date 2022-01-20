@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.cloudfilm.model.BoardVO;
+import com.community.cloudfilm.service.ReplyService;
 import com.community.cloudfilm.service.TrailerService;
 
 @Controller
 public class TrailerController {
 	@Autowired
 	private TrailerService trailerService;
+	@Autowired
+	private ReplyService replyService;
 	
 	// 예고편 게시판으로 이동
 	@RequestMapping(value = "/trailerlist")
@@ -47,14 +50,20 @@ public class TrailerController {
 		return "redirect:trailerlist";
 	}
 	
-	// 예고편 상세봅기
+	// 예고편 상세보기
 	@RequestMapping(value = "/trailerDetail")
 	public ModelAndView trailerDetail(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ModelAndView trailerdetailM = new ModelAndView("trailer/trailerdetail");
 		
+		// 게시글 상세정보 가져오기
 		Map<String, Object> board = trailerService.getTrailerDetail(request, response);
 		
+		// 댓글 리스트 가져오기
+		Map<String, Object> replylist = replyService.getReplyList(request, response);
+		
+		trailerdetailM.addAllObjects(replylist);
 		trailerdetailM.addAllObjects(board);
+		
 		
 		return trailerdetailM;
 	}
@@ -101,7 +110,6 @@ public class TrailerController {
 	// 예고편 비추 취소
 	@RequestMapping(value = "/trailernobad")
 	public ModelAndView trailernobad(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("컨트롤러");
 		BoardVO board = trailerService.nobadtrailer(request, response);
 		
 		ModelAndView trailergoodandbadM = new ModelAndView("trailer/ajax/trailergoodandbad");

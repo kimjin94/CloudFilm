@@ -105,29 +105,23 @@ th{
 			</tr>
 		</table>
 		
-		<table border=1>
-			<tr>
-				<td>
-					댓글출력부분<br>
-					<input type="text" name=>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div id ="replyarea">
-						<textarea id="re_cont" name="re_cont" rows="5" cols="100"></textarea>
-						<button id="replywritebtn" onclick="replywrite(${mem_num})">댓글 등록</button>
-					</div>
-					<script type="text/javascript">
-					function replywrite(mem_num) {
-						
-					}
-					
-					</script>
-				</td>
-			</tr>
-		</table>
-	
+		<form action="replywrite" method="post">
+			<table border=1>
+				<%@ include file="../reply/replylist.jsp" %>
+				
+				<tr>
+					<td colspan="3">
+						<div id ="replyarea">
+							<input type="hidden" name="mem_num" value="${mem_num}">
+							<input type="hidden" name="board_num" value="${board.board_num}">
+							<input type="hidden" name="page" value="${page}">
+							<textarea id="re_cont" name="re_cont" rows="5" cols="100"></textarea>
+							<button type="submit">댓글 등록</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 
 </body>

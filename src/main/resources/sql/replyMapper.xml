@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="replyMapper">
+
+	<insert id="insertreply" parameterType="java.util.Map">
+		insert into reply
+		(
+		RE_NUM
+		, BOARD_NUM
+		, MEM_NUM
+		, RE_CONT
+		, RE_DATE
+		, RE_YN
+		)
+		values
+		(
+		rpy_seq.nextval
+		, #{board_num}
+		, #{mem_num}
+		, #{re_cont}
+		, SYSDATE
+		, 'y'
+		)
+	</insert>
+	
+	<select id="selectReplyList" parameterType="int" resultType="reply">
+		select 
+			r.RE_NUM
+			, r.BOARD_NUM
+			, r.MEM_NUM
+			, r.RE_CONT
+			, r.RE_DATE
+			, r.RE_YN
+			, m.mem_nick
+			from reply r
+				left join member m
+				on r.mem_num = m.mem_num
+		where r.board_num = #{board_num}
+		order by r.re_num asc
+	</select>
+</mapper>

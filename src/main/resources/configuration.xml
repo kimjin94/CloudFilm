@@ -11,6 +11,7 @@
  		<typeAlias type="java.util.List" alias="List"/>
 		<typeAlias alias="board" type="com.community.cloudfilm.model.BoardVO" />
 		<typeAlias alias="member" type="com.community.cloudfilm.model.MemberVO" />
+		<typeAlias alias="reply" type="com.community.cloudfilm.model.ReplyVO" />
 	</typeAliases>
 </configuration>
 
