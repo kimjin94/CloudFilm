@@ -43,7 +43,7 @@
 		
 	<!-- 리뷰게시판 원문내용 -->
 	<select id="review_cont" resultType="board" parameterType="int">
-		select * from board where board_num =#{board_num} and cate_num = 1
+		select * from board where board_num =#{board_num}
 	</select>
 	
 	<!-- 게시글 조회수 증가 -->

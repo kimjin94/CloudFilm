@@ -63,8 +63,7 @@
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">							
-						
-							${mywritinglist.mem_id}
+							${mywritinglist.mem_nick}
 					</a>
 					</div>
 				</td>

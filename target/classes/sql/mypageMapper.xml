@@ -8,7 +8,7 @@
 		select count(board_num) from board where mem_num =#{mem_num}
 	</select>
 	<!-- 내가 쓴 글 리스트 목록 -->
-	<select id="board_list" parameterType="int" resultType="board">
+	<select id="board_list" parameterType="java.util.Map" resultType="board">
 		<![CDATA[
 		select * from
 		(select rownum rnum, board.* from

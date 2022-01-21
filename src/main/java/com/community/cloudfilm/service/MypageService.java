@@ -38,15 +38,21 @@ public class MypageService {
 		//멤버 세션불러오기
 		MemberVO member =(MemberVO)session.getAttribute("member");
 		int mem_num = member.getMem_num();
+		String mem_nick =member.getMem_nick();
+		
+		
+				
 		
 		indexmMap.put("page", page);
 		indexmMap.put("mem_num",mem_num);
+		indexmMap.put("mem_nick",mem_nick);
 		
 		//총 리스트 수를 받아옴
-		int listcount = mypageDAO.getListCount();
+		int listcount = mypageDAO.getListCount(mem_num);
+		System.out.println(listcount);
 		
 		//페이지 번호(page)를 DAO클래스에게 전달한다.
-		mywritinglist = mypageDAO.getBoardList(page);//리스트 받아옴
+		mywritinglist = mypageDAO.getBoardList(indexmMap);//리스트 받아옴
 		
 		// 총 페이지 수.
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림

@@ -32,9 +32,14 @@ function del(page,board_num){
 			<tr>
 				<th>프로필사진</th>
 				<td>
-				
-				<img src="<%=request.getContextPath() %>/resources/images/memberimage/${mem.mem_img}" height="50" width="50" />
-				
+				<c:choose>
+                  <c:when test="${mem.mem_img != null }">
+                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/${mem.mem_img}" height="50" width="50">
+                  </c:when>
+                  <c:otherwise>
+                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="50" width="50">
+                  </c:otherwise>
+               </c:choose>
 				</td>
 				<th >작성자</th>
 				<td>
