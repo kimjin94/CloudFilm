@@ -132,6 +132,57 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 			}//else if
 		});//blur
 
+		//이름 중복확인
+		$("#mem_nick").blur(function() {
+			var mem_nick=$('#mem_nick').val();
+
+			if($('#mem_nick').val()==''){ 
+			$('#nick_check').text('닉네임을 입력하세요.');
+			$('#nick_check').css('color', 'red');
+			}
+			else if(nickJ.test($('#mem_nick').val())!=true){
+			$('#nick_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+			$('#nick_check').css('color', 'red');
+			}
+			else if($('#mem_nick').val() != '' ){ 
+				
+			 $.ajax({
+				async : true,
+				type : 'POST',
+				data : {
+					"mem_nick" : mem_nick,//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다
+				},
+				url : 'nickCheck',
+				success : function(data){ 
+					if(data == 1 ){ 
+					  $('#nick_check').text('중복된 닉네임 입니다.');
+					  	$('#nick_check').css('color', 'red');
+					  	$("#usercheck").attr("disabled", true);
+					}else{
+						if(nickJ.test(mem_nick)){
+						$('#nick_check').text('사용가능한 닉네임 입니다.');
+						$('#nick_check').css('color', 'blue');
+						$("#usercheck").attr("disabled", false);
+					 }
+					 else if(mem_nick==''){
+						$('#nick_check').text('닉네임을 입력해주세요.');
+							$('#nick_check').css('color', 'red');
+							$("#usercheck").attr("disabled", true);
+						}
+					 else{
+						$('#name_check').text("한글 2~6자 이내로 입력하세요. (특수기호, 공백 사용 불가)");
+						$('#name_check').css('color', 'red');
+						$("#usercheck").attr("disabled", true);
+						} 
+					}
+				},
+				error:function(e){
+					console.log("실패");
+				}
+		
+			  }); //ajax///
+			}//else if
+		});//blur
 
 	var inval_Arr = new Array(5).fill(false)
 		//id 정규식

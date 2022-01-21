@@ -1,6 +1,7 @@
 package com.community.cloudfilm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,14 @@ public class ReviewService {
 		System.out.println("리뷰리스트 서");
 		return reviewDAO.getReviewList(page);
 	}
+	//필터 적용 게시글 갯수
+	public int getFilterListCount(String board_filter) {
+		return reviewDAO.getFilterListCount(board_filter);
+	}
+	//필터적용 게시글 목록
+	public List<BoardVO> getFilterReviewList(Map<String, Object> indexMap) {
+		return reviewDAO.getFilterReviewList(indexMap);
+	}
 	//리뷰게시글 원문내용
 	public BoardVO getReviewCont(int board_num)throws Exception {
 		BoardVO review = reviewDAO.getReviewCont(board_num);
@@ -46,6 +55,9 @@ public class ReviewService {
 		System.out.println("리뷰삭제시켜줘 서");
 		reviewDAO.reviewDelete(board_num);
 	}
+	
+	
+	
 
 
 

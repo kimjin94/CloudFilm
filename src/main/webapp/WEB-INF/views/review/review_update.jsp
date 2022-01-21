@@ -16,7 +16,7 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					${re.board_title}
+					<input type="text" name="board_title" value="${re.board_title}">
 					</td>
 					<th>추천</th>
 					<td>

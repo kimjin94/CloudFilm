@@ -22,6 +22,10 @@
 	<a href="member_passFind">비밀번호찾기</a><br>
 	<a href="member_delete">탈퇴</a><br>
 	
+	<a href="myWritingList">내가 쓴 글</a><br>
+	<a href="myReplyList">내가 쓴 댓글</a><br>
+	
+	
 	
 	<a href="test">테스트</a> 			<br>
 	<a href="trailerlist">예고편 게시판</a>	<br>

@@ -30,6 +30,10 @@ public class MemberService {
 	public int EmailCheck(String mem_email) {
 		return memberDAO.EmailCheck(mem_email);
 	}
+	public int NickCheck(String mem_nick) {
+		System.out.println("닉네임중복 서");
+		return memberDAO.NickCheck(mem_nick);
+	}
 	//회원가입 member저장
 	public void insertMember(MemberVO member) throws Exception {
 		 memberDAO.insertMember(member);

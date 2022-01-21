@@ -58,6 +58,16 @@ public class MemberController {
 			
 			return "member/idCheckResult";
 		}
+		//닉네임 중복 검사 ajax부분 
+		@RequestMapping(value="/nickCheck", method= RequestMethod.POST)
+		// @ResponseBody
+		public String nickCheck(@RequestParam("mem_nick") String mem_nick, Model model) {
+			System.out.println("이름중복 컨트롤러");
+			int result = memberService.NickCheck(mem_nick);
+			model.addAttribute("result", result);
+			
+			return "member/idCheckResult";
+		}
 		
 		//회원가입 폼
 		@RequestMapping(value = "/member_join")
@@ -77,7 +87,7 @@ public class MemberController {
 		         UUID uuid = UUID.randomUUID();
 		         String filename = uuid + mf.getOriginalFilename();
 		         int size = (int) mf.getSize();
-		         String path = request.getRealPath("WEB-INF/resources/images/memberimage");
+		         String path = request.getRealPath("/resources/images/memberimage");
 		         int result = 0;
 		         String file[] = new String[2];
 

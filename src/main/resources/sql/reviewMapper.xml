@@ -7,7 +7,7 @@
 	<insert id="insert_review" parameterType="board">
 		insert into board
 		values
-		(board_seq.nextval,'test2',#{board_title},#{board_cont},
+		(board_seq.nextval,#{mem_id},#{board_title},#{board_cont},
 		#{board_img},#{board_video},#{board_filter},SYSDATE, 
 		0, 0, 0, 1, 'y', 'n', #{mem_num})
 	</insert>
@@ -25,7 +25,22 @@
 		where rnum >= ((#{page} - 1) * 20+1) and  rnum <= (#{page} * 20)
 		]]>
 	</select>
+
+	<!-- 필터적용 리뷰 총 게시물 수 -->
+	<select id="reviewFilter_count" resultType="int" parameterType="String">
+		select count(board_num) from board where cate_num = 1 and board_filter = #{board_filter}
+	</select>
 	
+	<!-- 필터적용 리뷰 목록 -->
+	<select id="reviewFilter_list" parameterType="java.util.Map" resultType="board">
+		<![CDATA[
+		select * from 
+		(select rownum rnum, board.* from
+		(select * from board where cate_num = 1 and board_filter = #{board_filter} order by BOARD_num desc) board)
+		where rnum >= ((#{page} - 1) * 20+1) and  rnum <= (#{page} * 20)
+		]]>
+	</select>
+		
 	<!-- 리뷰게시판 원문내용 -->
 	<select id="review_cont" resultType="board" parameterType="int">
 		select * from board where board_num =#{board_num} and cate_num = 1
@@ -47,6 +62,6 @@
 	
 	<!-- 게시물 삭제 -->
 	<delete id="review_delete" parameterType="int">
-	delete from board where board_num
+	delete from board where board_num =#{board_num}
 	</delete>
 </mapper>

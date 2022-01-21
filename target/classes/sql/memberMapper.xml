@@ -17,6 +17,10 @@
 	<select id="emailCheck" parameterType="member" resultType="int" >
 		select count(*) from member where mem_email = #{mem_email}
 	</select>
+	<!-- 닉네임 중복 검사 -->
+	<select id="nickCheck" parameterType="member" resultType="int">
+		select count(*) from member where mem_nick =#{mem_nick}
+	</select>
 	<!-- 회원가입 회원저장 -->
 	<insert id="member_join" parameterType="member">
 	insert into member
@@ -43,7 +47,7 @@
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="member">
 	update member set
-	mem_pass=#{mem_pass}, mem_nick=#{mem_nick}, mem_email=#{mem_email}
+	mem_pass=#{mem_pass}, mem_nick=#{mem_nick}, mem_email=#{mem_email}, mem_img=#{mem_img}
 	where mem_id=#{mem_id}
 	</update>
 	

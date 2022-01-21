@@ -21,6 +21,7 @@ function del(page,board_num){
 <body>
 	<div>
 		<h2>리뷰게시판 원문내용</h2>
+		<form >
 		<input type="hidden" name="board_num" value="${re.board_num}"/>
 		<input type="hidden" name="page" value="${page}"/>
 		<table border="1">
@@ -29,9 +30,19 @@ function del(page,board_num){
 				<td>${re.board_title}</td>
 			</tr>
 			<tr>
+				<th>프로필사진</th>
+				<td>
+				
+				<img src="<%=request.getContextPath() %>/resources/images/memberimage/${mem.mem_img}" height="50" width="50" />
+				
+				</td>
 				<th >작성자</th>
 				<td>
 				${re.mem_id}
+				</td>
+				<th >조회수</th>
+				<td>
+				${re.board_count}
 				</td>
 				<th style="text-align:right;">작성일</th>
 				<td>
@@ -52,12 +63,9 @@ function del(page,board_num){
 			</tr>
 			<tr>
 			</tr>
-			
 		</table>
-			<div>
-				<button id="board_good" name="board_good">좋아요</button>
-				<button id="board_bad" name="board_bad">싫어요</button>
-			</div>
+			</form>
+			
 			<div>
 				<button type="button" onClick="location='review_update?board_num=${re.board_num}&page=${page}'">수정</button>
 				<button type="button" onClick="del(${page},${re.board_num})">삭제</button>

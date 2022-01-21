@@ -2,7 +2,9 @@ package com.community.cloudfilm.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.community.cloudfilm.model.BoardVO;
 import com.community.cloudfilm.model.MemberVO;
+import com.community.cloudfilm.service.MemberService;
 import com.community.cloudfilm.service.ReviewService;
 
 @Controller
@@ -27,6 +30,9 @@ public class ReviewController {
 	
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private MemberService memberService;
+	
 	
 	//리뷰 작성폼
 	@RequestMapping(value="/review_write")
@@ -36,8 +42,8 @@ public class ReviewController {
 	//리뷰작성 저장
 	@RequestMapping(value = "/review_writing")
 	public String review_writing(@RequestParam("board_img1") MultipartFile mf,
-								HttpServletRequest request,
-								BoardVO board) throws Exception{
+								HttpServletRequest request,HttpSession session,
+								MemberVO member,BoardVO board) throws Exception{
 		
 		if (mf != null) {
 	         //첨부파일 저장
@@ -80,10 +86,20 @@ public class ReviewController {
 	         System.out.println(path);
 	      }
 		
+		
 		System.out.println(board.getBoard_num());
 		System.out.println(board.getBoard_title());
 		System.out.println(board.getBoard_filter());
 		System.out.println(board.getBoard_cont());
+		System.out.println(board.getMem_id());
+		
+		// 현제 세션에 있는(로그인 한 member의 정보) mem_num값 가져오기
+		MemberVO reviewmember = (MemberVO)session.getAttribute("member");
+		int mem_num = reviewmember.getMem_num();
+		String mem_id =	reviewmember.getMem_id();
+		board.setMem_id(mem_id);
+		board.setMem_num(mem_num);
+		
 		reviewService.insertReview(board);
 		
 		return "redirect:/review_list";
@@ -92,6 +108,7 @@ public class ReviewController {
 	@RequestMapping(value = "/review_list")
 	public String review_list(HttpServletRequest request, Model model)throws Exception {
 		System.out.println("리뷰리스트 컨");
+		System.out.println(request.getParameter("board_filter"));
 		
 		List<BoardVO> reviewlist = new ArrayList<BoardVO>();
 		
@@ -102,11 +119,28 @@ public class ReviewController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		//총 리스트 수를 받아옴
-		int listcount = reviewService.getListCount();
+		int listcount = 0;
 		
-		//페이지 번호(page)를 DAO클래스에게 전달한다.
-		reviewlist = reviewService.getReviewList(page);	//리스트 받아오기
+		
+		if(request.getParameter("board_filter") == null) {
+			//총 리스트 수를 받아옴
+			listcount = reviewService.getListCount();
+			//페이지 번호(page)를 DAO클래스에게 전달한다.
+			reviewlist = reviewService.getReviewList(page);	//리스트 받아오기
+		}else if(request.getParameter("board_filter") != null){
+			String board_filter = request.getParameter("board_filter");
+			
+			Map<String, Object> indexMap = new HashMap<String, Object>();
+			
+			indexMap.put("page", page);
+			indexMap.put("board_filter", board_filter);
+			
+			//총 리스트 수를 받아옴
+			listcount = reviewService.getFilterListCount(board_filter);
+			System.out.println(listcount);
+			//페이지 번호(page)를 DAO클래스에게 전달한다.
+			reviewlist = reviewService.getFilterReviewList(indexMap);	//리스트 받아오기
+		}
 		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
@@ -141,7 +175,13 @@ public class ReviewController {
 		
 		BoardVO review = reviewService.getReviewCont(board_num);
 		
+		//멤버불러오기
+		MemberVO member = memberService.getmemberinfo(review.getMem_num());
+		System.out.println(member.getMem_id());
+		System.out.println(member.getMem_img());
+		
 		model.addAttribute("re", review);
+		model.addAttribute("mem", member);
 		model.addAttribute("page", page);
 		
 		return "review/review_cont";
@@ -169,6 +209,7 @@ public class ReviewController {
 	public String review_updating(@ModelAttribute BoardVO board,
 								  @RequestParam("page") String page,
 								  Model model)throws Exception{
+		
 		
 		//수정 메서드 호출
 		reviewService.reviewUpdate(board);

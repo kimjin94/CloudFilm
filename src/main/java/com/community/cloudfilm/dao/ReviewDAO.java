@@ -1,6 +1,7 @@
 package com.community.cloudfilm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,17 @@ public class ReviewDAO {
 		List<BoardVO> reviewlist = sqlSession.selectList("reviewMapper.review_list", page);
 		return reviewlist;
 	}
+	//필터적용 게시글 갯수
+	public int getFilterListCount(String board_filter) {
+		int count = 0;
+		count =sqlSession.selectOne("reviewMapper.reviewFilter_count", board_filter);
+		return count;
+	}
+	//필터적용 게시글 갯수
+	public List<BoardVO> getFilterReviewList(Map<String, Object> indexMap) {
+		List<BoardVO> list = sqlSession.selectList("reviewMapper.reviewFilter_list", indexMap);
+		return list;
+	}
 	//게시글 원문내용
 	public BoardVO getReviewCont(int board_num)throws Exception {
 		return sqlSession.selectOne("reviewMapper.review_cont", board_num);
@@ -48,6 +60,9 @@ public class ReviewDAO {
 		System.out.println("리뷰삭제시켜줘 디");
 		sqlSession.delete("reviewMapper.review_delete", board_num);
 	}
+	
+	
+	
 
 
 }

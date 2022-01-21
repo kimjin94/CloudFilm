@@ -7,33 +7,24 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>게시판 목록</title>
+	<title>내가 쓴 글</title>
 </head>
 <body>
 	<div>
 	</div>
 	<!-- 게시판 리스트 -->
 	<div>
-		<h2 class="bbslist_title">게시판 목록</h2>
+		<h2 class="bbslist_title">내가 쓴 글</h2>
 		<div id="bbslist_c">글 개수 : ${listcount}</div>
 		
-		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
-		onClick="location='review_list?page=${page}'"/>
-		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=추천'"/>
-		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=비추천'"/>
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
 				<td style="font-family: Tahoma; font-size: 11pt;" width="8%"
 					height="26">
-					<div align="center">번호</div>
+					<div align="center">글번호</div>
 				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="9%"
-					height="26">
-					<div align="center">필터</div>
-				</td>
+				
 				<td style="font-family: Tahoma; font-size: 11pt;" width="47%">
 					<div align="center">제목</div>
 				</td>
@@ -49,49 +40,43 @@
 			</tr>
 
 			<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*20}"/> 	
+			<c:set var="num" value="${listcount-(page-1)*10}"/> 	
 	
 			<!-- 반복문 시작 -->
-			<c:forEach var="re" items="${reviewlist}">
+			<c:forEach var="mywritinglist" items="${mywritinglist}">
 			
 			<tr align="center" valign="middle">
 				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
  					<!-- 번호 출력 부분 -->	
- 					<c:out value="${num}"/>			
+					${mywritinglist.board_num}
 					<c:set var="num" value="${num-1}"/>	 
 				</td>
-				
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">							
-						
-					<!-- 필터 출력 부분 -->	
-							${re.board_filter}
-					</a>
-					</div>
-				</td>
+
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="review_cont?board_num=${re.board_num}&page=${page}">
-							${re.board_title}
+					<a href="review_cont?board_num=${mywritinglist.board_num}&page=${page}">
+							${mywritinglist.board_title}
 					</a>
 					</div>
 				</td>
-
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.mem_id}</div>
+					<div align="center">							
+						
+							${mywritinglist.mem_id}
+					</a>
+					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">
-					
-					<fmt:formatDate value="${re.board_date}"
+					<fmt:formatDate value="${mywritinglist.board_date}"
 						 pattern="yyyy-MM-dd HH:mm:ss"/>					
 					
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.board_count}</div>
+					<div align="center">${mywritinglist.board_count}</div>
 				</td>
 			</tr>
 			
@@ -106,7 +91,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="review_list?page=${page-1}">[이전]</a>&nbsp;
+				<a href="myWritingList?page=${page-1}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -114,7 +99,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="review_list?page=${a}">[${a}]</a>&nbsp;
+					<a href="myWritingList?page=${a}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -122,13 +107,9 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="review_list?page=${page+1}">[다음]</a>
+				<a href="myWritingList?page=${page+1}">[다음]</a>
 			</c:if>			
 			
-		</div>
-		<div id="bbslist_w">
-			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='review_write?page=${page}'">
 		</div>
 		
 	</div>
