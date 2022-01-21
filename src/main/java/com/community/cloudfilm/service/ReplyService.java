@@ -37,4 +37,21 @@ public class ReplyService {
 		return resultMap;
 	}
 
+	// 댓글 수정폼으로 이동
+	public ReplyVO getReply(HttpServletRequest request, HttpServletResponse response) {
+		int re_num = Integer.parseInt(request.getParameter("re_num"));
+		
+		return replyDAO.getReply(re_num);
+	}
+	
+	// 댓글 수정
+	public ReplyVO updatereply(HttpServletRequest request, HttpServletResponse response) {
+		
+		return replyDAO.udpatereply(request, response);
+	}
+
+	public ReplyVO deleteReply(HttpServletRequest request, HttpServletResponse response) {
+		return replyDAO.deleteReply(request, response);
+	}
+
 }

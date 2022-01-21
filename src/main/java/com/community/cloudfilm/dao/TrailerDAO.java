@@ -202,5 +202,10 @@ public class TrailerDAO {
 		
 		return sqlSession.selectOne("trailer.checkTrailerBad", parameterMap);
 	}
+
+	// 댓글새로고침 할 때 게시글정보 같이 긁어오기
+	public BoardVO getTrailerDetailAtReply(int board_num) {
+		return sqlSession.selectOne("trailer.getTrailerDetailAtReply", board_num);
+	}
 	
 }

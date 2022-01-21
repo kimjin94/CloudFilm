@@ -11,6 +11,7 @@ public class ReplyVO {
 	private String re_cont;
 	
 	private String mem_nick;
+	private String mem_img;
 
 	public int getRe_num() {
 		return re_num;
@@ -66,6 +67,14 @@ public class ReplyVO {
 
 	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
+	}
+
+	public String getMem_img() {
+		return mem_img;
+	}
+
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
 	}
 	
 	

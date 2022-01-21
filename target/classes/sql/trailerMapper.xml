@@ -35,9 +35,10 @@
 		        select 
 		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
-		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
 		        , count(b.gb_sort) as board_good
 		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
 		        from board a
 		            left join goodandbad b
 		                on a.board_num = b.board_num
@@ -45,11 +46,15 @@
 		            left join goodandbad c
 		                on a.board_num = c.board_num 
 		                and b.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
 		        where a.cate_num = 3 
 		        group by 
 	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
-					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
 		        order by a.BOARD_num desc
 		    ) board
 		)
@@ -61,7 +66,14 @@
 	
 	<!-- 예고편 상세페이지 -->
 	<select id="getBoardDetail" parameterType="int" resultType="board">
-		select * from board where board_num = #{board_num}
+		select
+		 		a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, b.mem_nick, b.mem_img
+		from board a
+			left join member b
+				on a.mem_num = b.mem_num
+		where board_num = #{board_num}
 	</select>
 	
 	<!-- 좋아요 -->
@@ -128,5 +140,10 @@
 		board_num = #{board_num} AND
 		mem_num = #{mem_num} AND
 		GB_SORT = 'b'
+	</select>
+	
+	<select id="getTrailerDetailAtReply" parameterType="int" resultType="board">
+		select * from board
+		where board_num = #{board_num}
 	</select>
 </mapper>
