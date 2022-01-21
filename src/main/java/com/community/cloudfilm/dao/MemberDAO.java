@@ -85,9 +85,10 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.select_member",mem_num);
 	}
 
+	//관리자 로그인
 	@Transactional
 	public MemberVO getMember() {
-		return sqlSession.selectOne("memberns.getMember");
+		return sqlSession.selectOne("memberMapper.getMember");
 	}
 	
 }

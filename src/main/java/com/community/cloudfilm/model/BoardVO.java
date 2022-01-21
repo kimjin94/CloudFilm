@@ -18,6 +18,10 @@ public class BoardVO {
 	private String board_yn;
 	private String info_yn;
 	private int mem_num;
+	
+	private int re_count;
+	private String mem_img;
+	private String mem_nick;	
 
 	
 	public int getBoard_num() {
@@ -109,6 +113,24 @@ public class BoardVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public int getRe_count() {
+		return re_count;
+	}
+	public void setRe_count(int re_count) {
+		this.re_count = re_count;
+	}
+	public String getMem_img() {
+		return mem_img;
+	}
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
+	}
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
 	}
 	
 }

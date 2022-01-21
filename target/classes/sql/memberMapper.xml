@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
 
+	<select id="getMember" resultType="member">
+		select * from member where mem_num=1
+	</select>
+
 	<!-- id중복 검사 -->
 	<select id="idCheck" parameterType="member" resultType="int">
 		select count(*) from member where mem_id = #{mem_id}

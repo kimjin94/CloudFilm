@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="replyMapper">
+
+	<!-- 댓글 입력 -->
+	<insert id="insertreply" parameterType="java.util.Map">
+		insert into reply
+		(
+		RE_NUM
+		, BOARD_NUM
+		, MEM_NUM
+		, RE_CONT
+		, RE_DATE
+		, RE_YN
+		)
+		values
+		(
+		rpy_seq.nextval
+		, #{board_num}
+		, #{mem_num}
+		, #{re_cont}
+		, SYSDATE
+		, 'y'
+		)
+	</insert>
+	
+	<!-- 댓글 리스트 불러오기 -->
+	<select id="selectReplyList" parameterType="int" resultType="reply">
+		select 
+			r.RE_NUM
+			, r.BOARD_NUM
+			, r.MEM_NUM
+			, r.RE_CONT
+			, r.RE_DATE
+			, r.RE_YN
+			, m.mem_nick
+			, m.mem_img
+			from reply r
+				left join member m
+				on r.mem_num = m.mem_num
+		where r.board_num = #{board_num}
+		order by r.re_num asc
+	</select>
+	
+	<!-- 댓글 1개만 불러오기 -->
+	<select id="selectReply" parameterType="int" resultType="reply">
+		select r.RE_NUM
+			, r.BOARD_NUM
+			, r.MEM_NUM
+			, r.RE_CONT
+			, r.RE_DATE
+			, r.RE_YN
+			, m.mem_nick
+			, m.mem_img
+			from reply r
+				left join member m
+				on r.mem_num = m.mem_num
+		where re_num = #{re_num}
+	</select>
+	
+	<!-- 댓글 수정하기 -->
+	<update id="udpateReply" parameterType="java.util.Map">
+		update reply
+		set
+		re_cont = #{re_cont}
+		where re_num = #{re_num}
+	</update>
+	
+	<!-- 댓글 삭제(업데이트)하기 -->
+	<update id="deleteReply" parameterType="int">
+		update reply
+		set
+		re_yn = 'n'
+		where re_num = #{re_num}
+	</update>
+</mapper>

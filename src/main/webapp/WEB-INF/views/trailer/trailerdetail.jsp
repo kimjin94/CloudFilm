@@ -59,7 +59,16 @@ th{
 				<th>${board.board_title}</th>
 			</tr>
 			<tr>
-				<td colspan="2">작성자 : ${board.mem_id} | 조회수 : ${board.board_count} |
+				<td colspan="2">
+					<c:choose>
+	                  <c:when test="${board.mem_img != null }">
+	                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/${board.mem_img}" height="20" width="20">
+	                  </c:when>
+	                  <c:otherwise>
+	                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="20" width="20">
+	                  </c:otherwise>
+	               </c:choose>
+               		${board.mem_nick} | 조회수 : ${board.board_count} |
 					<a id=boarddate><fmt:formatDate value="${board.board_date}" pattern="yyyy/MM/dd HH:mm:ss" /></a>
 				</td>
 			</tr>
@@ -105,29 +114,22 @@ th{
 			</tr>
 		</table>
 		
-		<table border=1>
-			<tr>
-				<td>
-					댓글출력부분<br>
-					<input type="text" name=>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div id ="replyarea">
-						<textarea id="re_cont" name="re_cont" rows="5" cols="100"></textarea>
-						<button id="replywritebtn" onclick="replywrite(${mem_num})">댓글 등록</button>
-					</div>
-					<script type="text/javascript">
-					function replywrite(mem_num) {
-						
-					}
-					
-					</script>
-				</td>
-			</tr>
-		</table>
-	
+		<form action="replywrite" method="post">
+			<table border=1>
+				<%@ include file="../reply/replylist.jsp" %>
+				<tr>
+					<td colspan="4">
+						<div id ="replyarea">
+							<input type="hidden" name="mem_num" value="${mem_num}">
+							<input type="hidden" name="board_num" value="${board.board_num}">
+							<input type="hidden" name="page" value="${page}"> 
+							<textarea id="re_cont" name="re_cont" rows="5" cols="100"></textarea>
+							<button type="submit">댓글 등록</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 
 </body>

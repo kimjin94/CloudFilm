@@ -36,17 +36,19 @@ margin-top : 5px;
 </head>
 <body>
 	<div>
-		<table border=1 >
+		<table border=1 style="table-layout:fixed;">
 			<h2>예고편 게시판</h2>
 			<c:forEach var="trailerlist" items="${trailerlist}">
 				<tr>
 					<th rowspan="3" width="160"><img alt="" src="http://i.ytimg.com/vi/${trailerlist.board_video}/hqdefault.jpg" width="160" height="120"></th>
 					<td><a href="trailerDetail?page=${page}&board_num=${trailerlist.board_num}">${trailerlist.board_title} </a></td><tr>
-					<td> 댓글 : | 조회수 : ${trailerlist.board_count} | 추천 : ${trailerlist.board_good} 
+					<td> 댓글 : ${trailerlist.re_count} | 조회수 : ${trailerlist.board_count} | 추천 : ${trailerlist.board_good} |
 						<fmt:formatDate value="${trailerlist.board_date}"
 							pattern="yyyy/MM/dd HH:mm:ss" />
-						</td><tr>
-					<td>${trailerlist.board_video}</td><tr>
+						</td>
+					<tr>
+						<td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${trailerlist.board_cont}</td>
+					<tr>
 				</tr>
 			</c:forEach>
 		</table>

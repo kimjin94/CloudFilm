@@ -78,3 +78,6 @@ function nobad(){
 function login(){
 	alert("추천, 비추천은 로그인 후에 가능합니다.");
 }
+
+
+

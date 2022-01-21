@@ -130,24 +130,22 @@ public class TrailerService {
 	// 예고편 추천 취소
 	public BoardVO nogoodtrailer(HttpServletRequest request, HttpServletResponse response) {
 		
-		BoardVO board = trailerDAO.nogoodtrailer(request, response);
-		
-		return board;
+		return trailerDAO.nogoodtrailer(request, response);
 	}
 
 	// 예고편 비추
 	public BoardVO badtrailer(HttpServletRequest request, HttpServletResponse response) {
 		
-		BoardVO baord = trailerDAO.badtrailer(request, response);
-		
-		return baord;
+		return trailerDAO.badtrailer(request, response);
 	}
 
 	// 예고편 비추 취소
 	public BoardVO nobadtrailer(HttpServletRequest request, HttpServletResponse response) {
 		
-		BoardVO board = trailerDAO.nobadtrailer(request, response);
-		
-		return board;
+		return trailerDAO.nobadtrailer(request, response);
+	}
+
+	public BoardVO getTrailerDetailAtReply(int board_num) {
+		return trailerDAO.getTrailerDetailAtReply(board_num);
 	}
 }
