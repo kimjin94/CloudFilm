@@ -22,7 +22,9 @@ function del(page,board_num){
 </script>
 
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+	<div class="row">
+  <div class="leftcolumn" align="center">
 		<h2>리뷰게시판 원문내용</h2>
 		<form >
 		<input type="hidden" id = "board_num" name="board_num" value="${re.board_num}"/>
@@ -128,6 +130,9 @@ function del(page,board_num){
 			</table>
 		</form> 	
 	</div>
-
+	<%@ include file="../layout/row.jsp" %>	
+	</div>
+	
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

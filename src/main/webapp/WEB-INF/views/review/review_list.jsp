@@ -1,18 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>게시판 목록</title>
 </head>
 <body>
-<%-- <%@ include file="../layout/header.jsp" %>   --%>
+<%@ include file="../layout/header.jsp" %>  
 	<!-- 게시판 리스트 -->
-	<div>
+	<div class="row">
+  <div class="leftcolumn" align="center">
+  <div class="container">
 		<h2 class="bbslist_title">게시판 목록</h2>
 		<div id="bbslist_c">글 개수 : ${listcount}</div>
 		
@@ -143,5 +146,10 @@
 		<input type="submit" value="검색"/>
 		</from>
 	</div>
+	</div>
+	<%@ include file="../layout/row.jsp" %>	
+	</div>
+	
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

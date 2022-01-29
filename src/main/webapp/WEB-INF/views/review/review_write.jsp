@@ -7,7 +7,9 @@
 <title>리뷰 게시판 글쓰기</title>
 </head>
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+	<div class="row">
+  <div class="leftcolumn" align="center">
 		<form action="review_writing" method="post" enctype="multipart/form-data" >
 			<table border=1>
 				<caption>리뷰 글쓰기</caption>
@@ -41,5 +43,9 @@
 			</table>
 		</form>
 	</div>
+<%@ include file="../layout/row.jsp" %>	
+	</div>
+	
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

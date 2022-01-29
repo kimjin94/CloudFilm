@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -113,7 +113,6 @@ border-bottom:none;
 .rightcolumn {
   float: left;
   width: 24%;
-  background-color: #f1f1f1;
   padding-left: 20px;
   text-align: center;
 }
@@ -153,10 +152,10 @@ border-bottom:none;
   content: "";
   display: table;
   clear: both;
-}
+} 
 
 /* TOPbtn */
-#myBtn {
+#topBtn {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -172,7 +171,7 @@ border-bottom:none;
   border-radius: 4px;
 }
 
-#myBtn:hover {
+#topBtn:hover {
   background-color: #555;
 }
 
