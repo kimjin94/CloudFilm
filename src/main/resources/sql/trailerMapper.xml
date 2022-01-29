@@ -154,7 +154,12 @@
 			left join member m
 				on b.mem_num = m.mem_num
 			 WHERE b.cate_num = 3
-				AND ${search} LIKE '%'||#{keyword}||'%'
+	        	<if test="keyword != null">
+		        		AND ${search} LIKE '%'||#{keyword}||'%'
+	        	</if>
+	        	<if test="board_filter != null">
+	        		AND board_filter LIKE #{board_filter}
+	        	</if>
 				
 	</select>
 	
@@ -185,7 +190,12 @@
 		            left join member e
 		                on a.mem_num = e.mem_num
 		        where a.cate_num = 3 
-		        	AND ${search} LIKE '%'||#{keyword}||'%'
+		        	<if test="keyword != null">
+		        		AND ${search} LIKE '%'||#{keyword}||'%'
+		        	</if>
+		        	<if test="board_filter != null">
+		        		AND board_filter LIKE '%'||#{board_filter}||'%'
+		        	</if>
 		        group by 
 	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 

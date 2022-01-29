@@ -153,24 +153,44 @@ public class TrailerService {
 	// 예고편 검색
 	public Map<String, Object> getTrailersearchList(HttpServletRequest request, HttpServletResponse response) {
 		List<BoardVO> trailersearchlist = new ArrayList<BoardVO>();
-
+		
+		// parameter를 map으로 넘김
+		Map<String, Object> paraMap = new HashMap<String, Object>();
+		
+		// view페이지에 넘길 값을 map형태로 넘김
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
 		int page = 1;
 		int limit = 10; // 한 화면에 출력할 레코드수
-		
-		String search = request.getParameter("search");
-		String keyword = request.getParameter("keyword");
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 			
 		}
 		
-		System.out.println(search);
-		System.out.println(keyword);
+		// 검색을 할 경우
+		if(request.getParameter("search") != null && request.getParameter("keyword") != null) {
+			String search = request.getParameter("search");
+			String keyword = request.getParameter("keyword");
+			
+			paraMap.put("search", search);
+			paraMap.put("keyword", keyword);
+			
+			resultMap.put("search", search);
+			resultMap.put("keyword", keyword);
+		}
 		
-		Map<String, Object> paraMap = new HashMap<String, Object>();
-		paraMap.put("search", search);
-		paraMap.put("keyword", keyword);
+		// 필터로 정렬할 경우
+		if(request.getParameter("board_filter") != null) {
+			String board_filter = request.getParameter("board_filter");
+			
+			paraMap.put("board_filter", board_filter);
+			
+			resultMap.put("board_filter", board_filter);
+			
+		}
+		
+
 		paraMap.put("page", page);
 
 		// 총 리스트 수를 받아옴.
@@ -190,10 +210,9 @@ public class TrailerService {
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
 
-		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		resultMap.put("search", search);
-		resultMap.put("keyword", keyword);
+		
+
 		resultMap.put("page", page);
 		resultMap.put("startpage", startpage);
 		resultMap.put("endpage", endpage);

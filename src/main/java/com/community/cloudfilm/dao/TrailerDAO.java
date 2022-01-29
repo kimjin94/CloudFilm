@@ -208,10 +208,13 @@ public class TrailerDAO {
 		return sqlSession.selectOne("trailer.getTrailerDetailAtReply", board_num);
 	}
 
+	// 게시판 검색 결과값의 수 
 	public int getSearchListCount(Map<String, Object> paraMap) {
+		System.out.println(paraMap.get("board_filter"));
 		return sqlSession.selectOne("trailer.getSearchListCount", paraMap);
 	}
 
+	// 게시판 검색 결과 리스트
 	public List<BoardVO> getSearchBoardList(Map<String, Object> paraMap) {
 		return sqlSession.selectList("trailer.getSearchList", paraMap);
 	}

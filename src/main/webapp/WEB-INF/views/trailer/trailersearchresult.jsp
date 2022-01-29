@@ -33,12 +33,45 @@ margin-top : 5px;
 	width : 600px;
 }
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 </head>
 <body>
 	<div>
-		글 갯수 = ${listcount}
+		<h2>예고편 게시판</h2>
+		<div id='container'>
+			<div id='right-box'> 
+				<select id="board_filter" name="board_filter" onchange="searchboard()">
+					<option value="" <c:if test="${board_filter == '' }"> selected="selected" </c:if>>전체보기</option>
+					<option value="액션" <c:if test="${board_filter == '액션' }"> selected="selected" </c:if>>액션</option>
+					<option value="애니메이션" <c:if test="${board_filter == '애니메이션' }"> selected="selected" </c:if>>애니메이션</option>
+					<option value="드라마" <c:if test="${board_filter == '드라마' }"> selected="selected" </c:if>>드라마</option>
+					<option value="스릴러" <c:if test="${board_filter == '스릴러' }"> selected="selected" </c:if>>스릴러</option>
+					<option value="코미디" <c:if test="${board_filter == '코미디' }"> selected="selected" </c:if>>코미디</option>
+					<option value="멜로/로맨스" <c:if test="${board_filter == '멜로/로맨스' }"> selected="selected" </c:if>>멜로/로맨스</option>
+					<option value="호러" <c:if test="${board_filter == '호러' }"> selected="selected" </c:if>>호러</option>
+					<option value="시대극" <c:if test="${board_filter == '시대극' }"> selected="selected" </c:if>>시대극</option>
+					<option value="SF" <c:if test="${board_filter == 'SF' }"> selected="selected" </c:if>>SF</option>
+					<option value="어드벤처" <c:if test="${board_filter == '어드벤처' }"> selected="selected" </c:if>>어드벤처</option>
+					<option value="판타지" <c:if test="${board_filter == '판타지' }"> selected="selected" </c:if>>판타지</option>
+					<option value="가족" <c:if test="${board_filter == '가족' }"> selected="selected" </c:if>>가족</option>
+					<option value="다큐" <c:if test="${board_filter == '다큐' }"> selected="selected" </c:if>>다큐</option>
+					<option value="기타" <c:if test="${board_filter == '기타' }"> selected="selected" </c:if>>기타</option>
+				</select>
+				<script type="text/javascript">
+					function searchboard() {
+						if($("#board_filter  option:selected").val() == ""){
+							location.href="trailerlist";
+						} else{
+							var board_filter = $("#board_filter  option:selected").val();
+							location.href="searchboard?board_filter="+board_filter;
+						}
+						
+					}
+				</script>
+			</div>
+		</div>
 		<table border=1 style="table-layout:fixed;">
-			<h2>예고편 게시판</h2>
 			<c:forEach var="trailersearchlist" items="${trailersearchlist}">
 				<tr>
 					<th rowspan="3" width="160"><img alt="" src="http://i.ytimg.com/vi/${trailersearchlist.board_video}/hqdefault.jpg" width="160" height="120"></th>
@@ -60,6 +93,7 @@ margin-top : 5px;
    	    	<button onclick="location='writeTrailerForm'">글쓰기</button>
 	    </div>
 	    <form action="searchboard" method="post">
+	    	<input type="hidden" name="board_filter">
 		    <div id='center-box'>
 		    	<select name="search">
 		    		<option value="">검색조건</option>
