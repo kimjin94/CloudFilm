@@ -59,6 +59,7 @@ body {
 .leftcolumn {   
   float: left;
   width: 75%;
+  background: white;
 }
 
 .text-primary{
@@ -77,7 +78,16 @@ padding-right: 15px;
 }
 
 .cate li{
-display: inline;
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.cate li a{
+text-decoration: none;
 }
 
  a{
