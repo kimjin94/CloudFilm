@@ -48,6 +48,11 @@
 	select * from member where mem_id=#{mem_id} and mem_email=#{mem_email} and mem_yn='y'
 	</select>
 	
+	<!-- 비밀번호 재확인 -->
+	<select id="pass_recheck" parameterType="String" resultType="member">
+	select * from member where mem_pass=#{mem_pass} and mem_yn='y'
+	</select>
+	
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="member">
 	update member set

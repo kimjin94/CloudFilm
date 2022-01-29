@@ -18,12 +18,42 @@
 	
 	<!-- 리뷰 목록  -->
 	<select id="review_list" parameterType="int" resultType="board">
-		<![CDATA[
-		select * from 
-		(select rownum rnum, board.* from
-		(select * from board where cate_num = 1 order by BOARD_num desc) board)
-		where rnum >= ((#{page} - 1) * 20+1) and  rnum <= (#{page} * 20)
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and b.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 1 
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)
 		]]>
+		
 	</select>
 
 	<!-- 필터적용 리뷰 총 게시물 수 -->
@@ -39,6 +69,41 @@
 		(select * from board where cate_num = 1 and board_filter = #{board_filter} order by BOARD_num desc) board)
 		where rnum >= ((#{page} - 1) * 20+1) and  rnum <= (#{page} * 20)
 		]]>
+	</select>
+	
+	<!-- 검색적용 리뷰 총 게시물 수 -->
+	<select id="reviewSearch_count" resultType="int" parameterType="String">
+		select count(board_num) from board 
+		<where>
+			<if test="keyword !=null and search != 'subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword !=null and search == 'subcon'">
+				board_title like '%'||#{keyword}||'%' or
+				board_cont like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 검색적용 리뷰 총 리뷰 목록 -->
+	<select id="reviewSearch_list" parameterType="java.util.Map" resultType="board">
+		select * from
+		(select rownum rnum, board.* from
+		(select * from board
+		<where>
+		<if test="keyword !=null and search !='subcon'">
+			${search} like '%'||#{keyword}||'%'
+		</if>
+		<if test="keyword !=null and search =='subcon'">
+			board_title like '%'||#{keyword}||'%' or
+			board_cont like '%'||#{keyword}||'%' or
+		</if>
+		</where>
+			order by board_num desc)board)
+		<![CDATA[ 
+		where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)
+		]]>	
+			
 	</select>
 		
 	<!-- 리뷰게시판 원문내용 -->

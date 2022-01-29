@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.community.cloudfilm.model.BoardVO;
 import com.community.cloudfilm.model.MemberVO;
 import com.community.cloudfilm.service.MemberService;
+import com.community.cloudfilm.service.ReplyService;
 import com.community.cloudfilm.service.ReviewService;
 
 @Controller
@@ -32,6 +33,8 @@ public class ReviewController {
 	private ReviewService reviewService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ReplyService replyService;
 	
 	
 	//리뷰 작성폼
@@ -106,9 +109,10 @@ public class ReviewController {
 	}
 	//리뷰게시판 목록
 	@RequestMapping(value = "/review_list")
-	public String review_list(HttpServletRequest request, Model model)throws Exception {
+	public String review_list(HttpServletRequest request,BoardVO board, Model model)throws Exception {
 		System.out.println("리뷰리스트 컨");
 		System.out.println(request.getParameter("board_filter"));
+		System.out.println(request.getParameter("search"));
 		
 		List<BoardVO> reviewlist = new ArrayList<BoardVO>();
 		
@@ -142,6 +146,27 @@ public class ReviewController {
 			reviewlist = reviewService.getFilterReviewList(indexMap);	//리스트 받아오기
 		}
 		
+		if(request.getParameter("keyword") == null) {
+			//퐁 리스트 수를 받아옴
+			listcount = reviewService.getListCount();
+			//페이지 번호(page)를 DAO클래스에게 전달한다.
+			reviewlist = reviewService.getReviewList(page);	//리스트 받아오기
+		}else if(request.getParameter("keyword") != null) {
+			String keyword = request.getParameter("keyword");
+			String search = request.getParameter("search");
+			
+			Map<String, Object> parameterMap = new HashMap<String, Object>();
+			
+			parameterMap.put("page", page);
+			parameterMap.put("keyword", keyword);
+			parameterMap.put("search", search);
+			
+			//총 리스트 수를 받아옴
+			listcount = reviewService.getSearchListCount(keyword);
+			//페이지 번호 전달
+			reviewlist = reviewService.getSearchReviewList(parameterMap);	//리스트 받아오기
+		}
+		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
 		
@@ -169,33 +194,74 @@ public class ReviewController {
 	@RequestMapping(value="review_cont")
 	public String review_cont(@RequestParam("board_num") int board_num,
 							  @RequestParam("page") String page,
+							  HttpServletRequest request, HttpServletResponse response,
 							  Model model)throws Exception {
 		//조회수 증가
 		reviewService.hit(board_num);
 		
 		BoardVO review = reviewService.getReviewCont(board_num);
 		
+		int checkTrailerGood = 0;
+		int checkTrailerBad = 0;
+		int mem_num = 0;
+		// 세션에서 로그인한 계정의 정보 받아오기
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member") != null) {
+			MemberVO member = (MemberVO)session.getAttribute("member");
+			// 회원번호 가져오기
+			mem_num = member.getMem_num();
+			
+			model.addAttribute("mem_num", mem_num);
+			
+			// 좋아요를 눌렀는지 
+			if(reviewService.checkTrailerGood(board_num, mem_num) != 0) {
+				checkTrailerGood = reviewService.checkTrailerGood(board_num, mem_num);
+			}
+			//  싫어요를 눌렀는지	
+			if(reviewService.checkTrailerBad(board_num, mem_num) != 0) {
+				checkTrailerBad = reviewService.checkTrailerBad(board_num, mem_num);
+			}
+		}
+		
+		// 댓글 리스트 가져오기
+		Map<String, Object> replylist = replyService.getReplyList(request, response);
+		
 		//멤버불러오기
 		MemberVO member = memberService.getmemberinfo(review.getMem_num());
 		System.out.println(member.getMem_id());
 		System.out.println(member.getMem_img());
 		
+		model.addAttribute("checkTrailerGood", checkTrailerGood);
+		model.addAttribute("checkTrailerBad", checkTrailerBad);
 		model.addAttribute("re", review);
 		model.addAttribute("mem", member);
 		model.addAttribute("page", page);
+		model.addAllAttributes(replylist);
 		
 		return "review/review_cont";
 	}
 	//리뷰 수정폼
 	@RequestMapping(value="review_update")
 	public String review_update(@RequestParam("board_num") int board_num,
-								@RequestParam("page") String page,
-								Model model)throws Exception{
+								@RequestParam("page") String page,HttpSession session,
+								MemberVO member,Model model)throws Exception{
+		
+		MemberVO reviewmember = (MemberVO)session.getAttribute("member");
+		int mem_num = reviewmember.getMem_num();
+		String mem_id = reviewmember.getMem_id();
 		
 		//리뷰 불러오기
 		BoardVO review = reviewService.getReviewCont(board_num);
 		model.addAttribute("re", review);
 		model.addAttribute("page", page);
+		
+		int result =0;
+		
+		if(!review.getMem_id().equals(mem_id)) {
+			result = 1;
+			model.addAttribute("result", result);
+			return "review/deleteCheck";
+		}
 		
 		String review_cont = review.getBoard_cont().replace("\n", "<br/>");
 		//글 내용중 엔터키 친 부분을 다음줄로 개행
@@ -206,16 +272,58 @@ public class ReviewController {
 	
 	//리뷰 수정
 	@RequestMapping(value="/review_updating", method=RequestMethod.POST)
-	public String review_updating(@ModelAttribute BoardVO board,
+	public String review_updating(@RequestParam(value="board_img1") MultipartFile mf,
+								  @ModelAttribute BoardVO board,
 								  @RequestParam("page") String page,
+								  HttpServletRequest request,
 								  Model model)throws Exception{
 		
+		if (mf != null) {
+	         //첨부파일 저장
+	         UUID uuid = UUID.randomUUID();
+	         String filename = uuid + mf.getOriginalFilename();
+	         int size = (int) mf.getSize();
+	         String path = request.getRealPath("resources/images/reviewimage");
+	         int result = 0;
+	         String file[] = new String[2];
+
+        // 첨부파일 저장 체크
+//	         if (filename != "") {
+//	            StringTokenizer st = new StringTokenizer(filename, ".");
+//	            file[0] = st.nextToken();
+//	            file[1] = st.nextToken(); // 확장자
+//
+//	            // 사이즈가 10mb 이상인경우
+//	            if (size > 10000000) {
+//	               result = 1;
+//	               model.addAttribute("result", result);
+//
+//	               return "";
+//
+//	            //  
+//	            } else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png") && !file[1].equals("pdf")) {
+//
+//	               result = 2;
+//	               model.addAttribute("result", result);
+//
+//	               return "";
+//	            }
+//	         }
+
+	         // 첨부파일이 전송된 경우
+	         if (size > 0) {
+	            mf.transferTo(new File(path + "/" + filename));
+	         }
+
+	         board.setBoard_img(filename);
+	         System.out.println(path);
+	      }
 		
 		//수정 메서드 호출
 		reviewService.reviewUpdate(board);
 		System.out.println("수정가나요 컨트롤러");
 		
-		return "redirect:/review_list?board_num=" + board.getBoard_num()
+		return "redirect:/review_cont?board_num=" + board.getBoard_num()
 							+"&page=" + page;
 	}
 	//리뷰 삭제

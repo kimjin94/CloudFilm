@@ -37,8 +37,28 @@ public class MypageController {
 	}
 	//내가 쓴 댓글
 	@RequestMapping(value="myReplyList")
-	public String myReplyList( ) {
+	public ModelAndView myReplyList(HttpServletRequest request,HttpServletResponse response,
+									HttpSession session) {
 		
-		return "mypage/myReplyList";
+		ModelAndView myreplylistM = new ModelAndView("mypage/myReplyList");
+		
+		//내가 쓴 댓글 리스트 받아오기
+		Map<String, Object> myreplylist = mypageService.getmyReplyList(request,response,session);
+		
+		myreplylistM.addAllObjects(myreplylist);
+		return myreplylistM;
+	}
+	//내가 좋아요한 글
+	@RequestMapping(value="myGoodList")
+	public ModelAndView myGoodList(HttpServletRequest request, HttpServletResponse response,
+									HttpSession session) {
+		
+		ModelAndView mygoodlistM = new ModelAndView("mypage/myGoodList");
+		
+		//내가 좋아요한 글 리스트 받아오기
+		Map<String, Object> mygoodlist = mypageService.getmyGoodList(request,response,session);
+		
+		mygoodlistM.addAllObjects(mygoodlist);
+		return mygoodlistM;
 	}
 }

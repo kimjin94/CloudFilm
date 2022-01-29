@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		<form action="review_updating" method="post" onSubmit="return review_check()" enctype="multipart/form-data">
+		<form action="review_updating" method="post">
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
 			<table border=1>
@@ -36,16 +36,15 @@
 				<tr>
 					<th>이미지 첨부</th>
 					<td colspan="3">
-					<input type="file" id="board_img" name="board_img1">
-					현재파일 :<img src="<%=request.getContextPath() %>/resources/images/reviewimage/${re.board_img}" height="50" width="50" />
+					<input type="text" name="board_img">
+					현재파일 :
 					</td>
 						
 				</tr>
 
 				<tr>
 					<td colspan="4">
-						<button type="submit">수정</button>
-						<button type="reset" onclick="history.go(-1)">취소</button>
+						<button>수정</button>
 					</td>
 				</tr>
 			</table>

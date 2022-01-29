@@ -36,7 +36,7 @@ function check(){
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
-			<form action="/recheck_ok" method="post" role="form" id="usercheck"
+			<form action="recheck_ok" method="post" role="form" id="usercheck"
 				name="member" onsubmit="return check()">
 				<label for="mem_id">아이디</label>
 				<div class="form-group">

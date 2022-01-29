@@ -22,15 +22,27 @@ public class ReplyController {
 	private TrailerService trailerService;
 	
 	// 댓글 작성
-	@RequestMapping(value = "/replywrite")
-	public String replywrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		int page = Integer.parseInt(request.getParameter("page"));
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		
-		replyService.replywrite(request, response);
-		
-		return "redirect:trailerDetail?page="+page+"&board_num="+board_num;
-	}
+   @RequestMapping(value = "/replywrite")
+   public String replywrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
+      int page = Integer.parseInt(request.getParameter("page"));
+      int board_num = Integer.parseInt(request.getParameter("board_num"));
+      
+      // 게시글 상세정보 가져오기
+      BoardVO board = trailerService.getTrailerDetailAtReply(board_num);
+      
+      String index = "";
+      if(board.getCate_num() == 1) {
+         index = "review_cont";
+      }else if(board.getCate_num() == 2) {
+         index = "";
+      }else if(board.getCate_num() == 3) {
+         index = "trailerDetail";
+      }
+      
+      replyService.replywrite(request, response);
+      
+      return "redirect:"+index+"?page="+page+"&board_num="+board_num;
+	   }
 	
 	// 댓글 수정폼으로 이동
 	@RequestMapping(value = "/replyUpdateForm")

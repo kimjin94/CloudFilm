@@ -87,7 +87,7 @@ public class MemberController {
 		         UUID uuid = UUID.randomUUID();
 		         String filename = uuid + mf.getOriginalFilename();
 		         int size = (int) mf.getSize();
-		         String path = request.getRealPath("/resources/images/memberimage");
+		         String path = request.getRealPath("resources/images/memberimage");
 		         int result = 0;
 		         String file[] = new String[2];
 
@@ -336,7 +336,7 @@ public class MemberController {
 		         UUID uuid = UUID.randomUUID();
 		         String filename = uuid + mf.getOriginalFilename();
 		         int size = (int) mf.getSize();
-		         String path = request.getRealPath("WEB-INF/resources/images/memberimage");
+		         String path = request.getRealPath("resources/images/memberimage");
 		         int result = 0;
 		         String file[] = new String[2];
 
@@ -382,6 +382,7 @@ public class MemberController {
 		if(member.getMem_pass() == "") {
 			member.setMem_pass(oldmember.getMem_pass());
 		}
+		
 		
 		memberService.memberUpdate(member);
 		

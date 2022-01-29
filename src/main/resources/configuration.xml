@@ -12,6 +12,7 @@
 		<typeAlias alias="board" type="com.community.cloudfilm.model.BoardVO" />
 		<typeAlias alias="member" type="com.community.cloudfilm.model.MemberVO" />
 		<typeAlias alias="reply" type="com.community.cloudfilm.model.ReplyVO" />
+		<typeAlias alias="goodandbad" type="com.community.cloudfilm.model.GoodAndBadVO" />
 	</typeAliases>
 </configuration>
 

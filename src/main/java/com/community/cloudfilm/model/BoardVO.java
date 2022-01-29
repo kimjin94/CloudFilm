@@ -22,6 +22,10 @@ public class BoardVO {
 	private int re_count;
 	private String mem_img;
 	private String mem_nick;	
+	
+	//검색
+	private String search;	//검색타입
+	private String keyword;	//검색내용
 
 	
 	public int getBoard_num() {
@@ -131,6 +135,18 @@ public class BoardVO {
 	}
 	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 }

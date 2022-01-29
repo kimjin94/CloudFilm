@@ -127,22 +127,11 @@
 			</c:if>			
 			
 		</div>
-		<div id="bbslist_w" align="center" valign="middle">
+		<div id="bbslist_w">
 			<input type="button" value="글쓰기" class="input_button"
 				onclick="location='review_write?page=${page}'">
 		</div>
-		<from action="review_list" onSubmit="return board_check()" >
-		<select name="search">
-			<option value="board_title"
-				<c:if test="${search=='board_title'}">selected="selected"</c:if>>제목</option>
-			<option value="board_cont"
-				<c:if test="${search=='board_cont'}">selected="selected"</c:if>>내용</option>
-			<option value="mem_nick"
-				<c:if test="${search=='mem_id'}">selected="selected"</c:if>>작성자</option>
-		</select>
-		<input type="text" name="keyword">
-		<input type="submit" value="검색"/>
-		</from>
+		
 	</div>
 </body>
 </html>

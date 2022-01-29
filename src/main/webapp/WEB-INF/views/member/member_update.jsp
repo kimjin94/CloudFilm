@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +79,109 @@
 		  }); //ajax///
 		}//else if
 });//blur
+//이메일 중복확인
+$("#mem_email").blur(function() {
+	var mem_email=$('#mem_email').val();
+
+	if($('#mem_email').val()==''){ 
+	$('#email_check').text('이메일 입력하세요.');
+	$('#email_check').css('color', 'red');
+	}
+	else if(mailJ.test($('#mem_email').val())!=true){
+	$('#email_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+	$('#email_check').css('color', 'red');
+	}
+	else if($('#mem_email').val() != '' ){ 
+		
+	 $.ajax({
+		async : true,
+		type : 'POST',
+		data : {
+			"mem_email" : mem_email,//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다
+		},
+		url : 'emailCheck',
+		success : function(data){ 
+			if(data == 1 ){ 
+			  $('#email_check').text('중복된 이메일 입니다.');
+			  	$('#email_check').css('color', 'red');
+			  	$("#usercheck").attr("disabled", true);
+			}else{
+				if(mailJ.test(mem_email)){
+				$('#email_check').text('사용가능한 이메일 입니다.');
+				$('#email_check').css('color', 'blue');
+				$("#usercheck").attr("disabled", false);
+			 }
+			 else if(mem_email==''){
+				$('#email_check').text('이메일 입력해주세요.');
+					$('#email_check').css('color', 'red');
+					$("#usercheck").attr("disabled", true);
+				}
+			 else{
+				$('#email_check').text("이메일 소문자와 숫자 4~12자리만 가능합니다.");
+				$('#email_check').css('color', 'red');
+				$("#usercheck").attr("disabled", true);
+				} 
+			}
+		},
+		error:function(e){
+			console.log("실패");
+		}
+
+	  }); //ajax///
+	}//else if
+});//blur
+
+//이름 중복확인
+$("#mem_nick").blur(function() {
+	var mem_nick=$('#mem_nick').val();
+
+	if($('#mem_nick').val()==''){ 
+	$('#nick_check').text('닉네임을 입력하세요.');
+	$('#nick_check').css('color', 'red');
+	}
+	else if(nickJ.test($('#mem_nick').val())!=true){
+	$('#nick_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+	$('#nick_check').css('color', 'red');
+	}
+	else if($('#mem_nick').val() != '' ){ 
+		
+	 $.ajax({
+		async : true,
+		type : 'POST',
+		data : {
+			"mem_nick" : mem_nick,//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다
+		},
+		url : 'nickCheck',
+		success : function(data){ 
+			if(data == 1 ){ 
+			  $('#nick_check').text('중복된 닉네임 입니다.');
+			  	$('#nick_check').css('color', 'red');
+			  	$("#usercheck").attr("disabled", true);
+			}else{
+				if(nickJ.test(mem_nick)){
+				$('#nick_check').text('사용가능한 닉네임 입니다.');
+				$('#nick_check').css('color', 'blue');
+				$("#usercheck").attr("disabled", false);
+			 }
+			 else if(mem_nick==''){
+				$('#nick_check').text('닉네임을 입력해주세요.');
+					$('#nick_check').css('color', 'red');
+					$("#usercheck").attr("disabled", true);
+				}
+			 else{
+				$('#nick_check').text("한글 2~6자 이내로 입력하세요.");
+				$('#nick_check').css('color', 'red');
+				$("#usercheck").attr("disabled", true);
+				} 
+			}
+		},
+		error:function(e){
+			console.log("실패");
+		}
+
+	  }); //ajax///
+	}//else if
+});//blur
 	
 	var inval_Arr = new Array(5).fill(false)
 		//id 정규식
@@ -119,12 +223,12 @@
 			inval_Arr[2] = true;
 		}
 		 
-		// 이름 정규식
-		if (nickJ.test($('#mem_name').val())) {
+		// 닉네임 정규식
+		if (nickJ.test($('#mem_nick').val())) {
 			inval_Arr[3] = true;
 		} else {
 			inval_Arr[3] = false;
-			alert('이름을 확인하세요.');
+			alert('닉네임을 확인하세요.');
 			$("#mem_nick").focus();
 			return false;
 		} 
@@ -233,8 +337,8 @@
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
-			<form action="/update_ok" method="post" role="form" id="usercheck"
-				name="member">
+			<form action="update_ok" method="post" role="form" id="usercheck"
+				name="member" enctype="multipart/form-data">
 				
 				<label for="mem_id">아이디</label>
 				<div class="form-group">
@@ -270,6 +374,12 @@
 						type="email" class="form-control" id="mem_email" name="mem_email"
 						placeholder="E-mail" value="${upmv.mem_email}">
 					<div class="check_font" id="email_check"></div>
+				</div>
+				<div class="form-group">
+					<label for="mem_img">프로필 사진</label> <input
+						type="file" class="form-control" id="mem_img" name="mem_img1"
+						 value="${upmv.mem_img}">
+						현재파일: <img src="<%=request.getContextPath()%>/resources/images/memberimage/${upmv.mem_img}" width="50"/>
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary">정보수정</button>

@@ -7,14 +7,14 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>내가 쓴 댓글</title>
+	<title>내가 좋아요한 글</title>
 </head>
 <body>
 	<div>
 	</div>
 	<!-- 게시판 리스트 -->
 	<div>
-		<h2 class="bbslist_title">내가 쓴 댓글</h2>
+		<h2 class="bbslist_title">내가 좋아요한 글</h2>
 		<div id="bbslist_c">글 개수 : ${listcount}</div>
 		
 
@@ -24,11 +24,18 @@
 					height="26">
 					<div align="center">글번호</div>
 				</td>
+				
 				<td style="font-family: Tahoma; font-size: 11pt;" width="47%">
-					<div align="center">댓글내용</div>
+					<div align="center">제목</div>
+				</td>
+				<td style="font-family: Tahoma; font-size: 11pt;" width="14%">
+					<div align="center">작성자</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 11pt;" width="12%">
 					<div align="center">날짜</div>
+				</td>
+				<td style="font-family: Tahoma; font-size: 11pt;" width="10%">
+					<div align="center">조회수</div>
 				</td>
 			</tr>
 
@@ -36,29 +43,39 @@
 			<c:set var="num" value="${listcount-(page-1)*10}"/> 	
 	
 			<!-- 반복문 시작 -->
-			<c:forEach var="myreplylist" items="${myreplylist}">
+			<c:forEach var="mygoodlist" items="${mygoodlist}">
 			
 			<tr align="center" valign="middle">
 				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
  					<!-- 번호 출력 부분 -->	
-					${myreplylist.board_num}
+					${mywritinglist.board_num}
+					<c:set var="num" value="${num-1}"/>	 
 				</td>
 
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="review_cont?board_num=${myreplylist.board_num}&page=${page}">
-							${myreplylist.re_cont}
+					<a href="review_cont?board_num=${mygoodlist.board_num}&page=${page}">
+							${mygoodlist.board_title}
+					</a>
+					</div>
+				</td>
+				<td style="font-family: Tahoma; font-size: 10pt;">
+					<div align="center">							
+							${mygoodlist.mem_nick}
 					</a>
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">
-					<fmt:formatDate value="${myreplylist.re_date}"
+					<fmt:formatDate value="${mygoodlist.board_date}"
 						 pattern="yyyy-MM-dd HH:mm:ss"/>					
 					
 					</div>
+				</td>
+				<td style="font-family: Tahoma; font-size: 10pt;">
+					<div align="center">${mygoodlist.board_count}</div>
 				</td>
 			</tr>
 			
@@ -73,7 +90,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="myReplyList?page=${page-1}">[이전]</a>&nbsp;
+				<a href="myGoodList?page=${page-1}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -81,7 +98,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="myReplyList?page=${a}">[${a}]</a>&nbsp;
+					<a href="myGoodList?page=${a}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -89,7 +106,7 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="myReplyList?page=${page+1}">[다음]</a>
+				<a href="myGoodList?page=${page+1}">[다음]</a>
 			</c:if>			
 			
 		</div>
