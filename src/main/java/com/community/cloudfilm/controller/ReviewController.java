@@ -112,7 +112,6 @@ public class ReviewController {
 	public String review_list(HttpServletRequest request,BoardVO board, Model model)throws Exception {
 		System.out.println("리뷰리스트 컨");
 		System.out.println(request.getParameter("board_filter"));
-		System.out.println(request.getParameter("search"));
 		
 		List<BoardVO> reviewlist = new ArrayList<BoardVO>();
 		
@@ -144,27 +143,6 @@ public class ReviewController {
 			System.out.println(listcount);
 			//페이지 번호(page)를 DAO클래스에게 전달한다.
 			reviewlist = reviewService.getFilterReviewList(indexMap);	//리스트 받아오기
-		}
-		
-		if(request.getParameter("keyword") == null) {
-			//퐁 리스트 수를 받아옴
-			listcount = reviewService.getListCount();
-			//페이지 번호(page)를 DAO클래스에게 전달한다.
-			reviewlist = reviewService.getReviewList(page);	//리스트 받아오기
-		}else if(request.getParameter("keyword") != null) {
-			String keyword = request.getParameter("keyword");
-			String search = request.getParameter("search");
-			
-			Map<String, Object> parameterMap = new HashMap<String, Object>();
-			
-			parameterMap.put("page", page);
-			parameterMap.put("keyword", keyword);
-			parameterMap.put("search", search);
-			
-			//총 리스트 수를 받아옴
-			listcount = reviewService.getSearchListCount(keyword);
-			//페이지 번호 전달
-			reviewlist = reviewService.getSearchReviewList(parameterMap);	//리스트 받아오기
 		}
 		
 		//총 페이지 수
@@ -272,13 +250,14 @@ public class ReviewController {
 	
 	//리뷰 수정
 	@RequestMapping(value="/review_updating", method=RequestMethod.POST)
-	public String review_updating(@RequestParam(value="board_img1") MultipartFile mf,
+	public String review_updating(@RequestParam(value="board_img1", required = false ) MultipartFile mf,
 								  @ModelAttribute BoardVO board,
+								  @RequestParam("board_num") int board_num,
 								  @RequestParam("page") String page,
 								  HttpServletRequest request,
 								  Model model)throws Exception{
 		
-		if (mf != null) {
+		if (!mf.isEmpty()) {
 	         //첨부파일 저장
 	         UUID uuid = UUID.randomUUID();
 	         String filename = uuid + mf.getOriginalFilename();
@@ -317,7 +296,14 @@ public class ReviewController {
 
 	         board.setBoard_img(filename);
 	         System.out.println(path);
+	      } else {
+	    	//기존 리뷰정보 불러오기
+	    	BoardVO oldreview = reviewService.getReviewCont(board_num);
+	    	// 기존 이미지 덮어쓰기
+	  		board.setBoard_img(oldreview.getBoard_img());
 	      }
+		
+		
 		
 		//수정 메서드 호출
 		reviewService.reviewUpdate(board);
