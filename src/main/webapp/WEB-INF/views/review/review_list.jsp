@@ -10,8 +10,7 @@
 	<title>게시판 목록</title>
 </head>
 <body>
-	<div>
-	</div>
+<%-- <%@ include file="../layout/header.jsp" %>   --%>
 	<!-- 게시판 리스트 -->
 	<div>
 		<h2 class="bbslist_title">게시판 목록</h2>

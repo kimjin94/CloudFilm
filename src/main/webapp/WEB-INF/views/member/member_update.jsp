@@ -326,7 +326,7 @@ $("#mem_nick").blur(function() {
 });
 	</script>
 </head>
-
+<%@ include file="../layout/header.jsp" %>
 <body>
 	<article class="container">
 		<div class="page-header">
@@ -388,6 +388,6 @@ $("#mem_nick").blur(function() {
 		</div>
 	</article>
 
-
+<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>

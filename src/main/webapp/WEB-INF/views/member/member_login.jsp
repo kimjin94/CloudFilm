@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
 <title>로그인 폼</title>
 <script>
 	function check(){
@@ -28,8 +29,8 @@
 </head>
 
 <body>
-
-<div class="container">
+<%@ include file="../layout/header.jsp" %>
+ <div class="container" align="center">
 <div class="col-lg-4"></div>
 <div class="col-lg-4">
   <div align="center"><h2>로그인</h2></div>
@@ -57,7 +58,9 @@ onClick="location.href='<%=request.getContextPath() %>/member_join'" value="회�
   </div>
   <div class="col-lg-4"></div>
 </div> 
-	
 
+
+
+<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>

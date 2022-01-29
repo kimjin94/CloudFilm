@@ -318,7 +318,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 </head>
 
 <body>
-
+<%@ include file="../layout/header.jsp" %>
 	<article class="container">
 		<div class="page-header">
 			<div class="col-md-6 col-md-offset-3">
@@ -606,6 +606,6 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 		</div>
 	</article>
 
-
+<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>
