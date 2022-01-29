@@ -207,5 +207,13 @@ public class TrailerDAO {
 	public BoardVO getTrailerDetailAtReply(int board_num) {
 		return sqlSession.selectOne("trailer.getTrailerDetailAtReply", board_num);
 	}
+
+	public int getSearchListCount(Map<String, Object> paraMap) {
+		return sqlSession.selectOne("trailer.getSearchListCount", paraMap);
+	}
+
+	public List<BoardVO> getSearchBoardList(Map<String, Object> paraMap) {
+		return sqlSession.selectList("trailer.getSearchList", paraMap);
+	}
 	
 }

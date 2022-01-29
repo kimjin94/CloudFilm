@@ -146,4 +146,57 @@
 		select * from board
 		where board_num = #{board_num}
 	</select>
+	
+	<!-- 게시판 검색  결과물 갯수 -->
+	<select id="getSearchListCount" parameterType="java.util.Map" resultType="int">
+		select count(board_num) 
+		from board b
+			left join member m
+				on b.mem_num = m.mem_num
+			 WHERE b.cate_num = 3
+				AND ${search} LIKE '%'||#{keyword}||'%'
+				
+	</select>
+	
+	<!-- 게시판 검색 결과물 list -->
+	<select id="getSearchList" parameterType="java.util.Map" resultType="board">
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and b.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 3 
+		        	AND ${search} LIKE '%'||#{keyword}||'%'
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+		]]>
+	</select>
+	
+	
 </mapper>

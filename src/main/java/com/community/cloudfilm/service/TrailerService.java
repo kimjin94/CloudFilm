@@ -145,7 +145,62 @@ public class TrailerService {
 		return trailerDAO.nobadtrailer(request, response);
 	}
 
+	// 댓글새로고침 할 때 게시글정보 같이 긁어오기
 	public BoardVO getTrailerDetailAtReply(int board_num) {
 		return trailerDAO.getTrailerDetailAtReply(board_num);
+	}
+
+	// 예고편 검색
+	public Map<String, Object> getTrailersearchList(HttpServletRequest request, HttpServletResponse response) {
+		List<BoardVO> trailersearchlist = new ArrayList<BoardVO>();
+
+		int page = 1;
+		int limit = 10; // 한 화면에 출력할 레코드수
+		
+		String search = request.getParameter("search");
+		String keyword = request.getParameter("keyword");
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			
+		}
+		
+		System.out.println(search);
+		System.out.println(keyword);
+		
+		Map<String, Object> paraMap = new HashMap<String, Object>();
+		paraMap.put("search", search);
+		paraMap.put("keyword", keyword);
+		paraMap.put("page", page);
+
+		// 총 리스트 수를 받아옴.
+		int listcount = trailerDAO.getSearchListCount(paraMap);
+
+		// 페이지 번호(page)를 DAO클래스에게 전달한다.
+		trailersearchlist = trailerDAO.getSearchBoardList(paraMap); // 리스트를 받아옴.
+
+		// 총 페이지 수.
+		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
+																	// 처리.
+		// 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
+		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		// 현재 페이지에 보여줄 마지막 페이지 수.(10, 20, 30 등...)
+		int endpage = maxpage;
+
+		if (endpage > startpage + 10 - 1)
+			endpage = startpage + 10 - 1;
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("search", search);
+		resultMap.put("keyword", keyword);
+		resultMap.put("page", page);
+		resultMap.put("startpage", startpage);
+		resultMap.put("endpage", endpage);
+		resultMap.put("maxpage", maxpage);
+		resultMap.put("listcount", listcount);
+		resultMap.put("trailersearchlist", trailersearchlist);
+		
+		return resultMap;
 	}
 }

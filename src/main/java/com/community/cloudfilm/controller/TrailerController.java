@@ -118,5 +118,18 @@ public class TrailerController {
 		
 		return trailergoodandbadM;
 	}
+	
+	// 예고편 검색
+	@RequestMapping(value = "/searchboard")
+	public ModelAndView searchboard(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView searchboardM = new ModelAndView("trailer/trailersearchresult");
+		
+		// 예고편 리스트 받아오기
+		Map<String, Object> trailersearchlist = trailerService.getTrailersearchList(request, response);
+	
+		searchboardM.addAllObjects(trailersearchlist);
+		
+		return searchboardM;
+	}
 
 }
