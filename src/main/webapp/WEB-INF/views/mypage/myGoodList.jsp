@@ -48,7 +48,7 @@
 			<tr align="center" valign="middle">
 				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
  					<!-- 번호 출력 부분 -->	
-					${mywritinglist.board_num}
+					${mygoodlist.board_num}
 					<c:set var="num" value="${num-1}"/>	 
 				</td>
 
