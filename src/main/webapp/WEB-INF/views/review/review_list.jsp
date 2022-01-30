@@ -9,45 +9,48 @@
 <head>
 	<meta charset="UTF-8">
 	<title>게시판 목록</title>
+
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %>  
 	<!-- 게시판 리스트 -->
 	<div class="row">
   <div class="leftcolumn" align="center">
   <div class="container">
 		<h2 class="bbslist_title">게시판 목록</h2>
-		<div id="bbslist_c">글 개수 : ${listcount}</div>
-		
+		<div style="float:left;">
 		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
 		onClick="location='review_list?page=${page}'"/>
 		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
 			onClick="location='review_list?board_filter=추천'"/>
 		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
 			onClick="location='review_list?board_filter=비추천'"/>
+		</div>	
+		<div id="bbslist_c" style="float:right">글 개수 : ${listcount}</div>
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
-				<td style="font-family: Tahoma; font-size: 11pt;" width="8%"
+				<th style="font-family: Tahoma; font-size: 11pt;" width="8%"
 					height="26">
 					<div align="center">번호</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="9%"
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="9%"
 					height="26">
 					<div align="center">필터</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="47%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="47%">
 					<div align="center">제목</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="14%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="14%">
 					<div align="center">작성자</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="12%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="12%">
 					<div align="center">날짜</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="10%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="10%">
 					<div align="center">조회수</div>
-				</td>
+				</th>
 			</tr>
 
 			<!-- 화면 출력 번호  변수 정의 -->		
@@ -102,6 +105,10 @@
 			<!-- 반복문 끝 -->			
 		</table>
 		
+		<div id="bbslist_w" align="center" valign="middle" style="float:right">
+			<input type="button" value="글쓰기" class="input_button"
+				onclick="location='review_write?page=${page}'">
+		</div>
 
 		<div id="bbslist_paging">			
 			<c:if test="${page <= 1 }">
@@ -128,10 +135,6 @@
 				<a href="review_list?page=${page+1}">[다음]</a>
 			</c:if>			
 			
-		</div>
-		<div id="bbslist_w" align="center" valign="middle">
-			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='review_write?page=${page}'">
 		</div>
 		<from action="review_list" onSubmit="return board_check()" >
 		<select name="search">
