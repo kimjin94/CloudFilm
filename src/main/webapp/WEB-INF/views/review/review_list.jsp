@@ -19,7 +19,7 @@
   <div class="leftcolumn" align="center">
   <div class="container">
 		<h2 class="bbslist_title">게시판 목록</h2>
-		<div style="float:right;">
+		<div style="float:right; padding-right:35px;">
 		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
 		onClick="location='review_list?page=${page}'"/>
 		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
@@ -27,7 +27,7 @@
 		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
 			onClick="location='review_list?board_filter=비추천'"/>
 		</div>	
-		<div id="bbslist_c" style="float:left;">글 개수 : ${listcount}</div>
+		<div id="bbslist_c" style="float:left; padding-left:30px;">글 개수 : ${listcount}</div>
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
@@ -105,7 +105,7 @@
 			<!-- 반복문 끝 -->			
 		</table>
 		
-		<div id="bbslist_w" align="center" valign="middle" style="float:right">
+		<div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:30px;">
 			<input type="button" value="글쓰기" class="input_button"
 				onclick="location='review_write?page=${page}'">
 		</div>

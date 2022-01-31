@@ -184,12 +184,12 @@ border-bottom:none;
 .footer {
   text-align: center;
   background: #ddd;
-  position:relative !important;
-  display: block;
+  /* position:relative !important; */
+  position:relative; 
+  bottom:0;
   width: 100%;
-  /* padding-bottom: 120px; */
+  padding-bottom: 120px;
   bottom:-125px;
-  overflow-y : hidden;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */

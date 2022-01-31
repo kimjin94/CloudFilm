@@ -18,7 +18,7 @@
    <!-- 게시판 리스트 -->
    <div>
       <h2 class="bbslist_title">내가 좋아요한 글</h2>
-      <div id="bbslist_c" style="float:right;">글 개수 : ${listcount}</div>
+      <div id="bbslist_c" style="float:right; padding-right:40px;">글 개수 : ${listcount}</div><br>
       
 
       <table id="bbslist_t">
