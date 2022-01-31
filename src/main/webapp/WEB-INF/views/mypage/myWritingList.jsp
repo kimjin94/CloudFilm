@@ -116,7 +116,7 @@
 	</div>
 	
 	</div>
- <%@ include file="../layout/row.jsp" %>
+ <%@ include file="../layout/myPageBar.jsp" %>
 	</div>
 	<%@ include file="../layout/footer.jsp" %>	
 </body>

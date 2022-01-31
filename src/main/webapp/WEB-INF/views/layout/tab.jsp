@@ -11,7 +11,7 @@
 <style>
 
 #bbslist_t {
-  width:100%;
+  width:95%;
 }
 #bbslist_t td, #bbslist_t th {
   border: 1px solid #ddd;

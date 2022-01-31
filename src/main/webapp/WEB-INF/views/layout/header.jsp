@@ -13,11 +13,15 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: Arial;
   padding: 10px;
   background: #f1f1f1;
   overflow-x : hidden;
+  margin: 0; 
+  padding: 0;
+
 }
 
 /* Header/Blog Title */
@@ -178,10 +182,14 @@ border-bottom:none;
 
 /* Footer */
 .footer {
-  padding: 20px;
   text-align: center;
   background: #ddd;
-  margin-top: 20px;
+  position:relative !important;
+  display: block;
+  width: 100%;
+  /* padding-bottom: 120px; */
+  bottom:-125px;
+  overflow-y : hidden;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -203,18 +211,17 @@ border-bottom:none;
 </head>
 <body>
 
-<div class="header">
+<!-- <div class="header">
   <h1>My Website</h1>
   <p>Resize the browser window to see the effect.</p>
-</div>
+</div> -->
 
 <div class="topnav">
   <a href="#">홈</a>
-  <a href="#">리뷰</a>
-  <a href="#">추천</a>
-  <a href="#">예고편</a>
+  <a href="review_list">리뷰</a>
+  <a href="recommend_list">추천</a>
+  <a href="trailerlist">예고편</a>
   <a href="#">영화월드컵</a>
-  <a href="#" style="float:right">Link</a>
 </div>
 
 

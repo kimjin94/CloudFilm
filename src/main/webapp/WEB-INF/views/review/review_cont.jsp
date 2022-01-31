@@ -96,7 +96,7 @@ function del(page,board_num){
 						</c:when>
 					</c:choose>
 			</form>
-			<div style="float:right;">
+			<div style="float:right; padding-right:30px;" >
 				<button type="button" onClick="location='review_update?board_num=${re.board_num}&page=${page}'">수정</button>
 				<button type="button" onClick="del(${page},${re.board_num})">삭제</button>
 				<button type="button" onClick="location='review_list?page=${page}'">목록</button>

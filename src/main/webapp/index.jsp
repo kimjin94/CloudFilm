@@ -25,6 +25,7 @@
 	<a href="member_delete">탈퇴</a><br><br>
 	-----마이페이지------<br><br>
 	<a href="myWritingList">내가 쓴 글</a><br>
+	<a href="myPage">마이페이지</a><br>
 	<a href="myReplyList">내가 쓴 댓글</a><br><br>
 	<a href="myGoodList">내가 좋아요한 글</a><br><br>
 	

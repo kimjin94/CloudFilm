@@ -17,7 +17,10 @@
 <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
 
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>팀 프로젝트</h2>
+  <h4>책임자</h4>
+   (정)박한별 <br>
+   (부)김익수 , 김진
 </div>
 <!-- top btn -->
 <script>

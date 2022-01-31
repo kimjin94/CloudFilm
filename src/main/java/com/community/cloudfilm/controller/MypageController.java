@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.cloudfilm.service.MypageService;
@@ -61,4 +62,9 @@ public class MypageController {
 		mygoodlistM.addAllObjects(mygoodlist);
 		return mygoodlistM;
 	}
+	//마이페이지 메인
+	   @RequestMapping(value="myPage")
+	   public String myPage() {
+	      return "mypage/myPage";
+	   }
 }
