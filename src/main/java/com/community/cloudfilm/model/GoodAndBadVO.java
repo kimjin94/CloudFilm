@@ -1,11 +1,15 @@
 package com.community.cloudfilm.model;
 
+import java.util.Date;
+
 public class GoodAndBadVO {
 	private int gb_num;
 	private int board_num;
 	private int mem_num;
 	private String gb_sort;
-	
+	private Date board_date;
+	private int board_count;
+	private String mem_nick;
 	private String board_title;
 	
 	public int getGb_num() {
@@ -31,5 +35,29 @@ public class GoodAndBadVO {
 	}
 	public void setGb_sort(String gb_sort) {
 		this.gb_sort = gb_sort;
+	}
+	public Date getBoard_date() {
+		return board_date;
+	}
+	public void setBoard_date(Date board_date) {
+		this.board_date = board_date;
+	}
+	public int getBoard_count() {
+		return board_count;
+	}
+	public void setBoard_count(int board_count) {
+		this.board_count = board_count;
+	}
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}
+	public String getBoard_title() {
+		return board_title;
+	}
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
 	}
 }

@@ -1,42 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
-<html lang="ko">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>내가 쓴 글</title>
 </head>
 <body>
-	<div>
-	</div>
+<%@ include file="../layout/header.jsp" %>
+<%@ include file="../layout/tab.jsp" %>   
+<div class="row">
+  <div class="leftcolumn" align="center">
 	<!-- 게시판 리스트 -->
 	<div>
 		<h2 class="bbslist_title">내가 쓴 글</h2>
-		<div id="bbslist_c">글 개수 : ${listcount}</div>
+		<div id="bbslist_c" style="float:right;">글 개수 : ${listcount}</div>
 		
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
-				<td style="font-family: Tahoma; font-size: 11pt;" width="8%"
+				<th style="font-family: Tahoma; font-size: 11pt;" width="8%"
 					height="26">
 					<div align="center">글번호</div>
-				</td>
+				</th>
 				
-				<td style="font-family: Tahoma; font-size: 11pt;" width="47%">
+				<th style="font-family: Tahoma; font-size: 11pt;" width="47%">
 					<div align="center">제목</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="14%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="14%">
 					<div align="center">작성자</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="12%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="12%">
 					<div align="center">날짜</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="10%">
+				</th>
+				<th style="font-family: Tahoma; font-size: 11pt;" width="10%">
 					<div align="center">조회수</div>
-				</td>
+				</th>
 			</tr>
 
 			<!-- 화면 출력 번호  변수 정의 -->		
@@ -64,7 +67,6 @@
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">							
 							${mywritinglist.mem_nick}
-					</a>
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
@@ -112,5 +114,10 @@
 		</div>
 		
 	</div>
+	
+	</div>
+ <%@ include file="../layout/row.jsp" %>
+	</div>
+	<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

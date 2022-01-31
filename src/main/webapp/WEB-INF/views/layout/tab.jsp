@@ -20,9 +20,9 @@
   text-align: center;
 }
 
-#bbslist_t tr:nth-child(even){background-color: #ffffff;}
+/* #bbslist_t tr:nth-child(even){background-color: #ffffff;}
 
-#bbslist_t tr:hover {background-color: #ddd;}
+#bbslist_t tr:hover {background-color: #ddd;} */
 
 #bbslist_t th {
   padding-top: 12px;

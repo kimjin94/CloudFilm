@@ -175,6 +175,7 @@ border-bottom:none;
   background-color: #555;
 }
 
+
 /* Footer */
 .footer {
   padding: 20px;

@@ -34,12 +34,12 @@
 				<td>
 					<pre>${replylist.re_cont}</pre>
 				</td>
-				<td width="8%">
 					<c:if test="${mem_num == replylist.mem_num}">
+				<td width="8%">
 						<button type="button" onclick="replyUpdateForm(${replylist.re_num})">수정</button> <br>
 						<button type="button" onclick="deleteReply(${replylist.re_num})">삭제</button>
-					</c:if>
 				</td>
+					</c:if>
 			</tr>
 		</c:otherwise>
 	</c:choose>
