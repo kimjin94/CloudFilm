@@ -217,7 +217,7 @@ border-bottom:none;
 </div> -->
 
 <div class="topnav">
-  <a href="#">홈</a>
+  <a href="home">홈</a>
   <a href="review_list">리뷰</a>
   <a href="recommend_list">추천</a>
   <a href="trailerlist">예고편</a>

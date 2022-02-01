@@ -9,6 +9,9 @@
 </head>
 <body>
 	-----리뷰게시판-----<br><br>
+	<a href="home">홈</a><br><br>
+
+	-----리뷰게시판-----<br><br>
 	<a href="review_write">리뷰게시판 작성</a> <br>
 	<a href="review_list">리뷰게시판 목록</a> <br>
 	<a href="review_cont">리뷰게시판 원글내용</a> <br>
