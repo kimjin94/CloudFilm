@@ -18,11 +18,11 @@
 		<div id="bbslist_c">글 개수 : ${listcount}</div>
 		
 		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
-		onClick="location='review_list?page=${page}'"/>
+		onClick="location='recommend_list?page=${page}'"/>
 		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=추천'"/>
+			onClick="location='recommend_list?board_filter=추천'"/>
 		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=비추천'"/>
+			onClick="location='recommend_list?board_filter=비추천'"/>
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
@@ -52,7 +52,7 @@
 			<c:set var="num" value="${listcount-(page-1)*20}"/> 	
 	
 			<!-- 반복문 시작 -->
-			<c:forEach var="re" items="${reviewlist}">
+			<c:forEach var="re" items="${recommendlist}">
 			
 			<tr align="center" valign="middle">
 				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
@@ -73,7 +73,7 @@
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="review_cont?board_num=${re.board_num}&page=${page}">
+					<a href="recommend_cont?board_num=${re.board_num}&page=${page}">
 							${re.board_title}
 							[${re.re_count}]
 					</a>
@@ -107,7 +107,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="review_list?page=${page-1}">[이전]</a>&nbsp;
+				<a href="recommend_list?page=${page-1}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -115,7 +115,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="review_list?page=${a}">[${a}]</a>&nbsp;
+					<a href="recommend_list?page=${a}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -123,15 +123,27 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="review_list?page=${page+1}">[다음]</a>
+				<a href="recommend_list?page=${page+1}">[다음]</a>
 			</c:if>			
 			
 		</div>
 		<div id="bbslist_w">
 			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='review_write?page=${page}'">
+				onclick="location='recommend_write?page=${page}'">
 		</div>
-		
+		<form action="search_recommend" method="post">
+		<input type="hidden" name="board_filter">
+			<div>
+				<select name="search">
+				<option value="">검색조건</option>
+				<option value="board_title"<c:if test="${search == 'board_title'}">selected="selected"</c:if>>제목</option>
+				<option value="board_cont"<c:if test="${search == 'board_cont'}">selected="selected"</c:if>>내용</option>
+				<option value="mem_nick"<c:if test="${search == 'mem_nick'}">selected="selected"</c:if>>작성자</option>
+				</select>
+				<input type="text" id="keyword" name="keyword" placeholder="검색" value="${keyword}">
+				<button type="submit">검색</button>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

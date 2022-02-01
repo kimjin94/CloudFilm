@@ -82,7 +82,7 @@ public class MemberController {
 				 				HttpServletRequest request,
 				 				MemberVO member,Model model)throws Exception {
 			 
-			 if (mf != null) {
+			 if (!mf.isEmpty()) {
 		         //첨부파일 저장
 		         UUID uuid = UUID.randomUUID();
 		         String filename = uuid + mf.getOriginalFilename();
@@ -239,8 +239,8 @@ public class MemberController {
 
 				// 보내는 사람 EMail, 제목, 내용
 				String fromEmail = "choongang_mart@naver.com";
-				String fromName = "Cmarket";
-				String subject = "[Cmarket] " + vo.getMem_id()+"님 비밀번호 찾기 메일입니다.";
+				String fromName = "CloudFilm";
+				String subject = "[CloudFilm] " + vo.getMem_id()+"님 비밀번호 찾기 메일입니다.";
 
 				// 받는 사람 E-Mail 주소
 				String mail = vo.getMem_email();
@@ -331,7 +331,7 @@ public class MemberController {
 								HttpServletRequest request, MemberVO member, 
 								HttpSession session, Model model) throws Exception {
 			
-			 if (mf != null) {
+			 if (!mf.isEmpty()) {
 		         //첨부파일 저장
 		         UUID uuid = UUID.randomUUID();
 		         String filename = uuid + mf.getOriginalFilename();

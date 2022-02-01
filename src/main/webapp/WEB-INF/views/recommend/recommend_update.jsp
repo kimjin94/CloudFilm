@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		<form action="review_updating" method="post">
+		<form action="recommend_updating" method="post">
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
 			<table border=1>

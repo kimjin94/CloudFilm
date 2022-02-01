@@ -63,11 +63,13 @@ function del(page,board_num){
 				<th>내용</th>
 				<td>
 				 <c:if test="${empty re.board_img}">
-      				${re.board_cont}
+      				<pre>${re.board_cont}</pre>
        				</c:if>
        				<c:if test="${!empty re.board_img}">
+       				<pre>
 					<img src="<%=request.getContextPath() %>/resources/images/reviewimage/${re.board_img}" height="100" width="100" />
        				${re.board_cont}
+       				</pre>
        				</c:if>
 				</td>
 			</tr>

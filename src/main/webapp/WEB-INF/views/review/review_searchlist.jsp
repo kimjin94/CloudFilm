@@ -20,9 +20,10 @@
 		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
 		onClick="location='review_list?page=${page}'"/>
 		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=추천'"/>
+			onClick="location='review_searchlist?board_filter=추천'"/>
 		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=비추천'"/>
+			onClick="location='review_searchlist?board_filter=비추천'"/>
+		
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
@@ -52,7 +53,7 @@
 			<c:set var="num" value="${listcount-(page-1)*20}"/> 	
 	
 			<!-- 반복문 시작 -->
-			<c:forEach var="re" items="${reviewlist}">
+			<c:forEach var="reviewsearchlist" items="${reviewsearchlist}">
 			
 			<tr align="center" valign="middle">
 				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
@@ -65,7 +66,7 @@
 					<div align="center">							
 						
 					<!-- 필터 출력 부분 -->	
-							${re.board_filter}
+							${reviewsearchlist.board_filter}
 					</a>
 					</div>
 				</td>
@@ -73,26 +74,25 @@
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="review_cont?board_num=${re.board_num}&page=${page}">
-							${re.board_title}
-							+${re.re_count}
+					<a href="review_cont?board_num=${reviewsearchlist.board_num}&page=${page}">
+							${reviewsearchlist.board_title}
+							+${reviewsearchlist.re_count}
 					</a>
 					</div>
 				</td>
 
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.mem_nick}</div>
+					<div align="center">${reviewsearchlist.mem_nick}</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">
-					
-					<fmt:formatDate value="${re.board_date}"
+					<fmt:formatDate value="${reviewsearchlist.board_date}"
 						 pattern="yyyy-MM-dd HH:mm:ss"/>					
 					
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.board_count}</div>
+					<div align="center">${reviewsearchlist.board_count}</div>
 				</td>
 			</tr>
 			
@@ -107,7 +107,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="review_list?page=${page-1}">[이전]</a>&nbsp;
+				<a href="review_searchlist?page=${page-1}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -115,7 +115,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="review_list?page=${a}">[${a}]</a>&nbsp;
+					<a href="review_searchlist?page=${a}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -123,7 +123,7 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="review_list?page=${page+1}">[다음]</a>
+				<a href="review_searchlist?page=${page+1}">[다음]</a>
 			</c:if>			
 			
 		</div>
@@ -131,6 +131,7 @@
 			<input type="button" value="글쓰기" class="input_button"
 				onclick="location='review_write?page=${page}'">
 		</div>
+		
 		<form action="search_review" method="post">
 		<input type="hidden" name="board_filter">
 			<div>

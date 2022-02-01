@@ -11,9 +11,18 @@
 	-----리뷰게시판-----<br><br>
 	<a href="review_write">리뷰게시판 작성</a> <br>
 	<a href="review_list">리뷰게시판 목록</a> <br>
+	<a href="review_searchlist">리뷰 검색목록</a> <br>
 	<a href="review_cont">리뷰게시판 원글내용</a> <br>
 	<a href="review_update">리뷰게시판 원글 수정</a> <br>
 	<a href="review_delete">리뷰게시판 원글 삭제</a> <br>
+	<br><br>
+	-----추천게시판-----<br><br>
+	<a href="recommend_write">추천게시판 작성</a> <br>
+	<a href="recommend_list">추천게시판 목록</a> <br>
+	<a href="recommend_searchlist">추천 검색목록</a> <br>
+	<a href="recommend_cont">추천게시판 원글내용</a> <br>
+	<a href="recommend_update">추천게시판 원글 수정</a> <br>
+	<a href="recommend_delete">추천게시판 원글 삭제</a> <br>
 	<br><br>
 	-----멤버-----<br><br>
 	<a href="member_join">회원가입</a>
@@ -25,8 +34,9 @@
 	<a href="member_delete">탈퇴</a><br><br>
 	-----마이페이지------<br><br>
 	<a href="myWritingList">내가 쓴 글</a><br>
-	<a href="myReplyList">내가 쓴 댓글</a><br><br>
-	<a href="myGoodList">내가 좋아요한 글</a><br><br>
+	<a href="myReplyList">내가 쓴 댓글</a><br>
+	<a href="myGoodList">내가 좋아요한 글</a><br>
+	<a href="myPage">마이페이지 메인</a><br><br>
 	
 	------관리자-----<br>
 	<a href="test">테스트</a> 			<br>
