@@ -38,17 +38,20 @@ body {
 
 /* Style the top navigation bar */
 .topnav {
+  position:relative;
   overflow: hidden;
+  margin:0 auto;
+  text-align:center;
   background-color: #333;
+  font-size: 24px;
 }
 
 /* Style the topnav links */
 .topnav a {
-  float: left;
-  display: block;
+  display: inline-block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px 22px;
   text-decoration: none;
 }
 
@@ -136,6 +139,15 @@ border-bottom:none;
 .signup {background-color: #e7e7e7; color: black;} /* Gray */ 
 .signup:hover {background: #ddd;}
 
+.selectall {background-color: #ffffff; color: black;}
+.selectall:hover {background: #e7e7e7;}
+
+.good {background-color: #ffffff; color: blue;}
+.good:hover {background: #e7e7e7; color: blue;}
+
+.bad {background-color: #ffffff; color: red;}
+.bad:hover {background: #e7e7e7; color: red;}
+
 
 /* Fake image */
 .fakeimg {
@@ -179,6 +191,28 @@ border-bottom:none;
   background-color: #555;
 }
 
+#container {
+	margin-top : 5px;
+    text-align: center;
+    width: 600px;
+}
+
+
+#left-box {
+    float: left;
+}
+#center-box {
+    margin: 0 auto;
+}
+#right-box {
+    float: right;
+}
+
+#trailerlist_paging{
+margin-top : 5px;
+	text-align: center;
+	width : 600px;
+}
 
 /* Footer */
 .footer {
@@ -217,7 +251,7 @@ border-bottom:none;
 </div> -->
 
 <div class="topnav">
-  <a href="home">홈</a>
+  <a href="home"><img src="<%=request.getContextPath()%>/resources/images/logo/logo2.png"></a>
   <a href="review_list">리뷰</a>
   <a href="recommend_list">추천</a>
   <a href="trailerlist">예고편</a>

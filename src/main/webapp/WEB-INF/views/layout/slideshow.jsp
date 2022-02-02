@@ -48,6 +48,13 @@
 		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow4.png"></div>
 	</div>
 
+<!-- 
+<figure>
+  <img src="https://source.unsplash.com/random/200x200" alt="random photo" />
+  <figcaption>A random photo</figcaption>
+</figure>
+ -->
+
 	<!-- 네비게이션 -->
 	<div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
 	<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
@@ -64,6 +71,10 @@ new Swiper('.swiper-container', {
 	spaceBetween : 30, // 슬라이드간 간격
 	slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 
+	 slidesToShow: 3,
+	 slidesToScroll: 1,
+	 autoplay: true,
+	 autoplaySpeed: 3000,
 	// 그룹수가 맞지 않을 경우 빈칸으로 메우기
 	// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
 	loopFillGroupWithBlank : true,

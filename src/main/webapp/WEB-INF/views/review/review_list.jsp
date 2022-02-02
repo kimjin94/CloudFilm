@@ -20,12 +20,9 @@
   <div class="container">
 		<h2 class="bbslist_title">게시판 목록</h2>
 		<div style="float:right; padding-right:35px;">
-		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
-		onClick="location='review_list?page=${page}'"/>
-		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=추천'"/>
-		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_list?board_filter=비추천'"/>
+		<button class="btn selectall" onClick="location='review_list?page=${page}'">전체</button>
+		<button class="btn good"  id="board_filter" name="board_filter" onClick="location='review_list?board_filter=추천'">추천</button>
+		<button class="btn bad"  id="board_filter" name="board_filter" onClick="location='review_list?board_filter=비추천'">비추천</button>
 		</div>	
 		<div id="bbslist_c" style="float:left; padding-left:30px;">글 개수 : ${listcount}</div>
 

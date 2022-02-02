@@ -7,35 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>예고편</title>
-<style>
-table{
-	width: 600px;
-}
-
-#container {
-	margin-top : 5px;
-    text-align: center;
-    width: 600px;
-}
-#left-box {
-    float: left;
-}
-#center-box {
-    margin: 0 auto;
-}
-#right-box {
-    float: right;
-}
-
-#trailerlist_paging{
-margin-top : 5px;
-	text-align: center;
-	width : 600px;
-}
-</style>
 </head>
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %>  
+	<div class="row">
+  <div class="leftcolumn" align="center">
 		<table border=1 style="table-layout:fixed;">
 			<h2>예고편 게시판</h2>
 			<c:forEach var="trailerlist" items="${trailerlist}">
@@ -52,7 +29,6 @@ margin-top : 5px;
 				</tr>
 			</c:forEach>
 		</table>
-	</div>
 	<div id='container'>
 	    <div id='left-box'>왼쪽</div>
    	    <div id='right-box'>
@@ -89,6 +65,10 @@ margin-top : 5px;
 			</c:if>
 		</div>
 	
+	</div>
+		<%@ include file="../layout/row.jsp" %>	
+	</div>
 	
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>
