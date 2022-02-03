@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		<form action="review_updating" method="post">
+		<form action="recommend_updating" method="post">
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
 			<table border=1>
@@ -36,8 +36,8 @@
 				<tr>
 					<th>이미지 첨부</th>
 					<td colspan="3">
-					<input type="text" name="board_img">
-					현재파일 :
+					<input type="file" id="board_img" name="board_img1">
+					현재파일 :<img src="<%=request.getContextPath() %>/resources/images/reviewimage/${re.board_img}" height="50" width="50" />
 					</td>
 						
 				</tr>

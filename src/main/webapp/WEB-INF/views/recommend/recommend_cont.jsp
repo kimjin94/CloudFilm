@@ -6,7 +6,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>리뷰게시판 원문내용</title>
+<title>추천게시판 원문내용</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/board/goodandbad.js"></script>
@@ -16,14 +16,14 @@
 function del(page,board_num){
 	var chk = confirm("정말 삭제하시겠습니까?");
 	if (chk) {
-		location.href='review_delete?page='+ page + '&board_num='+board_num;
+		location.href='recommend_delete?page='+ page + '&board_num='+board_num;
 	}
 }
 </script>
 
 <body>
 	<div>
-		<h2>리뷰게시판 원문내용</h2>
+		<h2>추천게시판 원문내용</h2>
 		<form >
 		<input type="hidden" id = "board_num" name="board_num" value="${re.board_num}"/>
 		<input type="hidden" name="page" value="${page}"/>
@@ -66,7 +66,7 @@ function del(page,board_num){
       				${re.board_cont}
        				</c:if>
        				<c:if test="${!empty re.board_img}">
-					<img src="<%=request.getContextPath() %>/resources/images/reviewimage/${re.board_img}" height="100" width="100" />
+					<img src="<%=request.getContextPath() %>/resources/images/recommendimage/${re.board_img}" height="100" width="100" />
        				${re.board_cont}
        				</c:if>
 				</td>
@@ -106,9 +106,9 @@ function del(page,board_num){
 			</form>
 			
 			<div>
-				<button type="button" onClick="location='review_update?board_num=${re.board_num}&page=${page}'">수정</button>
+				<button type="button" onClick="location='recommend_update?board_num=${re.board_num}&page=${page}'">수정</button>
 				<button type="button" onClick="del(${page},${re.board_num})">삭제</button>
-				<button type="button" onClick="location='review_list?page=${page}'">목록</button>
+				<button type="button" onClick="location='recommend_list?page=${page}'">목록</button>
 			</div>
 			
 			<form action="replywrite" method="post">

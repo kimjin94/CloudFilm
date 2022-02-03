@@ -22,6 +22,12 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private ReviewService reviewService;
+	
+	//마이페이지 메인
+	@RequestMapping(value="myPage")
+	public String myPage() {
+		return "mypage/myPage";
+	}
 
 	//내가 쓴 글
 	@RequestMapping(value="myWritingList")

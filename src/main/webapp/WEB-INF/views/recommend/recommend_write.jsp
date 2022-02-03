@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 게시판 글쓰기</title>
+<title>추천 게시판 글쓰기</title>
 </head>
 <body>
 	<div>
-		<form action="review_writing" method="post" enctype="multipart/form-data" >
+		<form action="recommend_writing" method="post" enctype="multipart/form-data" >
 			<table border=1>
-				<caption>리뷰 글쓰기</caption>
+				<caption>추천 글쓰기</caption>
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="board_title"></td>

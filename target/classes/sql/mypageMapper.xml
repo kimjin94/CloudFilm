@@ -19,7 +19,7 @@
 	
 	<!-- 내가 쓴 댓글 총 갯수 -->
 	<select id="replylist_count" resultType="int" parameterType="int">
-		select count(re_num) from reply where mem_num =#{mem_num}
+		select count(re_num) from reply where mem_num =#{mem_num} and re_yn= 'y'
 	</select>
 	
 	<!-- 내가 쓴 댓글 리스트 목록 -->
@@ -27,7 +27,7 @@
 		<![CDATA[
 		select * from
 		(select rownum rnum, reply.* from
-		(select * from reply where mem_num=#{mem_num} order by re_num desc) reply)
+		(select * from reply where mem_num=#{mem_num} and re_yn= 'y' order by re_num desc) reply)
 		where rnum >= ((#{page}-1) * 10+1) and rnum <= (#{page} *10)
 		]]>
 	</select>
@@ -36,27 +36,27 @@
    <select id="goodlist_count" resultType="int" parameterType="int" >
       select count(gb_num) from goodandbad where mem_num=#{mem_num} and gb_sort='g'
    </select>
-   
-   <!-- 내가 좋아요한 글 리스트 목록 -->
-   <select id="good_list" parameterType="java.util.Map" resultType="goodandbad">
-      
-      select * from
-         (select rownum rnum, goodandbad.* from
-            (select 
-            g.gb_num, g.board_num, g.mem_num, g.gb_sort,
-            b.board_title,b.board_date,b.board_count, m.mem_nick
-            from goodandbad g
-               left join board b
-                  on g.board_num = b.board_num
-               left join member m
-                  on g.mem_num = m.mem_num   
-            where g.mem_num=#{mem_num} and gb_sort ='g'
-            group by
-             g.gb_num, g.board_num, g.mem_num,g.gb_sort,
-             b.board_title,b.board_date,b.board_count, m.mem_nick
-               order by gb_num desc
-            )goodandbad
-         )
-      <![CDATA[where rnum >= ((#{page} - 1) * 10+1) and rnum <=(#{page} * 10)]]>
-   </select>
+
+	<!-- 내가 좋아요한 글 리스트 목록 -->
+	<select id="good_list" parameterType="java.util.Map" resultType="goodandbad">
+		
+		select * from
+			(select rownum rnum, goodandbad.* from
+				(select 
+				g.gb_num, g.board_num, g.mem_num, g.gb_sort,
+				b.board_title,b.board_date,b.board_count, m.mem_nick
+				from goodandbad g
+					left join board b
+						on g.board_num = b.board_num
+					left join member m
+						on g.mem_num = m.mem_num	
+				where g.mem_num=#{mem_num} and gb_sort ='g'
+				group by
+				 g.gb_num, g.board_num, g.mem_num,g.gb_sort,
+				 b.board_title,b.board_date,b.board_count, m.mem_nick
+				   order by gb_num desc
+				)goodandbad
+			)
+		<![CDATA[where rnum >= ((#{page} - 1) * 10+1) and rnum <=(#{page} * 10)]]>
+	</select>
 </mapper>

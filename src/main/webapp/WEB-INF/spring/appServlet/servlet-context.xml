@@ -43,7 +43,15 @@
 			<mapping path="review_updating"/>
 			<mapping path="/review_list"/>
 			<mapping path="/review_delete"/>
+			<mapping path="/recommend_write"/>
+			<mapping path="/recommend_writing"/>
+			<mapping path="recommend_update"/>
+			<mapping path="recommend_updating"/>
+			<mapping path="/recommend_list"/>
+			<mapping path="/recommend_delete"/>
 			<mapping path="/myWritingList"/>
+			<mapping path="/myReplyList"/>
+			<mapping path="/myGoodList"/>
 			<beans:ref bean="sessionChk"/>
 		</interceptor>
 	</interceptors>	 

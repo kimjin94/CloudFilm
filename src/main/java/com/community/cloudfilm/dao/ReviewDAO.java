@@ -45,14 +45,17 @@ public class ReviewDAO {
 		return list;
 	}
 	//검색 적용 게시글 갯수
-	public int getSearchListCount(String keyword) {
-		int count = 0;
-		count=sqlSession.selectOne("reviewMapper.reviewSearch_count", keyword);
-		return count;
-	}
+	/*
+	 * public int getSearchListCount(Map<String, Object> javaMap) { return
+	 * sqlSession.selectOne("reviewMapper.reviewSearch_count", javaMap);
+	 */
+	//검색적용 게시글 갯수
+	public int getSearchListCount(Map<String, Object> javaMap) {
+		return sqlSession.selectOne("reviewMapper.reviewSearch_count", javaMap);
+		}
 	//검색 적용 게시글 목록
-	public List<BoardVO> getSearchReviewList(Map<String, Object> parameterMap) {
-		List<BoardVO> list =sqlSession.selectList("reviewMapper.reviewSearch_list", parameterMap);
+	public List<BoardVO> getSearchReviewList(Map<String, Object> javaMap) {
+		List<BoardVO> list =sqlSession.selectList("reviewMapper.reviewSearch_list", javaMap);
 		return list;
 	}
 	//게시글 원문내용
@@ -103,6 +106,8 @@ public class ReviewDAO {
 		
 		return sqlSession.selectOne("trailer.checkTrailerBad", parameterMap);
 	}
+	
+
 	
 	
 	

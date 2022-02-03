@@ -51,61 +51,59 @@
 		    ) board
 		)
 		<![CDATA[ 
-		where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)
+		where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
 		]]>
 		
 	</select>
 
 	<!-- 필터적용 리뷰 총 게시물 수 -->
 	<select id="reviewFilter_count" resultType="int" parameterType="String">
-		select count(board_num) from board where cate_num = 1 and board_filter = #{board_filter}
+		select count(board_num)
+		from board b
+			left join member m
+				on b.mem_num = m.mem_num
+			where b.cate_num = 1 and board_filter = #{board_filter}
 	</select>
 	
 	<!-- 필터적용 리뷰 목록 -->
 	<select id="reviewFilter_list" parameterType="java.util.Map" resultType="board">
-		<![CDATA[
-		select * from 
-		(select rownum rnum, board.* from
-		(select * from board where cate_num = 1 and board_filter = #{board_filter} order by BOARD_num desc) board)
-		where rnum >= ((#{page} - 1) * 20+1) and  rnum <= (#{page} * 20)
-		]]>
-	</select>
-	
-	<!-- 검색적용 리뷰 총 게시물 수 -->
-	<select id="reviewSearch_count" resultType="int" parameterType="String">
-		select count(board_num) from board 
-		<where>
-			<if test="keyword !=null and search != 'subcon'">
-				${search} like '%'||#{keyword}||'%'
-			</if>
-			<if test="keyword !=null and search == 'subcon'">
-				board_title like '%'||#{keyword}||'%' or
-				board_cont like '%'||#{keyword}||'%'
-			</if>
-		</where>
-	</select>
-	
-	<!-- 검색적용 리뷰 총 리뷰 목록 -->
-	<select id="reviewSearch_list" parameterType="java.util.Map" resultType="board">
 		select * from
-		(select rownum rnum, board.* from
-		(select * from board
-		<where>
-		<if test="keyword !=null and search !='subcon'">
-			${search} like '%'||#{keyword}||'%'
-		</if>
-		<if test="keyword !=null and search =='subcon'">
-			board_title like '%'||#{keyword}||'%' or
-			board_cont like '%'||#{keyword}||'%' or
-		</if>
-		</where>
-			order by board_num desc)board)
-		<![CDATA[ 
-		where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)
-		]]>	
-			
+		(
+			select rownum rnum, board.* from
+			(
+			select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and b.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 1 
+		        	<if  test= "board_filter != null">
+					 and board_filter=#{board_filter}
+					</if>	
+		        
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+			)board
+		)
+		<![CDATA[where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)]]>
 	</select>
-		
+	
 	<!-- 리뷰게시판 원문내용 -->
 	<select id="review_cont" resultType="board" parameterType="int">
 		select * from board where board_num =#{board_num}
@@ -129,4 +127,54 @@
 	<delete id="review_delete" parameterType="int">
 	delete from board where board_num =#{board_num}
 	</delete>
+	
+	<!-- 리뷰 게시판 검색 결과 갯수 -->
+	<select id="reviewSearch_count" parameterType="java.util.Map" resultType="int">
+		select count(board_num)
+		from board b
+			left join member m
+				on b.mem_num = m.mem_num
+			where b.cate_num = 1 
+			<if  test= "keyword != null">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>	
+	</select>
+	
+	<!-- 리뷰게시판 검색결과 리스트 -->
+	<select id="reviewSearch_list" parameterType="java.util.Map" resultType="board">
+		select * from
+		(
+			select rownum rnum, board.* from
+			(
+			select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and b.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 1
+		        	<if test="keyword != null">
+		        		and ${search} like '%'||#{keyword}||'%'
+		        	</if>
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+			)board
+		)
+		<![CDATA[where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)]]>
+	</select>
 </mapper>

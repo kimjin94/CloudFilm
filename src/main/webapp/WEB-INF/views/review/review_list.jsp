@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -68,7 +68,6 @@
 						
 					<!-- 필터 출력 부분 -->	
 							${re.board_filter}
-					</a>
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
@@ -77,13 +76,14 @@
 					<!-- 제목 출력 부분 -->	
 					<a href="review_cont?board_num=${re.board_num}&page=${page}">
 							${re.board_title}
-							[${re.re_count}]
+							+${re.re_count}
+							추천+${re.board_good}
 					</a>
 					</div>
 				</td>
 
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.mem_id}</div>
+					<div align="center">${re.mem_nick}</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">
@@ -106,16 +106,42 @@
 			<input type="button" value="글쓰기" class="input_button"
 				onclick="location='review_write?page=${page}'">
 		</div>
+		<form action="search_review" method="post">
+		<input type="hidden" name="board_filter">
+			<div>
+				<select name="search">
+				<option value="">검색조건</option>
+				<option value="board_title"<c:if test="${search == 'board_title'}">selected="selected"</c:if>>제목</option>
+				<option value="board_cont"<c:if test="${search == 'board_cont'}">selected="selected"</c:if>>내용</option>
+				<option value="mem_nick"<c:if test="${search == 'mem_nick'}">selected="selected"</c:if>>작성자</option>
+				</select>
+				<input type="text" id="keyword" name="keyword" placeholder="검색" value="${keyword}">
+				<button type="submit">검색</button>
+			</div>
+		</form>
 
-		<div id="bbslist_paging">			
-			<c:if test="${page <= 1 }">
-				[이전]&nbsp;
-			</c:if>
+		<div id="bbslist_paging">	
+		<c:if test="${board_filter != null}">	
+			<c:if test="${page > 1 }">
+				<a href="review_list?board_filter=${board_filter}&page=${page-1}">[이전]</a>&nbsp;
+			</c:if>			
+			<c:forEach var="a" begin="${startpage}" end="${endpage}">
+				<c:if test="${a == page }">
+					[${a}]
+				</c:if>
+				<c:if test="${a != page }">
+					<a href="review_list?board_filter=${board_filter}&page=${a}">[${a}]</a>&nbsp;
+				</c:if>
+			</c:forEach>			
 			
+			<c:if test="${page < maxpage }">
+				<a href="review_list?board_filter=${board_filter}&page=${page+1}">[다음]</a>
+			</c:if>			
+		</c:if>		
+		<c:if test="${board_filter == null}">	
 			<c:if test="${page > 1 }">
 				<a href="review_list?page=${page-1}">[이전]</a>&nbsp;
 			</c:if>			
-
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
 				<c:if test="${a == page }">
 					[${a}]
@@ -125,30 +151,16 @@
 				</c:if>
 			</c:forEach>			
 			
-			<c:if test="${page >= maxpage }">
-				[다음] 
-			</c:if>
 			<c:if test="${page < maxpage }">
 				<a href="review_list?page=${page+1}">[다음]</a>
 			</c:if>			
-			
+		</c:if>
 		</div>
-		<from action="review_list" onSubmit="return board_check()" >
-		<select name="search">
-			<option value="board_title"
-				<c:if test="${search=='board_title'}">selected="selected"</c:if>>제목</option>
-			<option value="board_cont"
-				<c:if test="${search=='board_cont'}">selected="selected"</c:if>>내용</option>
-			<option value="mem_nick"
-				<c:if test="${search=='mem_id'}">selected="selected"</c:if>>작성자</option>
-		</select>
-		<input type="text" name="keyword">
-		<input type="submit" value="검색"/>
-		</from>
+		
+		</div>
 	</div>
 	</div>
 	<%@ include file="../layout/row.jsp" %>	
-	</div>
 	
 <%@ include file="../layout/footer.jsp" %>	
 </body>

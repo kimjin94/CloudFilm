@@ -26,7 +26,7 @@ public class BoardVO {
 	//검색
 	private String search;	//검색타입
 	private String keyword;	//검색내용
-
+	private String gb_sort;
 	
 	public int getBoard_num() {
 		return board_num;
@@ -147,6 +147,12 @@ public class BoardVO {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public String getGb_sort() {
+		return gb_sort;
+	}
+	public void setGb_sort(String gb_sort) {
+		this.gb_sort = gb_sort;
 	}
 	
 }

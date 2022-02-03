@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -18,11 +18,9 @@
 		<div id="bbslist_c">글 개수 : ${listcount}</div>
 		
 		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
-		onClick="location='recommend_list?page=${page}'"/>
-		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
-			onClick="location='recommend_list?board_filter=추천'"/>
-		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
-			onClick="location='recommend_list?board_filter=비추천'"/>
+		onClick="location='review_list?page=${page}'"/>
+		
+		
 
 		<table id="bbslist_t">
 			<tr align="center" valign="middle" bordercolor="#333333">
@@ -49,10 +47,10 @@
 			</tr>
 
 			<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*20}"/> 	
+			<c:set var="num" value="${listcount-(page-1)*10}"/> 	
 	
 			<!-- 반복문 시작 -->
-			<c:forEach var="re" items="${recommendlist}">
+			<c:forEach var="reviewsearchlist" items="${reviewsearchlist}">
 			
 			<tr align="center" valign="middle">
 				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
@@ -65,7 +63,7 @@
 					<div align="center">							
 						
 					<!-- 필터 출력 부분 -->	
-							${re.board_filter}
+							${reviewsearchlist.board_filter}
 					</a>
 					</div>
 				</td>
@@ -73,26 +71,25 @@
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="recommend_cont?board_num=${re.board_num}&page=${page}">
-							${re.board_title}
-							[${re.re_count}]
+					<a href="review_cont?board_num=${reviewsearchlist.board_num}&page=${page}">
+							${reviewsearchlist.board_title}
+							+${reviewsearchlist.re_count}
 					</a>
 					</div>
 				</td>
 
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.mem_id}</div>
+					<div align="center">${reviewsearchlist.mem_nick}</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">
-					
-					<fmt:formatDate value="${re.board_date}"
+					<fmt:formatDate value="${reviewsearchlist.board_date}"
 						 pattern="yyyy-MM-dd HH:mm:ss"/>					
 					
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.board_count}</div>
+					<div align="center">${reviewsearchlist.board_count}</div>
 				</td>
 			</tr>
 			
@@ -107,7 +104,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="recommend_list?page=${page-1}">[이전]</a>&nbsp;
+				<a href="search_review?page=${page-1}&search=${search}&keyword=${keyword}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -115,7 +112,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="recommend_list?page=${a}">[${a}]</a>&nbsp;
+					<a href="search_review?page=${a}&search=${search}&keyword=${keyword}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -123,15 +120,16 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="recommend_list?page=${page+1}">[다음]</a>
+				<a href="search_review?page=${page+1}&search=${search}&keyword=${keyword}">[다음]</a>
 			</c:if>			
 			
 		</div>
-		<div id="bbslist_w">
+		<div id="bbslist_w" align="center" valign="middle">
 			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='recommend_write?page=${page}'">
+				onclick="location='review_write?page=${page}'">
 		</div>
-		<form action="search_recommend" method="post">
+		
+		<form action="search_review" method="post">
 		<input type="hidden" name="board_filter">
 			<div>
 				<select name="search">

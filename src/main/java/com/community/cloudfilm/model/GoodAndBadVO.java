@@ -7,10 +7,12 @@ public class GoodAndBadVO {
 	private int board_num;
 	private int mem_num;
 	private String gb_sort;
+	
+	//내가 좋아요한 글 조인
+	private String board_title;
 	private Date board_date;
 	private int board_count;
 	private String mem_nick;
-	private String board_title;
 	
 	public int getGb_num() {
 		return gb_num;
@@ -36,6 +38,12 @@ public class GoodAndBadVO {
 	public void setGb_sort(String gb_sort) {
 		this.gb_sort = gb_sort;
 	}
+	public String getBoard_title() {
+		return board_title;
+	}
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
+	}
 	public Date getBoard_date() {
 		return board_date;
 	}
@@ -54,10 +62,5 @@ public class GoodAndBadVO {
 	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
 	}
-	public String getBoard_title() {
-		return board_title;
-	}
-	public void setBoard_title(String board_title) {
-		this.board_title = board_title;
-	}
+
 }
