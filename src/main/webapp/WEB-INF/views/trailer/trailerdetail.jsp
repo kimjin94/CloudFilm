@@ -112,10 +112,20 @@ th{
 					</script>
 				</td>
 			</tr>
+			<c:if test="${mem_num == 1}">
+			<tr>
+				<td colspan="2">
+					<div id="goodandbad">
+						<button onclick="location.href='trailerUpdateForm?page=${page}&board_num=${board.board_num}'">수정 </button>
+						<button onclick="location.href='trailerDelete?page=${page}&board_num=${board.board_num}'">삭제</button>
+					</div>
+				</td>
+			</tr>
+			</c:if>
 		</table>
 		
 		<form action="replywrite" method="post">
-			<table border=1>
+			<table border=1> 
 				<%@ include file="../reply/replylist.jsp" %>
 				<tr>
 					<td colspan="4">

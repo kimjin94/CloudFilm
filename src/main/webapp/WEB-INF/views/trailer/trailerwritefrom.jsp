@@ -45,10 +45,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>이미지 첨부</th>
-					<td colspan="3"><input type="text" name="board_img"></td>
-				</tr>
-				<tr>
 					<th>동영상 링크</th>
 					<td colspan="3"><input type="text" name="board_video"></td>
 				</tr>
