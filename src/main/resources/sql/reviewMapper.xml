@@ -51,7 +51,7 @@
 		    ) board
 		)
 		<![CDATA[ 
-		where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)
+		where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
 		]]>
 		
 	</select>
@@ -89,7 +89,11 @@
 		                on a.board_num = d.board_num
 		            left join member e
 		                on a.mem_num = e.mem_num
-		        where a.cate_num = 1 and board_filter=#{board_filter} 
+		        where a.cate_num = 1 
+		        	<if  test= "board_filter != null">
+					 and board_filter=#{board_filter}
+					</if>	
+		        
 		        group by 
 	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
@@ -97,7 +101,7 @@
 		        order by a.BOARD_num desc
 			)board
 		)
-		<![CDATA[where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)]]>
+		<![CDATA[where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)]]>
 	</select>
 	
 	<!-- 리뷰게시판 원문내용 -->
@@ -171,6 +175,6 @@
 		        order by a.BOARD_num desc
 			)board
 		)
-		<![CDATA[where rnum >= ((#{page}-1) * 20+1)  and rnum <= (#{page} * 20)]]>
+		<![CDATA[where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)]]>
 	</select>
 </mapper>

@@ -106,7 +106,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="recommend_searchlist?page=${page-1}">[이전]</a>&nbsp;
+				<a href="search_recommend?page=${page-1}&search=${search}&keyword=${keyword}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -114,7 +114,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="recommend_searchlist?page=${a}">[${a}]</a>&nbsp;
+					<a href="search_recommend?page=${a}&search=${search}&keyword=${keyword}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -122,7 +122,7 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="recommend_searchlist?page=${page+1}">[다음]</a>
+				<a href="search_recommend?page=${page+1}&search=${search}&keyword=${keyword}">[다음]</a>
 			</c:if>			
 			
 		</div>

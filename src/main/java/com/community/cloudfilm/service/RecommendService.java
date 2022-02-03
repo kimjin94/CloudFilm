@@ -120,7 +120,7 @@ public class RecommendService {
 			int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
 			
 			//현재 페이지에 보요줄 시작 페이지수 (1,21,41..)
-			int startpage = (page -1 ) * 20 + 1;
+			int startpage = (((int) ((double) page / 20 + 0.95)) - 1) * 20 + 1;
 			
 			System.out.println(page);
 			System.out.println(startpage);

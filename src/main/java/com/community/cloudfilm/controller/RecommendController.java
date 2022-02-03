@@ -111,7 +111,7 @@ public class RecommendController {
 	//리뷰게시판 목록
 	@RequestMapping(value = "/recommend_list")
 	public String recommend_list(HttpServletRequest request,BoardVO board, Model model)throws Exception {
-		System.out.println("리뷰리스트 컨");
+		System.out.println("추천리스트 컨");
 		System.out.println(request.getParameter("board_filter"));
 		
 		List<BoardVO> recommendlist = new ArrayList<BoardVO>();
@@ -144,13 +144,15 @@ public class RecommendController {
 			System.out.println(listcount);
 			//페이지 번호(page)를 DAO클래스에게 전달한다.
 			recommendlist = recommendService.getFilterRecommendList(indexMap);	//리스트 받아오기
+			
+			model.addAttribute("board_filter", board_filter);
 		}
 		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
 		
 		//현재 페이지에 보요줄 시작 페이지수 (1,21,41..)
-		int startpage = (page -1 ) * 20 + 1;
+		int startpage = (((int) ((double) page / 20 + 0.95)) - 1) * 20 + 1;
 		
 		System.out.println(page);
 		System.out.println(startpage);
@@ -258,7 +260,7 @@ public class RecommendController {
 								  HttpServletRequest request,
 								  Model model)throws Exception{
 		
-		if (!mf.isEmpty()) {
+		if (mf !=null) {
 	         //첨부파일 저장
 	         UUID uuid = UUID.randomUUID();
 	         String filename = uuid + mf.getOriginalFilename();
@@ -296,7 +298,7 @@ public class RecommendController {
 	         }
 
 	         board.setBoard_img(filename);
-	         System.out.println(path);
+	         System.out.println("추천이미지:"+path);
 	      } else {
 	    	//기존 리뷰정보 불러오기
 	    	BoardVO oldrecommend = recommendService.getRecommendCont(board_num);
@@ -308,7 +310,7 @@ public class RecommendController {
 		
 		//수정 메서드 호출
 		recommendService.recommendUpdate(board);
-		System.out.println("수정가나요 컨트롤러");
+		System.out.println("추천수정가나요 컨트롤러");
 		
 		return "redirect:/recommend_cont?board_num=" + board.getBoard_num()
 							+"&page=" + page;
@@ -325,7 +327,7 @@ public class RecommendController {
 		
 		//리뷰정보 불러오기
 		BoardVO recommend = recommendService.getRecommendCont(board_num);
-		System.out.println("리뷰삭제시켜줘 컨");
+		System.out.println("추천삭제시켜줘 컨");
 		
 		int result =0;
 		

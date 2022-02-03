@@ -76,6 +76,7 @@
 					<a href="review_cont?board_num=${re.board_num}&page=${page}">
 							${re.board_title}
 							+${re.re_count}
+							추천+${re.board_good}
 					</a>
 					</div>
 				</td>
@@ -100,33 +101,6 @@
 			<!-- 반복문 끝 -->			
 		</table>
 		
-
-		<div id="bbslist_paging">			
-			<c:if test="${page <= 1 }">
-				[이전]&nbsp;
-			</c:if>
-			
-			<c:if test="${page > 1 }">
-				<a href="review_list?page=${page-1}">[이전]</a>&nbsp;
-			</c:if>			
-
-			<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == page }">
-					[${a}]
-				</c:if>
-				<c:if test="${a != page }">
-					<a href="review_list?page=${a}">[${a}]</a>&nbsp;
-				</c:if>
-			</c:forEach>			
-			
-			<c:if test="${page >= maxpage }">
-				[다음] 
-			</c:if>
-			<c:if test="${page < maxpage }">
-				<a href="review_list?page=${page+1}">[다음]</a>
-			</c:if>			
-			
-		</div>
 		<div id="bbslist_w" align="center" valign="middle">
 			<input type="button" value="글쓰기" class="input_button"
 				onclick="location='review_write?page=${page}'">
@@ -144,6 +118,44 @@
 				<button type="submit">검색</button>
 			</div>
 		</form>
+
+		<div id="bbslist_paging">	
+		<c:if test="${board_filter != null}">	
+			<c:if test="${page > 1 }">
+				<a href="review_list?board_filter=${board_filter}&page=${page-1}">[이전]</a>&nbsp;
+			</c:if>			
+			<c:forEach var="a" begin="${startpage}" end="${endpage}">
+				<c:if test="${a == page }">
+					[${a}]
+				</c:if>
+				<c:if test="${a != page }">
+					<a href="review_list?board_filter=${board_filter}&page=${a}">[${a}]</a>&nbsp;
+				</c:if>
+			</c:forEach>			
+			
+			<c:if test="${page < maxpage }">
+				<a href="review_list?board_filter=${board_filter}&page=${page+1}">[다음]</a>
+			</c:if>			
+		</c:if>		
+		<c:if test="${board_filter == null}">	
+			<c:if test="${page > 1 }">
+				<a href="review_list?page=${page-1}">[이전]</a>&nbsp;
+			</c:if>			
+			<c:forEach var="a" begin="${startpage}" end="${endpage}">
+				<c:if test="${a == page }">
+					[${a}]
+				</c:if>
+				<c:if test="${a != page }">
+					<a href="review_list?page=${a}">[${a}]</a>&nbsp;
+				</c:if>
+			</c:forEach>			
+			
+			<c:if test="${page < maxpage }">
+				<a href="review_list?page=${page+1}">[다음]</a>
+			</c:if>			
+		</c:if>	
+		
+		</div>
 	</div>
 </body>
 </html>

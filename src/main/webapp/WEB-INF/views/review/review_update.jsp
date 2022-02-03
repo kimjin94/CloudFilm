@@ -37,8 +37,16 @@
 					<th>이미지 첨부</th>
 					<td colspan="3">
 					<input type="file" id="board_img" name="board_img1">
-					현재파일 :<img src="<%=request.getContextPath() %>/resources/images/reviewimage/${re.board_img}" height="50" width="50" />
-					</td>
+					현재파일 :
+ 					<c:choose>
+                  <c:when test="${not empty re.board_img}">
+                     <img src="<%=request.getContextPath()%>/resources/images/reviewimage/${re.board_img}" height="50" width="50">
+                  </c:when>
+                  <c:otherwise>
+					현재파일이 없습니다.
+                  </c:otherwise>
+               </c:choose>	
+       				</td>
 						
 				</tr>
 

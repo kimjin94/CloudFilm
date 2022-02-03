@@ -117,7 +117,7 @@ public class ReviewController {
 		List<BoardVO> reviewlist = new ArrayList<BoardVO>();
 		
 		int page = 1;
-		int limit = 20;	//한화면에 출력할 레코드 수
+		int limit = 10;	//한화면에 출력할 레코드 수
 		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -144,23 +144,26 @@ public class ReviewController {
 			System.out.println(listcount);
 			//페이지 번호(page)를 DAO클래스에게 전달한다.
 			reviewlist = reviewService.getFilterReviewList(indexMap);	//리스트 받아오기
+			
+			model.addAttribute("board_filter", board_filter);
 		}
 		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
 		
 		//현재 페이지에 보요줄 시작 페이지수 (1,21,41..)
-		int startpage = (page -1 ) * 20 + 1;
+		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		
 		System.out.println(page);
 		System.out.println(startpage);
 		//현재 페이지에 보여줄 마지막 페이지 수(20,40,60...)
 		int endpage = maxpage;
 		
-		if(endpage > startpage + 20 -1)
-			endpage = startpage + 20 -1;
+		if(endpage > startpage + 10 -1)
+			endpage = startpage + 10 -1;
 		
 		model.addAttribute("page", page);
+		
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("maxpage", maxpage);

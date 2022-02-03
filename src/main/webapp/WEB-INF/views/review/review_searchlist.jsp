@@ -19,10 +19,7 @@
 		
 		<input type="button" value="전체" class="btn btn btn-primary btn-bg"
 		onClick="location='review_list?page=${page}'"/>
-		<input type="button" id="board_filter" name="board_filter" value="추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_searchlist?board_filter=추천'"/>
-		<input type="button" id="board_filter" name="board_filter" value="비추천" class="btn btn btn-primary btn-bg"
-			onClick="location='review_searchlist?board_filter=비추천'"/>
+		
 		
 
 		<table id="bbslist_t">
@@ -50,7 +47,7 @@
 			</tr>
 
 			<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*20}"/> 	
+			<c:set var="num" value="${listcount-(page-1)*10}"/> 	
 	
 			<!-- 반복문 시작 -->
 			<c:forEach var="reviewsearchlist" items="${reviewsearchlist}">
@@ -107,7 +104,7 @@
 			</c:if>
 			
 			<c:if test="${page > 1 }">
-				<a href="review_searchlist?page=${page-1}">[이전]</a>&nbsp;
+				<a href="search_review?page=${page-1}&search=${search}&keyword=${keyword}">[이전]</a>&nbsp;
 			</c:if>			
 
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -115,7 +112,7 @@
 					[${a}]
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="review_searchlist?page=${a}">[${a}]</a>&nbsp;
+					<a href="search_review?page=${a}&search=${search}&keyword=${keyword}">[${a}]</a>&nbsp;
 				</c:if>
 			</c:forEach>			
 			
@@ -123,7 +120,7 @@
 				[다음] 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="review_searchlist?page=${page+1}">[다음]</a>
+				<a href="search_review?page=${page+1}&search=${search}&keyword=${keyword}">[다음]</a>
 			</c:if>			
 			
 		</div>
