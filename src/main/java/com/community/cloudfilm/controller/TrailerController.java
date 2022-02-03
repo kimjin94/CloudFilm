@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.cloudfilm.model.BoardVO;
@@ -130,6 +131,39 @@ public class TrailerController {
 		searchboardM.addAllObjects(trailersearchlist);
 		
 		return searchboardM;
+	}
+	
+	// 예고편 수정폼으로 이동
+	@RequestMapping(value = "/trailerUpdateForm")
+	public ModelAndView trailerUpdateForm(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView trailerUpdateFormM = new ModelAndView("trailer/trailerupdateform");
+		
+		// 게시글 상세정보 가져오기
+		Map<String, Object> board = trailerService.getTrailerDetail(request, response);
+	
+		trailerUpdateFormM.addAllObjects(board);
+		
+		return trailerUpdateFormM;
+	}
+	
+	// 예고편 수정하기
+	@RequestMapping(value = "/updateTrailer")
+	public String updateTrailer(BoardVO board, @RequestParam("page") String page) {
+		
+		// 예고편 수정하기
+		trailerService.updateTrailer(board);
+		
+		return "redirect:trailerlist?page="+page;
+	}
+	
+	// 예고편 삭제하기
+	@RequestMapping(value = "/trailerDelete")
+	public String trailerDelete(@RequestParam("board_num") int board_num, @RequestParam("page") String page) {
+		
+		// 예고편 삭제하기
+		trailerService.deleteTrailer(board_num);
+		
+		return "redirect:trailerlist?page="+page;
 	}
 
 }

@@ -189,7 +189,6 @@ public class TrailerService {
 			resultMap.put("board_filter", board_filter);
 			
 		}
-		
 
 		paraMap.put("page", page);
 
@@ -210,9 +209,6 @@ public class TrailerService {
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
 
-		
-		
-
 		resultMap.put("page", page);
 		resultMap.put("startpage", startpage);
 		resultMap.put("endpage", endpage);
@@ -221,5 +217,19 @@ public class TrailerService {
 		resultMap.put("trailersearchlist", trailersearchlist);
 		
 		return resultMap;
+	}
+
+	// 예고편 수정하기
+	public void updateTrailer(BoardVO board) {
+		String[] videoList = board.getBoard_video().split("/");
+		String board_video = videoList[3].replace("watch?v=", "");
+		board.setBoard_video(board_video);
+		
+		trailerDAO.updateTrailer(board);
+	}
+
+	// 예고편 삭제하기
+	public void deleteTrailer(int board_num) {
+		trailerDAO.deleteTrailer(board_num);
 	}
 }

@@ -40,6 +40,7 @@ margin-top : 5px;
 	<div>
 		<h2>예고편 게시판</h2>
 		<div id='container'>
+		${listcount }
 			<div id='right-box'> 
 				<select id="board_filter" name="board_filter" onchange="searchboard()">
 					<option value="" <c:if test="${board_filter == '' }"> selected="selected" </c:if>>전체보기</option>
@@ -107,31 +108,59 @@ margin-top : 5px;
 	    </form>
 	</div>
 	<div id="trailersearchlist_paging" >
-			<c:if test="${page <=1 }">
-				[이전]&nbsp;
-			</c:if>
-
-			<c:if test="${page > 1 }">
-				<a href="trailersearchlist?page=${page-1}">[이전]</a>&nbsp;
-			</c:if>
-
-			<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == page }">
-					[${a}]
+		<c:choose>
+			<c:when test="${board_filter != null }">
+				<c:if test="${page <=1 }">
+					[이전]&nbsp;
 				</c:if>
-				<c:if test="${a != page }">
-					<a href="trailersearchlist?page=${a}">[${a}]</a>&nbsp;
-				</c:if>
-			</c:forEach>
-
-			<c:if test="${page >= maxpage }">
-				[다음] 
-			</c:if>
-			<c:if test="${page < maxpage }">
-				<a href="trailersearchlist?page=${page+1}">[다음]</a>
-			</c:if>
-		</div>
 	
+				<c:if test="${page > 1 }">
+					<a href="searchboard?board_filter=${board_filter}&page=${page-1}">[이전]</a>&nbsp;
+				</c:if>
+	
+				<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:if test="${a == page }">
+						[${a}]
+					</c:if>
+					<c:if test="${a != page }">
+						<a href="searchboard?board_filter=${board_filter}&page=${a}">[${a}]</a>&nbsp;
+					</c:if>
+				</c:forEach>
+	
+				<c:if test="${page >= maxpage }">
+					[다음] 
+				</c:if>
+				<c:if test="${page < maxpage }">
+					<a href="searchboard?board_filter=${board_filter}&page=${page+1}">[다음]</a>
+				</c:if>
+			</c:when>
+			<c:otherwise>
+				<c:if test="${page <=1 }">
+					[이전]&nbsp;
+				</c:if>
+	
+				<c:if test="${page > 1 }">
+					<a href="searchboard?search=${search}&keyword=${keyword}&page=${page-1}">[이전]</a>&nbsp;
+				</c:if>
+	
+				<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:if test="${a == page }">
+						[${a}]
+					</c:if>
+					<c:if test="${a != page }">
+						<a href="searchboard?search=${search}&keyword=${keyword}&page=${a}">[${a}]</a>&nbsp;
+					</c:if>
+				</c:forEach>
+	
+				<c:if test="${page >= maxpage }">
+					[다음] 
+				</c:if>
+				<c:if test="${page < maxpage }">
+					<a href="searchboard?search=${search}&keyword=${keyword}&page=${page+1}">[다음]</a>
+				</c:if>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	
 </body>
 </html>
