@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -176,16 +177,16 @@ public class HomeController {
 			return "home/home";
 		}
 		@RequestMapping(value = "/home")
-		public String trailerlist(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		public ModelAndView trailerlist(HttpServletRequest request, HttpServletResponse response) throws Exception{
 			
-			ModelAndView trailerlistM = new ModelAndView("trailer/trailerlist");
+			ModelAndView trailerlistM = new ModelAndView("home/home");
 			
 			// 예고편 리스트 받아오기
 			Map<String, Object> trailerlist = trailerService.getTrailerList(request, response);
 
 			trailerlistM.addAllObjects(trailerlist);
 			
-			return "home/hom";
+			return trailerlistM;
 		}
 }
 
