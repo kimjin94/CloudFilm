@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.cloudfilm.model.BoardVO;
+import com.community.cloudfilm.service.MemberService;
 import com.community.cloudfilm.service.RecommendService;
+import com.community.cloudfilm.service.ReplyService;
 import com.community.cloudfilm.service.ReviewService;
 import com.community.cloudfilm.service.TrailerService;
 
@@ -26,8 +28,14 @@ public class HomeController {
 	
 		@Autowired
 		private ReviewService reviewService;
+		@Autowired
 		private RecommendService recommendService;
+		@Autowired
 		private TrailerService trailerService;
+		@Autowired
+		private MemberService memberService;
+		@Autowired
+		private ReplyService replyService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
