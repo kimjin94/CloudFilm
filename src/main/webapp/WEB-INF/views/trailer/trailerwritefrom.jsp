@@ -7,13 +7,17 @@
 <title>예고편 게시판 글쓰기</title>
 </head>
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %>  
+	<!-- 게시판 리스트 -->
+	<div class="row">
+  <div class="leftcolumn" align="center">
 		<form action="writeTrailer" method="post">
-			<table border=1>
-				<caption>예고편 글쓰기</caption>
+				<h2>예고편 글쓰기</h2>
+			<table id="tboard" border=1>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title"></td>
+					<td><input type="text" name="board_title" style="text-align:center; width:100%;"></td>
 					<th>장르</th>
 					<td>
 						<select name="board_filter">
@@ -35,8 +39,9 @@
 					</td>
 				</tr>
 				<tr>
+					<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="60"></textarea>
+						<textarea name="board_cont" rows="20" cols="120"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -55,5 +60,9 @@
 			</table>
 		</form>
 	</div>
+	<%@ include file="../layout/row.jsp" %>	
+	</div>
+	
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

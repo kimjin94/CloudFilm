@@ -34,6 +34,7 @@
 	
 	------관리자-----<br>
 	<a href="test">테스트</a> 			<br>
+	<a href="adminhome">어드민홈</a> 			<br>
 	<a href="trailerlist">예고편 게시판</a>	<br>
 	<a href="adminsession">로그인</a>		<br>
 	<c:if test="${member != null }">

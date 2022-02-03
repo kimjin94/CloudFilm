@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,16 +103,18 @@ text-decoration: none;
 }
 
 #tboard{
-border-right:none;
-border-left:none;
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 12px;
+  text-align: center;
 }
 
-#tboard tr,th,td{
+#tboard tr,th{
 text-align: center;
-border-right:none;
-border-left:none;
-border-top:none;
-border-bottom:none;
+padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #808080;
+  color: white;
 }
 
 
@@ -256,6 +259,8 @@ margin-top : 5px;
   <a href="recommend_list">추천</a>
   <a href="trailerlist">예고편</a>
   <a href="#">영화월드컵</a>
+ <!--  
+  <a href="adminhome">어드민홈</a> -->
 </div>
 
 
