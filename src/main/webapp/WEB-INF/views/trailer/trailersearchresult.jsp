@@ -7,41 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>예고편</title>
-<style>
-table{
-	width: 600px;
-}
-
-#container {
-	margin-top : 5px;
-    text-align: center;
-    width: 600px;
-}
-#left-box {
-    float: left;
-}
-#center-box {
-    margin: 0 auto;
-}
-#right-box {
-    float: right;
-}
-
-#trailersearchlist_paging{
-margin-top : 5px;
-	text-align: center;
-	width : 600px;
-}
-</style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 </head>
+
 <body>
-	<div>
-		<h2>예고편 게시판</h2>
-		<div id='container'>
-		${listcount }
-			<div id='right-box'> 
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %>  
+<div class="row">
+  	<div class="leftcolumn" align="center">
+		<h2 class="bbslist_title">예고편 게시판</h2>
+			<div style="float:right; padding-right:40px;"> 
 				<select id="board_filter" name="board_filter" onchange="searchboard()">
 					<option value="" <c:if test="${board_filter == '' }"> selected="selected" </c:if>>전체보기</option>
 					<option value="액션" <c:if test="${board_filter == '액션' }"> selected="selected" </c:if>>액션</option>
@@ -71,11 +47,10 @@ margin-top : 5px;
 					}
 				</script>
 			</div>
-		</div>
-		<table border=1 style="table-layout:fixed;">
+		<table id="bbslist_t" border=1 style="table-layout:fixed;">
 			<c:forEach var="trailersearchlist" items="${trailersearchlist}">
 				<tr>
-					<th rowspan="3" width="160"><img alt="" src="http://i.ytimg.com/vi/${trailersearchlist.board_video}/hqdefault.jpg" width="160" height="120"></th>
+					<th rowspan="3" width="200"><img alt="" src="http://i.ytimg.com/vi/${trailersearchlist.board_video}/hqdefault.jpg" width="160" height="120"></th>
 					<td><a href="trailerDetail?page=${page}&board_num=${trailersearchlist.board_num}">${trailersearchlist.board_title} </a></td><tr>
 					<td> 댓글 : ${trailersearchlist.re_count} | 조회수 : ${trailersearchlist.board_count} | 추천 : ${trailersearchlist.board_good} |
 						<fmt:formatDate value="${trailersearchlist.board_date}"
@@ -87,12 +62,10 @@ margin-top : 5px;
 				</tr>
 			</c:forEach>
 		</table>
-	</div>
-	<div id='container'>
-	    <div id='left-box'>왼쪽</div>
-   	    <div id='right-box'>
-   	    	<button onclick="location='writeTrailerForm'">글쓰기</button>
-	    </div>
+	<div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:40px;">
+			<input type="button" value="글쓰기" class="input_button"
+				onclick="location='writeTrailerForm'">
+		</div>		
 	    <form action="searchboard" method="post">
 	    	<input type="hidden" name="board_filter">
 		    <div id='center-box'>
@@ -106,7 +79,6 @@ margin-top : 5px;
 		    	<button type="submit">검색</button>
 		    </div>
 	    </form>
-	</div>
 	<div id="trailersearchlist_paging" >
 		<c:choose>
 			<c:when test="${board_filter != null }">
@@ -162,5 +134,9 @@ margin-top : 5px;
 		</c:choose>
 	</div>
 	
+		</div>
+		<%@ include file="../layout/row.jsp" %>	
+	</div>
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

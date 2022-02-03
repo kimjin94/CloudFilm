@@ -11,12 +11,13 @@
 <%@ include file="../layout/tab.jsp" %> 
 	<div class="row">
   <div class="leftcolumn" align="center">
+  	<div class="container">
 		<form action="review_writing" method="post" enctype="multipart/form-data" >
 			<table id="bbslist_t" border=1>
 				<h2>리뷰 글쓰기</h2>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title" size="90" style="text-align:center; width:100%;"></td>
+					<td><input type="text" name="board_title" size="90" style="width:100%;"></td>
 					<th>추천</th>
 					<td>
 						<select name="board_filter">
@@ -39,14 +40,15 @@
 				<tr>
 					<td colspan="4">
 						<button>작성</button>
+						<button type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>
 		</form>
+		</div>
 	</div>
 <%@ include file="../layout/row.jsp" %>	
 	</div>
-	
 <%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

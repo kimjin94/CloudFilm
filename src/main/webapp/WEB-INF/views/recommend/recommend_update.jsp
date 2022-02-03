@@ -7,16 +7,20 @@
 <title>리뷰 게시판 글수정</title>
 </head>
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %> 
+	<div class="row">
+  <div class="leftcolumn" align="center">
+    <div class="container">
 		<form action="recommend_updating" method="post">
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
-			<table border=1>
-				<caption>리뷰 수정하기</caption>
+			<table id="bbslist_t" border=1>
+				<h2>추천 수정하기</h2>
 				<tr>
 					<th>제목</th>
 					<td>
-					<input type="text" name="board_title" value="${re.board_title}">
+					<input type="text" name="board_title" size="90" style="width:100%;"  value="${re.board_title}">
 					</td>
 					<th>추천</th>
 					<td>
@@ -30,7 +34,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="60">${re.board_cont}</textarea>
+						<textarea name="board_cont" rows="20" cols="150">${re.board_cont}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -44,11 +48,16 @@
 
 				<tr>
 					<td colspan="4">
-						<button>수정</button>
+						<button type="submit">수정</button>
+						<button type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>
 		</form>
+		</div>
 	</div>
+	<%@ include file="../layout/row.jsp" %>
+	</div>
+	<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

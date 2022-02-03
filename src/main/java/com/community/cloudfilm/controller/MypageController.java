@@ -68,9 +68,4 @@ public class MypageController {
 		mygoodlistM.addAllObjects(mygoodlist);
 		return mygoodlistM;
 	}
-	//마이페이지 메인
-	   @RequestMapping(value="myPage")
-	   public String myPage() {
-	      return "mypage/myPage";
-	   }
 }

@@ -21,6 +21,8 @@
   <h4>책임자</h4>
    (정)박한별 <br>
    (부)김익수 , 김진
+    <p>Copyright © 2018 tcpschool.co.,Ltd. All rights reserved.</p>
+    <address>Contact webmaster for more information. 070-1234-5678</address>
 </div>
 <!-- top btn -->
 <script>

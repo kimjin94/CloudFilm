@@ -11,6 +11,7 @@
 <%@ include file="../layout/tab.jsp" %> 
 	<div class="row">
   <div class="leftcolumn" align="center">
+  	<div class="container">
 		<form action="review_updating" method="post" onSubmit="return review_check()" enctype="multipart/form-data">
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
@@ -19,7 +20,7 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					<input type="text" name="board_title" size="90" style="text-align:center; width:100%;" value="${re.board_title}">
+					<input type="text" name="board_title" size="90" style="width:100%;" value="${re.board_title}">
 					</td>
 					<th>추천</th>
 					<td>
@@ -61,6 +62,7 @@
 				</tr>
 			</table>
 		</form>
+		</div>
 		</div>
 	<%@ include file="../layout/row.jsp" %>
 	</div>

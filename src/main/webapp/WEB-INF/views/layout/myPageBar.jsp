@@ -14,28 +14,49 @@
 <body>
 
 <div class="rightcolumn">
-    <div class="card">
 <c:if test="${member == null}"><button class="btn login" onClick="location='member_login'">로그인</button></c:if>
 <c:if test="${member != null}">${member.mem_id}님 안녕하세요.<br></c:if>
 <c:if test="${member != null}"><button class="btn login" onclick="location='member_logout'">로그아웃</button></c:if>
 <c:if test="${member == null}"><button class="btn signup" onClick="location='member_join'">회원가입</button></c:if>
 <c:if test="${member != null}"><button class="btn signup" onClick="location='myPage'">마이페이지</button></c:if>         
-    </div>
-  <div class="card">
-  -----마이페이지------<br><br>
-	<a href="myPage">마이페이지 홈</a><br>
-    <a href="myWritingList">내가 쓴 글</a><br>
-	<a href="myReplyList">내가 쓴 댓글</a><br>
-	<a href="myGoodList">내가 좋아요한 글</a><br><br>
-	-----멤버-----<br><br>
-	<a href="passReCheck">회원정보 수정</a><br>
-	<a href="member_delete">탈퇴</a><br><br>
-	<c:if test="${mem_grade == 99}">
-	------관리자-----<br><br>
-	<a href="test">테스트</a> 			<br>
-	<a href="trailerlist">예고편 게시판</a>	<br>
-	<a href="adminsession">로그인</a>		<br>
+<br>
+<br>
+  
+  <div class="sidenav" style="float:right;">
+  <table id="bbslist_t" border="1">
+  <tr>
+  <th>-----마이페이지------</th>
+  </tr>
+	<tr>
+	<td><a href="myPage">마이페이지 홈</a></td>
+	</tr>
+	<tr>
+    <td><a href="myWritingList">내가 쓴 글</a></td>
+	</tr>
+	<tr>
+	<td><a href="myReplyList">내가 쓴 댓글</a></td>
+	</tr>
+	<tr>
+	<td><a href="myGoodList">내가 좋아요한 글</a></td>
+	</tr>
+	<tr>
+	<th>-----멤버-----</th>
+	</tr>
+	<tr>
+	<td><a href="passReCheck">회원정보 수정</a></td>
+	</tr>
+	<tr>
+	<td><a href="member_delete">탈퇴</a></td>
+	</tr>
+	<c:if test="${mem_num == 1}">
+	<tr>
+	<th>------관리자-----</th>
+	<td><a href="test">테스트</a></td>
+	<td><a href="trailerlist">예고편 게시판</a></td>
+	<td><a href="adminsession">로그인</a></td>
+	</tr>
 	</c:if>
+	</table>
   </div>
  </div>
 

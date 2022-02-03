@@ -9,15 +9,15 @@
 <body>
 <%@ include file="../layout/header.jsp" %>  
 <%@ include file="../layout/tab.jsp" %>  
-	<!-- 게시판 리스트 -->
 	<div class="row">
   <div class="leftcolumn" align="center">
+  <div class="container">
 		<form action="writeTrailer" method="post">
+			<table id="bbslist_t" border=1>
 				<h2>예고편 글쓰기</h2>
-			<table id="tboard" border=1>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title" style="text-align:center; width:100%;"></td>
+					<td><input type="text" name="board_title" size="90" style="width:100%;"></td>
 					<th>장르</th>
 					<td>
 						<select name="board_filter">
@@ -41,20 +41,22 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="120"></textarea>
+						<textarea name="board_cont" rows="20" cols="150"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>동영상 링크</th>
-					<td colspan="3"><input type="text" name="board_video"></td>
+					<td colspan="3"><input type="text" name="board_video" style="float:left;"></td>
 				</tr>
 				<tr>
 					<td colspan="4">
 						<button>작성</button>
+						<button type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>
 		</form>
+		</div>
 	</div>
 	<%@ include file="../layout/row.jsp" %>	
 	</div>

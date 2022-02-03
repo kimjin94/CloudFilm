@@ -8,15 +8,19 @@
 <title>예고편 게시판 글 수정</title>
 </head>
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %> 
+<div class="row">
+  <div class="leftcolumn" align="center">
+    <div class="container">
 		<form action="updateTrailer" method="post">
 			<input type="hidden" id="board_num" name="board_num" value="${board_num }">
 			<input type="hidden" id="page" name="page" value="${page}">
-			<table border=1>
-				<caption>예고편  글 수정</caption>
+			<table id="bbslist_t"  border=1>
+				<h2>예고편  글 수정</h2>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title" value="${board.board_title}"></td>
+					<td><input type="text" name="board_title" size="90" style="width:100%;" value="${board.board_title}"></td>
 					<th>장르</th>
 					<td>
 						<select id="board_filter" name="board_filter" >
@@ -39,21 +43,27 @@
 					</td>
 				</tr>
 				<tr>
+				<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="60">${board.board_cont}</textarea>
+						<textarea name="board_cont" rows="20" cols="150">${board.board_cont}</textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>동영상 링크</th>
-					<td colspan="3"><input type="text" name="board_video" value="https://youtu.be/${board.board_video}"></td>
+					<td colspan="3"><input type="text" name="board_video" style="float:left;" value="https://youtu.be/${board.board_video}"></td>
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align: center;">
 						<button>수정</button>
+						<button type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	</div>
+	<%@ include file="../layout/row.jsp" %>
+	</div>
+	<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

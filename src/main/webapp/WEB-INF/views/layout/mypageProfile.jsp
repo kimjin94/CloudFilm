@@ -41,7 +41,7 @@ a {
 
 <h2 style="text-align:center">User Profile Card</h2>
 
-<div class="profile">
+<div class="profile" style="float:left; padding-left:40px;">
   <img src="<%=request.getContextPath()%>/resources/images/Prifile/Profile01.png">
   <h1>John Doe</h1>
   <p class="title">CEO & Founder, Example</p>

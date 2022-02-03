@@ -22,21 +22,21 @@ function del(page,board_num){
 </script>
 
 <body>
-	<div>
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %>  
+	<div class="row">
+  <div class="leftcolumn" align="center">
+  <div class="container">
 		<h2>추천게시판 원문내용</h2>
-		<form >
+		<form>
 		<input type="hidden" id = "board_num" name="board_num" value="${re.board_num}"/>
 		<input type="hidden" name="page" value="${page}"/>
-		<table border="1">
+		<table id="bbslist_t" border="1">
 			<tr>
-				<th>제목</th>
-				<td>${re.board_title}</td>
-				<th>필터</th>
-				<td>${re.board_filter }</td>
+				<td  colspan="100" style="text-align:center;"><h4>[${re.board_filter}] ${re.board_title}</h4></td>
 			</tr>
 			<tr>
-				<th>프로필사진</th>
-				<td>
+				<td style="text-align:left;">
 				<c:choose>
                   <c:when test="${mem.mem_img != null }">
                      <img src="<%=request.getContextPath()%>/resources/images/memberimage/${mem.mem_img}" height="50" width="50">
@@ -45,23 +45,13 @@ function del(page,board_num){
                      <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="50" width="50">
                   </c:otherwise>
                </c:choose>
-				</td>
-				<th >작성자</th>
-				<td>
 				${re.mem_id}
-				</td>
-				<th >조회수</th>
-				<td>
-				${re.board_count}
-				</td>
-				<th style="text-align:right;">작성일</th>
-				<td>
-				${re.board_date }				
+				[${re.board_date}]				
+				<div style="float:right;">조회수 : ${re.board_count}</div>
 				</td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td>
+				<td colspan="1000" style="text-align: left;">
 				 <c:if test="${empty re.board_img}">
       				${re.board_cont}
        				</c:if>
@@ -71,8 +61,7 @@ function del(page,board_num){
        				</c:if>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
+		</table>
 					<c:choose>
 						<%-- 비회원인경우 --%>
 						<c:when test="${mem_num == 0 }">
@@ -100,19 +89,17 @@ function del(page,board_num){
 							</div>
 						</c:when>
 					</c:choose>
-				</td>
-			</tr>
-		</table>
 			</form>
 			
-			<div>
+			<div style="float:right; padding-right:35px;">
 				<button type="button" onClick="location='recommend_update?board_num=${re.board_num}&page=${page}'">수정</button>
 				<button type="button" onClick="del(${page},${re.board_num})">삭제</button>
 				<button type="button" onClick="location='recommend_list?page=${page}'">목록</button>
 			</div>
-			
+			<br>
+			<br>
 			<form action="replywrite" method="post">
-			<table border=1>
+			<table id="bbslist_t" border=1>
 				<%@ include file="../reply/replylist.jsp" %>
 				<tr>
 					<td colspan="4">
@@ -120,7 +107,7 @@ function del(page,board_num){
 							<input type="hidden" name="mem_num" value="${mem_num}">
 							<input type="hidden" name="board_num" value="${re.board_num}">
 							<input type="hidden" name="page" value="${page}"> 
-							<textarea id="re_cont" name="re_cont" rows="5" cols="100"></textarea>
+							<textarea id="re_cont" name="re_cont" rows="5" cols="100" style="text-align:center; width:100%;"></textarea>
 							<button type="submit">댓글 등록</button>
 						</div>
 					</td>
@@ -128,6 +115,9 @@ function del(page,board_num){
 			</table>
 		</form> 	
 	</div>
-
+</div>
+	<%@ include file="../layout/row.jsp" %>	
+	</div>
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

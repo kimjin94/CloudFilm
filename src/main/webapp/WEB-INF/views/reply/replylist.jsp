@@ -31,7 +31,7 @@
 						${replylist.mem_nick}<br>
 					<fmt:formatDate value="${replylist.re_date}" pattern="YYYY-MM-DD HH:mm:ss"/> 
 				</td>
-				<td>
+				<td style="text-align:left;">
 					<pre>${replylist.re_cont}</pre>
 				</td>
 					<c:if test="${mem_num == replylist.mem_num}">

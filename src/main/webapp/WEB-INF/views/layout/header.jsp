@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+<title>해더</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -39,10 +41,8 @@ body {
 
 /* Style the top navigation bar */
 .topnav {
+  padding-left:18%;	
   position:relative;
-  overflow: hidden;
-  margin:0 auto;
-  text-align:center;
   background-color: #333;
   font-size: 24px;
 }
@@ -123,6 +123,7 @@ padding-top: 12px;
 .rightcolumn {
   float: left;
   width: 24%;
+  padding-top: 65px;
   padding-left: 20px;
   text-align: center;
 }
@@ -217,6 +218,22 @@ margin-top : 5px;
 	width : 600px;
 }
 
+.sidenav {
+  width: 50%;
+  z-index: 99;
+  top: 20px;
+  margin-right: 110px;
+}
+
+.sidenav a {
+  text-decoration: none;
+  color: #2196F3;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
 /* Footer */
 .footer {
   text-align: center;
@@ -225,8 +242,10 @@ margin-top : 5px;
   position:relative; 
   bottom:0;
   width: 100%;
+  height:100%;
   padding-bottom: 120px;
   bottom:-125px;
+  overflow-x:hidden; 
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -244,14 +263,15 @@ margin-top : 5px;
     width: 100%;
   }
 }
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 </style>
 </head>
 <body>
 
-<!-- <div class="header">
-  <h1>My Website</h1>
-  <p>Resize the browser window to see the effect.</p>
-</div> -->
 
 <div class="topnav">
   <a href="home"><img src="<%=request.getContextPath()%>/resources/images/logo/logo2.png"></a>
@@ -259,8 +279,6 @@ margin-top : 5px;
   <a href="recommend_list">추천</a>
   <a href="trailerlist">예고편</a>
   <a href="#">영화월드컵</a>
- <!--  
-  <a href="adminhome">어드민홈</a> -->
 </div>
 
 
