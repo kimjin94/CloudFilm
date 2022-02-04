@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 게시판 글수정</title>
+<title>추천 게시판 글수정</title>
 </head>
 <body>
 	<div>
@@ -12,7 +12,7 @@
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
 			<table border=1>
-				<caption>리뷰 수정하기</caption>
+				<caption>추천 수정하기</caption>
 				<tr>
 					<th>제목</th>
 					<td>

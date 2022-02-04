@@ -5,15 +5,30 @@
 <head>
 <meta charset="UTF-8">
 <title>추천 게시판 글쓰기</title>
+<script type="text/javascript">
+	
+function check(){
+	if($.trim($("#board_title").val())==""){
+		alert("제목을 채워주세요.");
+		$("#board_title").val("").focus();
+		return false;
+	}
+	if($.trim($("#board_cont").val())==""){
+		alert("내용을 채워주세요.");
+		$("#board_cont").val("").focus();
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 	<div>
-		<form action="recommend_writing" method="post" enctype="multipart/form-data" >
+		<form action="recommend_writing" method="post" enctype="multipart/form-data" onsubmit="return check()">
 			<table border=1>
 				<caption>추천 글쓰기</caption>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title"></td>
+					<td><input type="text" id="board_title" name="board_title"></td>
 					<th>추천</th>
 					<td>
 						<select name="board_filter">
@@ -25,7 +40,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="60"></textarea>
+						<textarea id="board_cont" name="board_cont" rows="20" cols="60"></textarea>
 					</td>
 				</tr>
 				<tr>

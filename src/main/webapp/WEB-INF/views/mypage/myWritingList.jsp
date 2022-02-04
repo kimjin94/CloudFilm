@@ -31,9 +31,6 @@
 				<th style="font-family: Tahoma; font-size: 11pt;" width="47%">
 					<div align="center">제목</div>
 				</th>
-				<th style="font-family: Tahoma; font-size: 11pt;" width="14%">
-					<div align="center">작성자</div>
-				</th>
 				<th style="font-family: Tahoma; font-size: 11pt;" width="12%">
 					<div align="center">날짜</div>
 				</th>
@@ -62,11 +59,6 @@
 					<a href="review_cont?board_num=${mywritinglist.board_num}&page=${page}">
 							${mywritinglist.board_title}
 					</a>
-					</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">							
-							${mywritinglist.mem_nick}
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">

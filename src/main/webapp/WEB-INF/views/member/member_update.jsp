@@ -26,8 +26,8 @@
 		var idJ = /^[a-z0-9][a-z0-9_\-]{4,12}$/;
 		// 비밀번호 정규식
 		var pwJ = /^[A-Za-z0-9]{4,12}$/;
-		// 이름 정규식
-		var nickJ = /^[가-힣]{2,6}$/;
+		// 닉네임 정규식
+		var nickJ = /^[a-z0-9가-힣]{5,12}$/;
 		// 이메일 검사 정규식
 		var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
@@ -140,7 +140,7 @@ $("#mem_nick").blur(function() {
 	$('#nick_check').css('color', 'red');
 	}
 	else if(nickJ.test($('#mem_nick').val())!=true){
-	$('#nick_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+	$('#nick_check').text('5~12자 이내로 입력하세요. (대문자,특수기호, 공백 사용 불가)');
 	$('#nick_check').css('color', 'red');
 	}
 	else if($('#mem_nick').val() != '' ){ 
@@ -169,7 +169,7 @@ $("#mem_nick").blur(function() {
 					$("#usercheck").attr("disabled", true);
 				}
 			 else{
-				$('#nick_check').text("한글 2~6자 이내로 입력하세요.");
+				$('#nick_check').text("5~12자 이내로 입력하세요. (대문자,특수기호, 공백 사용 불가)");
 				$('#nick_check').css('color', 'red');
 				$("#usercheck").attr("disabled", true);
 				} 
@@ -305,13 +305,13 @@ $("#mem_nick").blur(function() {
 			$('#pw2_check').text('');
 		}
 	});
-	//이름에 특수문자 들어가지 않도록 설정
+	//닉네임에 특수문자 들어가지 않도록 설정
 	$("#mem_nick").blur(function() {
 		if (nickJ.test($(this).val())) {
 			console.log(nickJ.test($(this).val()));
 			$("#nick_check").text('');
 		} else {
-			$('#nick_check').text('한글 2~6자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
+			$('#nick_check').text('5~12자 이내로 입력하세요. (대문자,특수기호, 공백 사용 불가)');
 			$('#nick_check').css('color', 'red');
 		}
 	});
@@ -326,7 +326,6 @@ $("#mem_nick").blur(function() {
 });
 	</script>
 </head>
-<%@ include file="../layout/header.jsp" %>
 <body>
 	<article class="container">
 		<div class="page-header">
@@ -383,11 +382,11 @@ $("#mem_nick").blur(function() {
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary">정보수정</button>
+					<button type="reset" class="btn btn-primary" onclick="history.go(-1)">취소</button>
 				</div>
 			</form>
 		</div>
 	</article>
 
-<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>

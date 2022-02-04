@@ -17,10 +17,14 @@
 <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
 
 <div class="footer">
-  <h2>팀 프로젝트</h2>
-  <h4>책임자</h4>
-   (정)박한별 <br>
-   (부)김익수 , 김진
+
+  <form>
+  <br>
+  <img src="<%=request.getContextPath()%>/resources/images/logo/logo1.png" style=" width:400px; height:90px;">
+    <p>이용약관 | 개인 정보처리 약관</p>
+    <p>Copyright © 2018 tcpschool.co.,Ltd. All rights reserved.</p>
+    <address>Contact webmaster for more information. 070-1234-5678</address>
+  </form>
 </div>
 <!-- top btn -->
 <script>

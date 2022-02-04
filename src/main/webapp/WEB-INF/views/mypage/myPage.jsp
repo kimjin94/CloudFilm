@@ -16,7 +16,7 @@
 <%@ include file="../layout/header.jsp" %>  
 <%@ include file="../layout/tab.jsp" %>  
 
-<div class="container">
+<%-- <div class="container">
   <div class="jumbotron">
   <c:choose>
      <c:when test="${mem.mem_img != null }">
@@ -29,13 +29,13 @@
     <h1>${mem_nick}</h1>      
     <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
   </div>
-</div>
+</div> --%>
 <div class="row">
   <div class="leftcolumn" align="center">
-<div class="container">
-    <h2>마이페이지 홈</h2>
+  <h2 style="text-align:center">마이페이지 홈</h2>
 <%@ include file="../layout/mypageProfile.jsp" %>	
-	<h4>사진 알아서 넣으시고요</h4>
+<div class="container">
+  
   </div>	
 </div> 
 <%@ include file="../layout/myPageBar.jsp" %>	
