@@ -149,7 +149,7 @@
 		        		AND ${search} LIKE '%'||#{keyword}||'%'
 	        		</otherwise>
 				</choose>
-	        	
+	        			and info_yn = 'n'
 	        	<if test="board_filter != null">
 	        		AND board_filter LIKE '%'||#{board_filter}||'%'
 	        	</if>
@@ -201,6 +201,7 @@
 		        		AND ${search} LIKE '%'||#{keyword}||'%'
 	        		</otherwise>
 				</choose>
+					and info_yn = 'n'
 	        	<if test="board_filter != null">
 	        		AND board_filter LIKE '%'||#{board_filter}||'%'
 	        	</if>
