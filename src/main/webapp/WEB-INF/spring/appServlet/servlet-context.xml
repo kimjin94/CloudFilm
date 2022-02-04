@@ -41,18 +41,19 @@
 			<mapping path="/passReCheck"/>
 			<mapping path="/review_write"/>
 			<mapping path="/review_writing"/>
-			<mapping path="review_updating"/>
-			<mapping path="/review_list"/>
+			<mapping path="/review_update"/>
+			<mapping path="/review_updating"/>
 			<mapping path="/review_delete"/>
 			<mapping path="/recommend_write"/>
 			<mapping path="/recommend_writing"/>
-			<mapping path="recommend_update"/>
-			<mapping path="recommend_updating"/>
-			<mapping path="/recommend_list"/>
+			<mapping path="/recommend_update"/>
+			<mapping path="/recommend_updating"/>
 			<mapping path="/recommend_delete"/>
+			<mapping path="/myPage"/>
 			<mapping path="/myWritingList"/>
 			<mapping path="/myReplyList"/>
 			<mapping path="/myGoodList"/>
+			<mapping path="/replywrite"/>
 			<beans:ref bean="sessionChk"/>
 		</interceptor>
 	</interceptors>	

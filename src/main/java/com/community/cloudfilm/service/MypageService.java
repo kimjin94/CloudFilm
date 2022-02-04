@@ -1,6 +1,7 @@
 package com.community.cloudfilm.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +41,12 @@ public class MypageService {
 		//멤버 세션불러오기
 		MemberVO member =(MemberVO)session.getAttribute("member");
 		int mem_num = member.getMem_num();
+
 				
 		
 		indexmMap.put("page", page);
 		indexmMap.put("mem_num",mem_num);
-		
+	
 		//총 리스트 수를 받아옴
 		int listcount = mypageDAO.getListCount(mem_num);
 		System.out.println(listcount);
@@ -91,10 +93,12 @@ public class MypageService {
 		//멤버 세션불러오기
 		MemberVO member =(MemberVO)session.getAttribute("member");
 		int mem_num = member.getMem_num();
+
+				
 		
 		indexMap.put("page", page);
-		indexMap.put("mem_num", mem_num);
-		
+		indexMap.put("mem_num",mem_num);
+
 		//총리스트 수를 받아옴
 		int listcount = mypageDAO.getReplyListCount(mem_num);
 		//페이지 번호를 dao클래스에게 전달한다.
@@ -139,10 +143,12 @@ public class MypageService {
 		//멤버 세션불러오기
 		MemberVO member =(MemberVO)session.getAttribute("member");
 		int mem_num = member.getMem_num();
+
+				
 		
 		indexMap.put("page", page);
-		indexMap.put("mem_num", mem_num);
-		
+		indexMap.put("mem_num",mem_num);
+	
 		//총리스트 수를 받아옴
 		int listcount = mypageDAO.getGoodListCount(mem_num);
 		//페이지 번호를 dao클래스에게 전달한다.

@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>글상세페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/board/goodandbad.js"></script>
@@ -48,7 +53,7 @@ function del(page,board_num){
 	                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="20" width="20">
 	                  </c:otherwise>
 	               </c:choose>
-               		${board.mem_nick} | 조회수 : ${board.board_count} |
+               		${board.mem_nick} | <i class="fas fa-eye"></i> : ${board.board_count} |
 					<a id=boarddate><fmt:formatDate value="${board.board_date}" pattern="yyyy/MM/dd HH:mm:ss" /></a>
 				</td>
 			</tr>
