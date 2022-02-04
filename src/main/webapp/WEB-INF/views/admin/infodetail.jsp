@@ -10,6 +10,24 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/board/goodandbad.js"></script>
+<script type="text/javascript">
+
+function check(){
+	if($.trim($("#re_cont").val())==""){
+		alert("댓글 내용을 입력해 주세요.");
+		$("#re_cont").val("").focus();
+		return false;
+	}
+}
+
+function del(page,board_num){
+	var chk = confirm("정말 삭제하시겠습니까?");
+	if (chk) {
+		location.href='infoDelete?page='+page+'&board_num='+board_num;
+	}
+}
+</script>
+
 <style type="text/css">
 #boarddate{
 	float : right;
@@ -121,7 +139,7 @@ th{
 					<td colspan="2">
 						<div id="goodandbad">
 							<button onclick="location.href='infoUpdateForm?page=${page}&board_num=${board.board_num}'">수정 </button>
-							<button onclick="location.href='infoDelete?page=${page}&board_num=${board.board_num}'">삭제</button>
+							<button onclick=del(${page},${board.board_num})>삭제</button>
 						</div>
 					</td>
 				</tr>

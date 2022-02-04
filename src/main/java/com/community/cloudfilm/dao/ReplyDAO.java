@@ -23,6 +23,7 @@ public class ReplyDAO {
 	public void replywrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		System.out.println("mem_num : " + mem_num);
 		String re_cont = request.getParameter("re_cont");
 		
 		Map<String, Object> parameterMAP = new HashMap<String, Object>();

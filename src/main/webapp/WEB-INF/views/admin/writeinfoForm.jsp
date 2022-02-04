@@ -9,6 +9,25 @@
 <title>공지글 작성</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript">
+function check(){
+	if($.trim($("#board_title").val())==""){
+		alert("제목을 채워주세요.");
+		$("#board_title").val("").focus();
+		return false;
+	}
+	if($.trim($("#cate_num").val())==""){
+		alert("게시판을 선택해 주세요.");
+		$("#cate_num").val("").focus();
+		return false;
+	}
+	if($.trim($("#board_cont").val())==""){
+		alert("내용을 채워주세요.");
+		$("#board_cont").val("").focus();
+		return false;
+	}
+}
+</script>
 </head>
 
 <body>
@@ -18,15 +37,15 @@
 <div class="row">
   	  <div class="leftcolumn" align="center">
   	  <div>
-		<form action="writeInfo" method="post">
+		<form action="writeInfo" method="post" onsubmit="return check()">
 		<h2>공지 글쓰기</h2>
 			<table id="tboard" border=1>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title" style="text-align:center; width:100%;"></td>
+					<td><input type="text" id="board_title" name="board_title" style="text-align:center; width:100%;"></td>
 					<th>게시판</th>
 					<td>
-						<select name="cate_num">
+						<select id="cate_num" name="cate_num">
 							<option value="">게시판 선택</option>
 							<option value="1">리뷰 게시판</option>
 							<option value="2">추천 게시판</option>
@@ -37,7 +56,7 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="120"></textarea>
+						<textarea id="board_cont" name="board_cont" rows="20" cols="120"></textarea>
 					</td>
 				</tr>
 				<tr>

@@ -71,10 +71,10 @@ function del(page,board_num){
 		</table>
 					<c:choose>
 						<%-- 비회원인경우 --%>
-						<c:when test="${mem_num == 0 }">
+						<c:when test="${mem_num == null || mem_num == 0 }">
 							<div id="goodandbad">
-								<button class="btn regood" onclick="login()" >추천 : ${re.board_good} </button>
-								<button class="btn rebad" onclick="login()" >비추 : ${re.board_bad}</button>
+								<button class="btn regood" onclick="login()" >추천 : ${board.board_good} </button>
+								<button class="btn rebad" onclick="login()" >비추 : ${board.board_bad}</button>
 							</div>
 						</c:when>
 						<%-- 회원이면서, 추천, 비추천 아무것도 안누른경우 --%>
@@ -105,7 +105,7 @@ function del(page,board_num){
 			</div>
 			<br>
 			<br>
-			<form action="replywrite" method="post">
+			<form action="replywrite" method="post" onsubmit="return check()">
 			<table id="bbslist_t" border=1>
 				<%@ include file="../reply/replylist.jsp" %>
 				<tr>
