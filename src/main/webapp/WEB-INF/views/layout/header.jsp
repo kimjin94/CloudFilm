@@ -165,8 +165,6 @@ padding-top: 12px;
 .rebad:hover {background: red; color: white;}
 
 
-
-
 /* Fake image */
 .fakeimg {
   background-color: #aaa;
@@ -305,4 +303,3 @@ margin-top : 5px;
 
 </body>
 </html>
-

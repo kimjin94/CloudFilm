@@ -36,8 +36,8 @@
 				</td>
 					<c:if test="${mem_num == replylist.mem_num}">
 				<td width="8%">
-						<button type="button" onclick="replyUpdateForm(${replylist.re_num})">수정</button> <br>
-						<button type="button" onclick="deleteReply(${replylist.re_num})">삭제</button>
+						<button type="button" class="btn signup" onclick="replyUpdateForm(${replylist.re_num})">수정</button> <br>
+						<button type="button" class="btn signup" onclick="deleteReply(${replylist.re_num})">삭제</button>
 				</td>
 					</c:if>
 			</tr>
