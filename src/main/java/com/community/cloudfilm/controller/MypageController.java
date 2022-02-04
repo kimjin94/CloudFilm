@@ -62,6 +62,7 @@ public class MypageController {
 		Map<String, Object> mywritinglist = mypageService.getmyWritingList(request,response,session);
 		
 		mywritinglistM.addAllObjects(mywritinglist);
+		
 		return mywritinglistM;
 	}
 	//내가 쓴 댓글

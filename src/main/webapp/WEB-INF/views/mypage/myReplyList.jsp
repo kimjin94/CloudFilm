@@ -53,7 +53,7 @@
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="recommend_cont?board_num=${myreplylist.board_num}&page=${page}">
+					<a href="review_cont?board_num=${myreplylist.board_num}&page=${page}">
 							${myreplylist.re_cont}
 					</a>
 					</div>
