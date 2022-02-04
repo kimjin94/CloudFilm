@@ -123,6 +123,7 @@
 		]]>
 	</select>
 	
+	<!-- 게시글관리 글 갯수 가져오기 -->
 	<select id="getAdminSearchListCount" parameterType="java.util.Map" resultType="int">
 		select count(board_num) 
 		from board b
@@ -303,5 +304,106 @@
 		mem_yn = 'y'
 		where mem_num = #{mem_num}
 	</update>
+	
+	<!-- 공지글 리스트 갯수 가져오기 -->
+	<select id="getinfolistCount" parameterType="java.util.Map" resultType="int">
+		select count(board_num) 
+		from board a
+			left join member m
+				on a.mem_num = m.mem_num
+				where a.info_yn = 'y'
+				<choose>
+					<when test="cate_num == 0">
+						 and a.cate_num != 0
+					</when>
+					<otherwise>
+						 and a.cate_num = #{cate_num}
+					</otherwise>
+				</choose>
+				<choose>
+					<when test="board_yn != '' ">
+						 and board_yn = #{board_yn}
+					</when>
+				</choose>
+				<choose>
+					<when test="keyword == '' or search == '' ">
+					</when>
+					<otherwise >
+		        		AND ${search} LIKE '%'||#{keyword}||'%'
+	        		</otherwise>
+				</choose>
+	</select>
+	
+	<!-- 공지글 리스트 가져오기 -->
+	<select id="getinfoSearchList" parameterType="java.util.Map" resultType="board">
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and b.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		       where a.info_yn = 'y'
+				<choose>
+					<when test="cate_num == 0">
+						 and a.cate_num != 0
+					</when>
+					<otherwise>
+						 and a.cate_num = #{cate_num}
+					</otherwise>
+				</choose>
+				<choose>
+					<when test="board_yn != '' ">
+						 and a.board_yn = #{board_yn}
+					</when>
+				</choose>
+	        	<choose>
+					<when test="keyword == '' or search == '' ">
+					</when>
+					<otherwise >
+		        		AND ${search} LIKE '%'||#{keyword}||'%'
+	        		</otherwise>
+				</choose>
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= ((#{page}-1) * #{limit}+1)  and rnum <= (#{page} * #{limit})
+		]]>
+	</select>
+	
+	<insert id="writeImfo" parameterType="board">
+		insert into board
+		values
+		(board_seq.nextval, #{mem_id}, #{board_title}, #{board_cont},
+		#{board_img}, #{board_video}, '공지', SYSDATE, 
+		0, 0, 0, #{cate_num}, 'y', 'y', #{mem_num})
+	</insert>
+	
+	<delete id="deleteInfo" parameterType="int">
+		delete from board 
+		where board_num = #{board_num}
+	</delete>
 	
 </mapper>

@@ -62,10 +62,12 @@ public class AdminDAO {
 		return sqlSession.selectOne("adminMapper.getAdminMemberlistCount", paraMap);
 	}
 
+	// 총 회원 리스트 가져오기
 	public List<BoardVO> getAdminMemberlist(Map<String, Object> paraMap) {
 		return sqlSession.selectList("adminMapper.getAdminMemberlist", paraMap);
 	}
 
+	// 회원 정지, 복구
 	public void setMemberYN(HttpServletRequest request, HttpServletResponse response) {
 		String yn = request.getParameter("yn");
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
@@ -79,5 +81,23 @@ public class AdminDAO {
 			sqlSession.update("adminMapper.setmemY", mem_num);
 		}
 	}
+
+	public int getinfoListCount(Map<String, Object> paraMap) {
+		return sqlSession.selectOne("adminMapper.getinfolistCount", paraMap);
+	}
+
+	public List<BoardVO> getinfoSearchList(Map<String, Object> paraMap) {
+		return sqlSession.selectList("adminMapper.getinfoSearchList", paraMap);
+	}
+
+	//공지 작성
+	public void writeInfo(BoardVO board) throws Exception{
+		sqlSession.insert("adminMapper.writeImfo", board);
+	}
+
+	public void deleteInfo(int board_num) {
+		sqlSession.delete("adminMapper.deleteInfo", board_num);
+	}
+
 	
 }

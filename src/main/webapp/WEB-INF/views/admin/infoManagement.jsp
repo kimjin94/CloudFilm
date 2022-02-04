@@ -28,7 +28,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 			var board_yn = $("#board_yn option:selected").val();
 			var search = $("#search option:selected").val();
 			var keyword = $("#keyword").val();
-			location.href="boardManagement?cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+keyword;
+			location.href="infoManagement?cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+keyword;
 		}
 		
 		function adminYNSort() {
@@ -36,7 +36,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 			var board_yn = $("#board_yn  option:selected").val();
 			var search = $("#search option:selected").val();
 			var keyword = $("#keyword").val();
-			location.href="boardManagement?cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+keyword;
+			location.href="infoManagement?cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+keyword;
 		}
 		
 		function adminSearch() {
@@ -44,7 +44,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 			var board_yn = $("#board_yn  option:selected").val();
 			var search = $("#search option:selected").val();
 			var keyword = $("#keyword").val();
-			location.href="boardManagement?cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+keyword;
+			location.href="infoManagement?cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+keyword;
 		}
 		
 		function adminBoardYN(board_num, yn) {
@@ -53,7 +53,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 			var search = $("#search option:selected").val();
 			var keyword = $("#keyword").val();
 			var page = $("#page").val();
-			location.href="adminBoardYN?page="+page+"&cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+encodeURI(keyword,"UTF-8")+"&board_num="+board_num+"&yn="+yn;
+			location.href="infoYN?page="+page+"&cate_num="+cate_num+"&board_yn="+board_yn+"&search="+search+"&keyword="+encodeURI(keyword,"UTF-8")+"&board_num="+board_num+"&yn="+yn;
 		}
 			
 	</script>
@@ -98,44 +98,46 @@ style="font-family: Tahoma; font-size: 11pt;"
 					<div align="center">액션</div>
 				</th>
 			</tr>
-			<c:forEach var="boardlist" items="${boardlist}">
+			<c:forEach var="infolist" items="${infolist}">
 				<tr>
 					<td>
 						<c:choose>
-							<c:when test="${boardlist.cate_num == 1}">
+							<c:when test="${infolist.cate_num == 1}">
 								리뷰
 							</c:when>
-							<c:when test="${boardlist.cate_num == 2}">
+							<c:when test="${infolist.cate_num == 2}">
 								추천
 							</c:when>
-							<c:when test="${boardlist.cate_num == 3}">
+							<c:when test="${infolist.cate_num == 3}">
 								예고편
 							</c:when>
 						</c:choose>
 					</td>
 					<td style="">
-						<span style="float:left;width:70%; text-align: left;">[${boardlist.board_filter}] ${boardlist.board_title}  </span> 
-						<span style="float:right;width:29%; text-align: right;">| 조회수 : ${boardlist.board_count} | 추천 : ${boardlist.board_good} |</span>
+						<span style="float:left;width:70%; text-align: left;">
+							<a href="infoDetail?page=${page}&board_num=${infolist.board_num}">[${infolist.board_filter}] ${infolist.board_title} </a>
+						</span> 
+						<span style="float:right;width:29%; text-align: right;">| 조회수 : ${infolist.board_count} | 추천 : ${infolist.board_good} |</span>
 					</td>
 					<td >
-						${boardlist.board_bad}
+						${infolist.board_bad}
 					</td>
 					<td>
-						${boardlist.mem_nick}
+						${infolist.mem_nick}
 					</td>
 					<td>
-						<fmt:formatDate value="${boardlist.board_date}" pattern="yyyy/MM/dd HH:mm:ss" />
+						<fmt:formatDate value="${infolist.board_date}" pattern="yyyy/MM/dd HH:mm:ss" />
 					</td>
 					<td>
-						${boardlist.board_yn}
+						${infolist.board_yn}
 					</td>
 					<td>
 						<c:choose>
-							<c:when test="${boardlist.board_yn == 'y'}">
-								<button onclick="adminBoardYN(${boardlist.board_num},'${boardlist.board_yn}')">정지</button>
+							<c:when test="${infolist.board_yn == 'y'}">
+								<button onclick="adminBoardYN(${infolist.board_num},'${infolist.board_yn}')">정지</button>
 							</c:when>
-							<c:when test="${boardlist.board_yn == 'n'}">
-								<button onclick="adminBoardYN(${boardlist.board_num},'${boardlist.board_yn}')">복구</button>
+							<c:when test="${infolist.board_yn == 'n'}">
+								<button onclick="adminBoardYN(${infolist.board_num},'${infolist.board_yn}')">복구</button>
 							</c:when>
 						</c:choose>
 					</td>
@@ -143,6 +145,9 @@ style="font-family: Tahoma; font-size: 11pt;"
 			</c:forEach>
 	</table>
 	<div id='container'>
+		<div id='right-box'>
+   	    	<button onclick="location='writeinfoForm'">글쓰기</button>
+	    </div>
 	    <div id='center-box'>
 	    	<select id="search" name="search">
 		    		<option value="">검색조건</option>

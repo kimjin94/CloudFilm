@@ -77,10 +77,10 @@ style="font-family: Tahoma; font-size: 11pt;"
 				<th width="5%">
 					<div align="center">등급</div>
 				</th>
-				<th width="5%">
+				<th width="9%">
 					<div align="center">yn</div>
 				</th>
-				<th width="14%">
+				<th width="10%">
 					<div align="center">글/댓글</div>
 				</th>
 				<th width="10%">
@@ -100,7 +100,14 @@ style="font-family: Tahoma; font-size: 11pt;"
 						${memberlist.mem_nick}
 					</td>
 					<td>
-						${memberlist.mem_img}
+						<c:choose>
+		                  <c:when test="${memberlist.mem_img != null }">
+		                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/${memberlist.mem_img}" height="50" width="50">
+		                  </c:when>
+		                  <c:otherwise>
+		                     <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="50" width="50">
+		                  </c:otherwise>
+		               </c:choose>
 					</td>
 					<td>
 						${memberlist.mem_email}

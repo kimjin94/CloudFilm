@@ -256,8 +256,7 @@ margin-top : 5px;
 <div class="topnav">
   <a href="boardManagement">게시글관리</a>
   <a href="memberManagement">회원관리</a>
-  <a href="trailerlist">공지관리</a>
-  <a href="#">영화월드컵관리</a>
+  <a href="infoManagement">공지관리</a>
  <!--  
   <a href="adminhome">어드민홈</a> -->
 </div>

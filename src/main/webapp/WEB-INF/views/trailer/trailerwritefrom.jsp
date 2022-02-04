@@ -13,7 +13,7 @@
 	<div class="row">
   <div class="leftcolumn" align="center">
 		<form action="writeTrailer" method="post">
-				<h2>예고편 글쓰기</h2>
+		<h2>예고편 글쓰기</h2>
 			<table id="tboard" border=1>
 				<tr>
 					<th>제목</th>
