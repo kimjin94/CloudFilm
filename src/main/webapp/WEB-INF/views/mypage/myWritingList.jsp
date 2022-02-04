@@ -58,7 +58,7 @@
 					<div align="left">							
 						
 					<!-- 제목 출력 부분 -->	
-					<a href="review_cont?board_num=${mywritinglist.board_num}&page=${page}">
+					<a href="MyBoard_cont?board_num=${mywritinglist.board_num}&page=${page}">
 							${mywritinglist.board_title}
 					</a>
 					</div>
