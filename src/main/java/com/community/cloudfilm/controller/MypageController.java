@@ -31,22 +31,25 @@ public class MypageController {
 	
 	//마이페이지 메인
 	@RequestMapping(value="myPage")
-	public String myPage(HttpSession session,
-						MemberVO member,Model model) {
+	public String mypage(HttpSession session,Model model) {
+
+		MemberVO mypagemember = (MemberVO)session.getAttribute("member");
+		MemberVO member = memberService.getmemberinfo(mypagemember.getMem_num());
+		
+		model.addAttribute("member", member);
+		
+		return "mypage/myPage";
+	}
+	//마이페이지 고정폼
+	@RequestMapping(value="/mypageProfile")
+	public String myhome(HttpSession session,Model model) {
 		
 		MemberVO mypagemember = (MemberVO)session.getAttribute("member");
-		int mem_num = mypagemember.getMem_num();
-		String mem_img = mypagemember.getMem_img();
-		String mem_nick = mypagemember.getMem_nick();
-		Date mem_date = mypagemember.getMem_date();
+		MemberVO member = memberService.getmemberinfo(mypagemember.getMem_num());
 		
+		model.addAttribute("member", member);
 		
-		
-		model.addAttribute("mem_num", mem_num);
-		model.addAttribute("mem_img", mem_img);
-		model.addAttribute("mem_nick", mem_nick);
-		model.addAttribute("mem_date", mem_date);
-		return "mypage/myPage";
+		return "layout/mypageProfile";
 	}
 
 	//내가 쓴 글
