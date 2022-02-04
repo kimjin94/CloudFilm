@@ -13,21 +13,21 @@ import com.community.cloudfilm.model.BoardVO;
 public class HomeDAO {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	SqlSession sqlSession;
 	
-	//게시글 갯수
-		public int getListCount()throws Exception {
-			int count = 0;
-			count = sqlSession.selectOne("homeMapper.home_listcount");
-			return count;
-		}	
-	
-	
-	//리뷰목록 5개 목록
-	public List<BoardVO> getHome_reviewlist(int page)throws Exception{
-		System.out.println("리뷰리스트 5개");
-		List<BoardVO> home_reviewlist = sqlSession.selectList("homeMapper.home_reviewlist");
-		return home_reviewlist;
-	}
+	// 최근 리뷰 가져오기
+		public List<BoardVO> getreviewlist(int limit) {
+			return sqlSession.selectList("homeMapper.getreviewlist", limit);
+		}
+
+		// 최근 추천게시판글 가져오기
+		public List<BoardVO> getrecommendlist(int limit) {
+			return sqlSession.selectList("homeMapper.getrecommendlist", limit);
+		}
+
+		// 최근 예고편글 가져오기
+		public List<BoardVO> gettrailerlist(int limit) {
+			return sqlSession.selectList("homeMapper.gettrailerlist", limit);
+		}
 
 }

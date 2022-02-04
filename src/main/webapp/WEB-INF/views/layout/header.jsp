@@ -68,7 +68,7 @@ body {
   float: left;
   width: 75%;
   background: white;
-  font-size:24px;
+  
 }
 
 .text-primary{
