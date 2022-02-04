@@ -31,15 +31,17 @@ function check(){
 <%@ include file="../layout/adminheader.jsp" %>	
 <%@ include file="../layout/tab.jsp" %>  
 <div class="row">
-  	  <div class="leftcolumn" align="center">
+  <div class="leftcolumn" align="center">
+    <div class="container">
 			<form action="updateInfo" method="post" onsubmit="return check()">
 				<input type="hidden" id="board_num" name="board_num" value="${board_num }">
 				<input type="hidden" id="page" name="page" value="${page}">
-				<table border=1>
-					<caption>예고편  글 수정</caption>
+				<table id="bbslist_t" border=1>
+					 <h2>공지 수정하기</h2>
+					 
 					<tr>
 						<th>제목</th>
-						<td><input type="text" id="board_title" name="board_title" value="${board.board_title}"></td>
+						<td><input type="text" id="board_title" name="board_title" size="90" style="width:100%;" value="${board.board_title}"></td>
 						<th>게시판 분류</th>
 						<td>
 							<select id="cate_num" name="cate_num" >
@@ -51,21 +53,23 @@ function check(){
 						</td>
 					</tr>
 					<tr>
+					<th>내용</th>
 						<td colspan="4">
-							<textarea id="board_cont" name="board_cont" rows="20" cols="60">${board.board_cont}</textarea>
+							<textarea name="board_cont" rows="20" cols="150">${board.board_cont}</textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="4" style="text-align: center;">
-							<button>수정</button>
+							<button class="btn signup">수정</button>
+							<button class="btn signup" type="reset" onclick="history.go(-1)">취소</button>
 						</td>
 					</tr>
 				</table>
 			</form>
-		<%@ include file="../layout/row.jsp" %>	
+		</div>
 	</div>
-</div>
-	
-<%@ include file="../layout/footer.jsp" %>	
+	<%@ include file="../layout/row.jsp" %>
+	</div>
+	<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>

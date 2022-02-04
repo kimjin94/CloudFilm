@@ -27,59 +27,20 @@ function del(page,board_num){
 	}
 }
 </script>
-
-<style type="text/css">
-#boarddate{
-	float : right;
-}
-
-#goodandbad{
-	text-align:center;
-}
-
-table{
-	width: 900px;
-}
-
-td, th{
-	padding-left : 5px;
-	padding-right : 5px;
-}
-th{
-	text-align: left;
-}
-
-#goodbutton, #badbutton{
-	float:center;
-	align-content: center;
-}
-#replyarea{
-	height: 80px;
-}
-
-#re_cont{
-	resize: none;
-}
-#replywritebtn{
-	height : 78px;
-	weidth : 78px;
-	margin: 0 auto;
-}
-</style>
 </head>
+
 <body>
 <%@ include file="../layout/header.jsp" %>
 <%@ include file="../layout/adminheader.jsp" %>
 <%@ include file="../layout/tab.jsp" %>  
-<div class="row">
-  	  <div class="leftcolumn" align="center">
-	  	  <div>
-			<input type="hidden" id="board_num" name="board_num" value="${board.board_num }">
-			<table border=1>
+	<div class="row">
+  <div class="leftcolumn" align="center">
+  <div class="container">
 			<h2>공지</h2>
+			<input type="hidden" id="board_num" name="board_num" value="${board.board_num }">
+			<table id="bbslist_t" border=1>
 				<tr>
-					<td width="100">${board.board_filter}</td>
-					<th>${board.board_title}</th>
+					<th colspan="100" style="text-align:center; font-size:24px;">[${board.board_filter}] ${board.board_title}</th>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -96,18 +57,18 @@ th{
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="1000" style="text-align: left; font-size:16px;">
 	 					${board_cont}
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+			</table>
 						<c:choose>
 							<%-- 비회원인경우 --%>
 							<c:when test="${mem_num == 0 }">
 								<div id="goodandbad">
-									<button  onclick="login()" >추천 : ${board.board_good} </button>
-									<button  onclick="login()" >비추 : ${board.board_bad}</button>
+									<button class="btn regood"  onclick="login()" >추천 : ${board.board_good} </button>
+									<button class="btn rebad"  onclick="login()" >비추 : ${board.board_bad}</button>
 								</div>
 							</c:when>
 							<%-- 회원이면서, 추천, 비추천 아무것도 안누른경우 --%>
@@ -129,25 +90,18 @@ th{
 								</div>
 							</c:when>
 						</c:choose>
-						<script type="text/javascript">
+						
 							
-						</script>
-					</td>
-				</tr>
 				<c:if test="${mem_num == 1}">
-				<tr>
-					<td colspan="2">
-						<div id="goodandbad">
-							<button onclick="location.href='infoUpdateForm?page=${page}&board_num=${board.board_num}'">수정 </button>
-							<button onclick=del(${page},${board.board_num})>삭제</button>
+						<div style="float:right; padding-right:35px;">
+							<button class="btn signup" onclick="location.href='infoUpdateForm?page=${page}&board_num=${board.board_num}'">수정 </button>
+							<button class="btn signup" onclick=del(${page},${board.board_num})>삭제</button>
 						</div>
-					</td>
-				</tr>
 				</c:if>
-			</table>
-			
+			<br>
+			<br>
 			<form action="replywrite" method="post">
-				<table border=1> 
+				<table id="bbslist_t" border=1> 
 					<%@ include file="../reply/replylist.jsp" %>
 					<tr>
 						<td colspan="4">
@@ -155,18 +109,17 @@ th{
 								<input type="hidden" name="mem_num" value="${mem_num}">
 								<input type="hidden" name="board_num" value="${board.board_num}">
 								<input type="hidden" name="page" value="${page}"> 
-								<textarea id="re_cont" name="re_cont" rows="5" cols="100"></textarea>
-								<button type="submit">댓글 등록</button>
+								<textarea id="re_cont" name="re_cont" rows="5" cols="100" style="width:100%;"></textarea>
+								<button class="btn signup" type="submit">댓글 등록</button>
 							</div>
 						</td>
 					</tr>
 				</table>
 			</form>
-			</div>
-		<%@ include file="../layout/row.jsp" %>	
-	</div>
+		</div>
 </div>
-	
-<%@ include file="../layout/footer.jsp" %>	
+	<%@ include file="../layout/row.jsp" %>	
+	</div>
+<%@ include file="../layout/footer.jsp" %>		
 </body>
 </html>

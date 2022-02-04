@@ -35,14 +35,14 @@ function check(){
 <%@ include file="../layout/adminheader.jsp" %>
 <%@ include file="../layout/tab.jsp" %>   
 <div class="row">
-  	  <div class="leftcolumn" align="center">
-  	  <div>
+  <div class="leftcolumn" align="center">
+  <div class="container">
 		<form action="writeInfo" method="post" onsubmit="return check()">
 		<h2>공지 글쓰기</h2>
-			<table id="tboard" border=1>
+			<table id="bbslist_t" border=1>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" id="board_title" name="board_title" style="text-align:center; width:100%;"></td>
+					<td><input type="text" id="board_title" name="board_title" size="90" style="width:100%;"></td>
 					<th>게시판</th>
 					<td>
 						<select id="cate_num" name="cate_num">
@@ -56,21 +56,21 @@ function check(){
 				<tr>
 					<th>내용</th>
 					<td colspan="4">
-						<textarea id="board_cont" name="board_cont" rows="20" cols="120"></textarea>
+						<textarea id="board_cont" name="board_cont" rows="20" cols="150"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="4">
-						<button>작성</button>
+						<button class="btn signup">작성</button>
+						<button class="btn signup" type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
-		<%@ include file="../layout/row.jsp" %>	
 	</div>
+<%@ include file="../layout/row.jsp" %>	
 	</div>
-	
-<%@ include file="../layout/footer.jsp" %>	
+<%@ include file="../layout/footer.jsp" %>		
 </body>
 </html>

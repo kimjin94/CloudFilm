@@ -162,7 +162,7 @@ public class MemberController {
 					session.setAttribute("mem_num", member.getMem_num());
 					System.out.println("등록된 ID입니다.");
 					
-					return "home/home";
+					return "redirect:home";
 					
 				}else {		//비번이 다를때
 					result = 2;

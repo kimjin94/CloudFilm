@@ -10,7 +10,7 @@
 
 <style>
 .swiper-container {
-	height:250px;
+	height:500px;
 	border:5px solid silver;
 	border-radius:7px;
 	box-shadow:0 0 20px #ccc inset;
@@ -30,22 +30,15 @@
 <body>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow1.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow1.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow1.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow1.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow2.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow2.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow2.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow2.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow3.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow3.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow3.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow3.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow4.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow4.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow4.png"></div>
-		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow4.png"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow1.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow2.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow3.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow4.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow5.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow6.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow7.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow8.jpg"></div>
+		<div class="swiper-slide"><img src="<%=request.getContextPath()%>/resources/images/slideshow/SlideShow9.jpg"></div>
 	</div>
 
 <!-- 

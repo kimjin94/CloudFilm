@@ -46,7 +46,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 		}
 			
 	</script>
-	<h4 align="right" style="float:right; width:1000%;">
+	<h4 style="float:right; width:48%; padding-left:350px;">
 		<select id="mem_yn" name="mem_yn" onchange="adminmemYNSort()">
 			<option value="" >전체회원</option>
 			<option value="y" <c:if test="${mem_yn == 'y' }"> selected="selected" </c:if> >정상회원 보기</option>
@@ -127,10 +127,10 @@ style="font-family: Tahoma; font-size: 11pt;"
 					<td>
 						<c:choose>
 							<c:when test="${memberlist.mem_yn == 'y'}">
-								<button onclick="adminMemberYN(${memberlist.mem_num},'${memberlist.mem_yn}')">정지</button>
+								<button class="btn signup" onclick="adminMemberYN(${memberlist.mem_num},'${memberlist.mem_yn}')">정지</button>
 							</c:when>
 							<c:when test="${memberlist.mem_yn == 'n'}">
-								<button onclick="adminMemberYN(${memberlist.mem_num},'${memberlist.mem_yn}')">복구</button>
+								<button class="btn signup" onclick="adminMemberYN(${memberlist.mem_num},'${memberlist.mem_yn}')">복구</button>
 							</c:when>
 						</c:choose>
 					</td>
@@ -146,7 +146,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 		    		<option value="mem_nick" <c:if test="${search == 'mem_nick'}">selected="selected"</c:if>>닉네임</option>
 	    	</select>
 	    	<input type="text" id="keyword" name="keyword" placeholder="검색" value="${keyword}"> 
-	    	<button type="button" onclick="adminmemSearch()">검색</button>
+	    	<button class="btn signup" type="button" onclick="adminmemSearch()">검색</button>
     	</div>
 	</div>
 	<div id="trailerlist_paging" >

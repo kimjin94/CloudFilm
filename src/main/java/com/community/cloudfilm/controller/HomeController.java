@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.community.cloudfilm.model.BoardVO;
 import com.community.cloudfilm.service.HomeService;
+import com.community.cloudfilm.service.TrailerService;
 
 @Controller
 public class HomeController {

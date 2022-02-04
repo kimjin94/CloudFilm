@@ -32,6 +32,7 @@ function del(page,board_num){
 <%@ include file="../layout/tab.jsp" %>   
 	<div class="row">
   <div class="leftcolumn" align="center">
+  <div class="container">
 		<h2>영화 소개</h2>
 		<input type="hidden" id="board_num" name="board_num" value="${board.board_num }">
 		<table id="bbslist_t" border=1>
@@ -119,6 +120,7 @@ function del(page,board_num){
 			</table>
 		</form>
 	</div>
+</div>
 	<%@ include file="../layout/row.jsp" %>	
 	</div>
 <%@ include file="../layout/footer.jsp" %>	

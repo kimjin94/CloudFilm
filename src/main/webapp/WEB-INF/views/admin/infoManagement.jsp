@@ -7,12 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>CloudFilm Admin board Management</title>
-<style type="text/css">
-#bbslist_t .th{
-style="font-family: Tahoma; font-size: 11pt;"
-}
-
-</style>
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>
@@ -57,7 +51,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 		}
 			
 	</script>
-	<h4 align="left" style="float:left; width:49%;">
+	<h4 style="float:left; width:48%; padding-right:350px;">
 		<select id="cate_num" name="cate_num" onchange="adminCateSort()">
 			<option value=0 >전체 게시판</option>
 			<option value=1 <c:if test="${cate_num == 1 }"> selected="selected" </c:if> >리뷰 게시판</option>
@@ -65,7 +59,7 @@ style="font-family: Tahoma; font-size: 11pt;"
 			<option value=3 <c:if test="${cate_num == 3 }"> selected="selected" </c:if> >예고편 게시판</option>
 		</select>
 	</h4>
-	<h4 align="right" style="float:left; width:49%;">
+	<h4 style="float:right; width:48%; padding-left:370px;">
 		<select id="board_yn" name="board_yn" onchange="adminYNSort()">
 			<option value="" >전체 상태</option>
 			<option value="y" <c:if test="${board_yn == 'y' }"> selected="selected" </c:if> >노출글 보기</option>
@@ -134,19 +128,18 @@ style="font-family: Tahoma; font-size: 11pt;"
 					<td>
 						<c:choose>
 							<c:when test="${infolist.board_yn == 'y'}">
-								<button onclick="adminBoardYN(${infolist.board_num},'${infolist.board_yn}')">정지</button>
+								<button class="btn signup" onclick="adminBoardYN(${infolist.board_num},'${infolist.board_yn}')">정지</button>
 							</c:when>
 							<c:when test="${infolist.board_yn == 'n'}">
-								<button onclick="adminBoardYN(${infolist.board_num},'${infolist.board_yn}')">복구</button>
+								<button class="btn signup" onclick="adminBoardYN(${infolist.board_num},'${infolist.board_yn}')">복구</button>
 							</c:when>
 						</c:choose>
 					</td>
 				</tr>
 			</c:forEach>
 	</table>
-	<div id='container'>
-		<div id='right-box'>
-   	    	<button onclick="location='writeinfoForm'">글쓰기</button>
+		<div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:27px;">
+   	    	<button class="btn signup" onclick="location='writeinfoForm'">글쓰기</button>
 	    </div>
 	    <div id='center-box'>
 	    	<select id="search" name="search">
@@ -156,9 +149,8 @@ style="font-family: Tahoma; font-size: 11pt;"
 		    		<option value="mem_nick" <c:if test="${search == 'mem_nick'}">selected="selected"</c:if>>작성자</option>
 	    	</select>
 	    	<input type="text" id="keyword" name="keyword" placeholder="검색" value="${keyword}"> 
-	    	<button type="button" onclick="adminSearch()">검색</button>
+	    	<button class="btn signup" type="button" onclick="adminSearch()">검색</button>
     	</div>
-	</div>
 	<div id="trailerlist_paging" >
 			<c:if test="${page <=1 }">
 				[이전]&nbsp;
