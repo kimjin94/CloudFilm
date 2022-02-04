@@ -228,5 +228,7 @@ public class TrailerDAO {
 	public void deleteTrailer(int board_num) {
 		sqlSession.update("trailer.deleteTrailer", board_num);
 	}
+
+	
 	
 }

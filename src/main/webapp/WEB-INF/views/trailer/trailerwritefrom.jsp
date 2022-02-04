@@ -15,6 +15,7 @@
 		<form action="writeTrailer" method="post">
 			<table id="bbslist_t" border=1>
 				<h2>예고편 글쓰기</h2>
+
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="board_title" size="90" style="width:100%;"></td>
