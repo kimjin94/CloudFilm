@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div id=goodandbad>
-	<button onclick="nogood()">추천 취소 : ${re.board_good} </button>
+	<button class="btn regood"  onclick="nogood()">추천 취소 : ${re.board_good} </button>
 </div>

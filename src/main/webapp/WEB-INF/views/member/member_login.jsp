@@ -46,10 +46,10 @@
       	<a href="member_idFind" > 아이디 찾기</a> | <a href="member_passFind">비밀번호 찾기</a>
     	</div>
       <div class="form-group">
-    <input type="submit" class="btn btn-default form-control" value="로그인">
+    <input type="submit" class="btn login" value="로그인">
       </div>
       <div class="form-group">
-    <input type="button" class="btn btn-default form-control"
+    <input type="button" class="btn signup"
 onClick="location.href='<%=request.getContextPath() %>/member_join'" value="회원가입">
 	  </div>
 

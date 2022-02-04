@@ -20,7 +20,7 @@
 		<input type="hidden" id="board_num" name="board_num" value="${board.board_num }">
 		<table id="bbslist_t" border=1>
 			<tr>
-				<th>[${board.board_filter}] ${board.board_title}</th>
+				<th style="font-size:24px;">[${board.board_filter}] ${board.board_title}</th>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -39,19 +39,18 @@
 			<tr>
 				<td colspan="2">
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/${board.board_video}"></iframe> <br>
-					<div style="text-align: left;"> 
+					<div style="text-align: left; font-size:16px;"> 
 					${board_cont}
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
+		</table>
 					<c:choose>
 						<%-- 비회원인경우 --%>
 						<c:when test="${mem_num == 0 }">
 							<div id="goodandbad">
-								<button  onclick="login()" >추천 : ${board.board_good} </button>
-								<button  onclick="login()" >비추 : ${board.board_bad}</button>
+								<button class="btn regood" onclick="login()" >추천 : ${board.board_good} </button>
+								<button class="btn rebad" onclick="login()" >비추 : ${board.board_bad}</button>
 							</div>
 						</c:when>
 						<%-- 회원이면서, 추천, 비추천 아무것도 안누른경우 --%>
@@ -73,11 +72,10 @@
 							</div>
 						</c:when>
 					</c:choose>
-		</table>
 		<c:if test="${mem_num == 1}">
 		<div style="float:right; padding-right:35px;" >
-				<button type="button" onclick="location.href='trailerUpdateForm?page=${page}&board_num=${board.board_num}'">수정</button>
-				<button type="button" onclick="location.href='trailerDelete?page=${page}&board_num=${board.board_num}'">삭제</button>
+				<button class="btn signup" type="button" onclick="location.href='trailerUpdateForm?page=${page}&board_num=${board.board_num}'">수정</button>
+				<button class="btn signup" type="button" onclick="location.href='trailerDelete?page=${page}&board_num=${board.board_num}'">삭제</button>
 			</div>
 			</c:if>
 			<br>
@@ -92,7 +90,7 @@
 							<input type="hidden" name="board_num" value="${board.board_num}">
 							<input type="hidden" name="page" value="${page}"> 
 							<textarea id="re_cont" name="re_cont" rows="5" cols="100" style="width:100%;"></textarea>
-							<button type="submit">댓글 등록</button>
+							<button class="btn signup" type="submit">댓글 등록</button>
 						</div>
 					</td>
 				</tr>

@@ -39,8 +39,8 @@
 
 				<tr>
 					<td colspan="4">
-						<button>작성</button>
-						<button type="reset" onclick="history.go(-1)">취소</button>
+						<button class="btn signup">작성</button>
+						<button class="btn signup" type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>

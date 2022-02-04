@@ -21,11 +21,6 @@
   	<%@ include file="../layout/slideshow.jsp" %>  
 	<h4 align="left">리뷰</h4>
 	<table id="bbslist_t">
-		<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*5}"/> 	
-	
-			<!-- 반복문 시작 -->
-			<c:forEach var="re" items="${reviewlist}">
 			<tr align="center" valign="middle" bordercolor="#333333">
 			
 				<th style="font-family: Tahoma; font-size: 11pt;" width="9%"
@@ -41,8 +36,12 @@
 				<th style="font-family: Tahoma; font-size: 11pt;" width="12%">
 					<div align="center">날짜</div>
 				</th>
-				
 			</tr>
+		<!-- 화면 출력 번호  변수 정의 -->		
+			<c:set var="num" value="${listcount-(page-1)*5}"/> 	
+	
+			<!-- 반복문 시작 -->
+			<c:forEach var="re" items="${reviewlist}">
 			
 			<tr align="center" valign="middle">
 				<td style="font-family: Tahoma; font-size: 10pt;">
@@ -79,11 +78,6 @@
 	</table>		
 	<h4 align="left">추천</h4>
 	<table id="bbslist_t">
-			<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*5}"/> 	
-	
-			<!-- 반복문 시작 -->
-			<c:forEach var="re" items="${recommendlist}">
 			<tr align="center" valign="middle" bordercolor="#333333">
 				<th style="font-family: Tahoma; font-size: 11pt;" width="9%"
 					height="26">
@@ -100,6 +94,11 @@
 				</th>
 			</tr>
 			
+			<!-- 화면 출력 번호  변수 정의 -->		
+			<c:set var="num" value="${listcount-(page-1)*5}"/> 	
+	
+			<!-- 반복문 시작 -->
+			<c:forEach var="re" items="${recommendlist}">
 			<tr align="center" valign="middle">
 				
 				<td style="font-family: Tahoma; font-size: 10pt;">

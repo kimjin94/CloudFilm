@@ -68,6 +68,7 @@ body {
   float: left;
   width: 75%;
   background: white;
+  font-size:24px;
 }
 
 .text-primary{
@@ -131,6 +132,8 @@ padding-top: 12px;
 /* 로그인 회원가입 */
 .btn {
   border: none;
+  outline: none;
+  box-shadow: none;
   color: white;
   padding: 14px 28px;
   font-size: 16px;
@@ -149,8 +152,17 @@ padding-top: 12px;
 .good {background-color: #ffffff; color: blue;}
 .good:hover {background: #e7e7e7; color: blue;}
 
+.regood {background-color:blue; color: white;}
+.regood:hover {background:blue; color: white;}
+
 .bad {background-color: #ffffff; color: red;}
 .bad:hover {background: #e7e7e7; color: red;}
+
+.det {background-color: #e7e7e7; color: red;}
+.det:hover {background: #e7e7e7; color: red;}
+
+.rebad {background-color: #f44336; color: white;}
+.rebad:hover {background: red; color: white;}
 
 
 /* Fake image */
@@ -222,7 +234,7 @@ margin-top : 5px;
   width: 50%;
   z-index: 99;
   top: 20px;
-  margin-right: 110px;
+  margin-right:110px;
 }
 
 .sidenav a {
@@ -240,11 +252,11 @@ margin-top : 5px;
   background: #ddd;
   /* position:relative !important; */
   position:relative; 
+  display:inline-table;
   bottom:0;
   width: 100%;
-  height:100%;
-  padding-bottom: 120px;
-  bottom:-125px;
+  height:60%;
+  bottom:-350px;
   overflow-x:hidden; 
 }
 

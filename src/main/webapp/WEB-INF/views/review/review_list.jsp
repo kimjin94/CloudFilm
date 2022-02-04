@@ -103,8 +103,7 @@
 		</table>
 		
 		<div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:30px;">
-			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='review_write?page=${page}'">
+				<button class="btn signup" onclick="location='review_write?page=${page}'">글쓰기</button>	
 		</div>
 		<form action="search_review" method="post">
 		<input type="hidden" name="board_filter">
@@ -116,7 +115,7 @@
 				<option value="mem_nick"<c:if test="${search == 'mem_nick'}">selected="selected"</c:if>>작성자</option>
 				</select>
 				<input type="text" id="keyword" name="keyword" placeholder="검색" value="${keyword}">
-				<button type="submit">검색</button>
+				<button class="btn signup" type="submit">검색</button>
 			</div>
 		</form>
 

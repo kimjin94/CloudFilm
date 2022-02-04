@@ -44,8 +44,8 @@
     <label for="mem_email">이메일</label>
       <input type="email" class="form-control" id="mem_email" name="mem_email" placeholder="이메일을 입력해주세요" maxlength="20">
     </div>
-    <div class="form-group">
-    <input type="submit" class="btn btn-default form-control" value="확인">
+    <div class="form-group" align="center">
+    <input type="submit" class="btn signup" value="확인">
       </div>
 
  	</table>

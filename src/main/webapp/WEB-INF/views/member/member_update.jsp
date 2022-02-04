@@ -326,7 +326,6 @@ $("#mem_nick").blur(function() {
 });
 	</script>
 </head>
-<%@ include file="../layout/header.jsp" %>
 <body>
 	<article class="container">
 		<div class="page-header">
@@ -382,12 +381,10 @@ $("#mem_nick").blur(function() {
 						현재파일: <img src="<%=request.getContextPath()%>/resources/images/memberimage/${upmv.mem_img}" width="50"/>
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-primary">정보수정</button>
+					<button class="btn signup" type="submit" class="btn btn-primary">정보수정</button>
 				</div>
 			</form>
 		</div>
 	</article>
-
-<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>

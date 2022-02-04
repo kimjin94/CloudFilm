@@ -56,8 +56,8 @@
 
 				<tr>
 					<td colspan="4">
-						<button type="submit">수정</button>
-						<button type="reset" onclick="history.go(-1)">취소</button>
+						<button class="btn signup" type="submit">수정</button>
+						<button class="btn signup" type="reset" onclick="history.go(-1)">취소</button>
 					</td>
 				</tr>
 			</table>

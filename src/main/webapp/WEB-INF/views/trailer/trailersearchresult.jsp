@@ -62,11 +62,10 @@
 				</tr>
 			</c:forEach>
 		</table>
-	<div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:40px;">
-			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='writeTrailerForm'">
-		</div>		
-	    <form action="searchboard" method="post">
+	<div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:37px;">
+		<button class="btn signup" onclick="location='writeTrailerForm'">글쓰기</button>	
+		</div>	
+	    <form action="searchboard" method="post" style="padding-left: 65px;">
 	    	<input type="hidden" name="board_filter">
 		    <div id='center-box'>
 		    	<select name="search">
@@ -76,7 +75,7 @@
 		    		<option value="mem_nick" <c:if test="${search == 'mem_nick'}">selected="selected"</c:if>>작성자</option>
 		    	</select>
 		    	<input type="text" id="keyword" name="keyword" placeholder="검색" value="${keyword}"> 
-		    	<button type="submit">검색</button>
+		    	<button class="btn signup" type="submit">검색</button>
 		    </div>
 	    </form>
 	<div id="trailersearchlist_paging" >

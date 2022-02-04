@@ -39,15 +39,6 @@
 	<tr>
 	<td><a href="myGoodList">내가 좋아요한 글</a></td>
 	</tr>
-	<tr>
-	<th>-----멤버-----</th>
-	</tr>
-	<tr>
-	<td><a href="passReCheck">회원정보 수정</a></td>
-	</tr>
-	<tr>
-	<td><a href="member_delete">탈퇴</a></td>
-	</tr>
 	<c:if test="${mem_num == 1}">
 	<tr>
 	<th>------관리자-----</th>

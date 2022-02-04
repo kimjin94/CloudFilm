@@ -9,18 +9,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 .profile {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  margin: auto;
   text-align: center;
   font-family: arial;
   max-height: 300px; 
+  display: inline;
 }
 
-.profile img{
- width: 200px;
- height: 200px;
-}
 
 .title {
   color: grey;
@@ -28,24 +23,38 @@
 }
 
 
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
 </style>
 </head>
 <body>
-
-<h2 style="text-align:center">User Profile Card</h2>
-
-<div class="profile" style="float:left; padding-left:40px;">
-  <img src="<%=request.getContextPath()%>/resources/images/Prifile/Profile01.png">
-  <h1>John Doe</h1>
-  <p class="title">CEO & Founder, Example</p>
+<form>
+<div class="profile" style="float:left; padding-left:20px;">
+  <c:choose>
+     <c:when test="${mem_img != null }">
+        <img src="<%=request.getContextPath()%>/resources/images/memberimage/${mem_img}" height="100" width="100">
+     </c:when>
+     <c:otherwise>
+       <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="100" width="100">
+     </c:otherwise>
+  </c:choose>
+  <c:choose>
+     <c:when test="${mem_img != null }">
+        <div style="float:right;"><h5>닉네임${mem_nick}</h5><br><h6>가입날짜 | ${mem_date}</h6></div>
+     </c:when>
+     <c:otherwise>
+        <div style="float:right;"><h3>닉네임${mem_nick}</h3><br><h6>가입날짜 | ${mem_date}</h6></div>
+     </c:otherwise>
+  </c:choose>
 </div>
+<br>
+<br>
+<br>
+<br>
+  <div style="float:right; padding-right:35px;">
+  <button type="button" class="btn signup" onclick="location.href='update_ok'">수정</button>
+  <button type="button" class="btn det" onclick="location.href='member_delete'">탈퇴</button>
+  </div>
+ </form>
+
 
 </body>
 </html>

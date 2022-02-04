@@ -47,11 +47,11 @@
     <div class="form-group" style="text-align:right">
       	<a href="" > 아이디 찾기</a>
     	</div>
-      <div class="form-group">
-    <input type="submit" class="btn btn-default form-control" value="확인">
+      <div class="form-group" align="center">
+    <input type="submit" class="btn signup" value="확인">
       </div>
-      <div class="form-group">
-    <input type="reset" class="btn btn-default form-control"
+      <div class="form-group" align="center">
+    <input type="reset" class="btn signup"
 onClick="location.href=''" value="취소">
 	  </div>
 

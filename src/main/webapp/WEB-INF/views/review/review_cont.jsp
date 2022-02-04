@@ -33,7 +33,7 @@ function del(page,board_num){
 		<table id="bbslist_t" border="1">
 			<%-- <div style="float:right;">조회수 : ${re.board_count}</div> --%>
 				<tr>
-				<td colspan="100" style="text-align:center;"><h4>[${re.board_filter}] ${re.board_title}</h4></td>
+				<td colspan="100" style="text-align:center; font-size:24px;"><h4>[${re.board_filter}] ${re.board_title}</h4></td>
 				</tr>
 			<tr>
 				<!-- <th>작성자</th> -->
@@ -57,7 +57,7 @@ function del(page,board_num){
 			</tr>
 			
 			<tr>
-				<td colspan="1000" style="text-align: left;">
+				<td colspan="1000" style="text-align: left; font-size:16px;">
 				 <c:if test="${empty re.board_img}">
       				<pre>${re.board_cont}</pre>
        				</c:if>
@@ -74,8 +74,8 @@ function del(page,board_num){
 						<%-- 비회원인경우 --%>
 						<c:when test="${mem_num == 0 }">
 							<div id="goodandbad">
-								<button  onclick="login()" >추천 : ${re.board_good} </button>
-								<button  onclick="login()" >비추 : ${re.board_bad}</button>
+								<button class="btn regood" onclick="login()" >추천 : ${re.board_good} </button>
+								<button class="btn rebad" onclick="login()" >비추 : ${re.board_bad}</button>
 							</div>
 						</c:when>
 						<%-- 회원이면서, 추천, 비추천 아무것도 안누른경우 --%>
@@ -99,9 +99,9 @@ function del(page,board_num){
 					</c:choose>
 			</form>
 			<div style="float:right; padding-right:35px;" >
-				<button type="button" onClick="location='review_update?board_num=${re.board_num}&page=${page}'">수정</button>
-				<button type="button" onClick="del(${page},${re.board_num})">삭제</button>
-				<button type="button" onClick="location='review_list?page=${page}'">목록</button>
+				<button class="btn signup" type="button" onClick="location='review_update?board_num=${re.board_num}&page=${page}'">수정</button>
+				<button class="btn signup" type="button" onClick="del(${page},${re.board_num})">삭제</button>
+				<button class="btn signup" type="button" onClick="location='review_list?page=${page}'">목록</button>
 			</div>
 			<br>
 			<br>
@@ -115,7 +115,7 @@ function del(page,board_num){
 							<input type="hidden" name="board_num" value="${re.board_num}">
 							<input type="hidden" name="page" value="${page}"> 
 							<textarea id="re_cont" name="re_cont" rows="5" cols="100" style="width:100%;"></textarea>
-							<button type="submit">댓글 등록</button>
+							<button class="btn signup" type="submit">댓글 등록</button>
 						</div>
 					</td>
 				</tr>

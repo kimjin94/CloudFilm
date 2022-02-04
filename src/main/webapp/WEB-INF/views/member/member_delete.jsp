@@ -50,7 +50,7 @@ function check(){
 					<div class="check_font" id="pw_check"></div>
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-primary">탈퇴</button>
+					<button type="submit" class="btn rebad">탈퇴</button>
 				</div>
 			</form>
 		</div>

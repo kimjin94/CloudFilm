@@ -49,7 +49,7 @@ function check(){
 						placeholder="PASSWORD">
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-primary"
+					<button type="submit" class="btn signup"
 					onClick="passReCheck?mem_id=${prmv.mem_id}">확인</button>
 				</div>
 			</form>

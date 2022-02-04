@@ -15,10 +15,11 @@
 <%@ include file="../layout/tab.jsp" %>   
 <div class="row">
   <div class="leftcolumn" align="center">
-	
 	<!-- 게시판 리스트 -->
-	<div>
 		<h2 class="bbslist_title">내가 쓴 댓글</h2>
+	   <%@ include file="../layout/mypageProfile.jsp" %>	
+   <br><br>
+	<div>
 		<div id="bbslist_c" style="float:right; padding-right:40px;">글 개수 : ${listcount}</div><br>
 		
 
