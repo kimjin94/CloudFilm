@@ -159,7 +159,7 @@ public class MemberController {
 					session.setAttribute("mem_id", mem_id);	//세션으로 공유설정
 					MemberVO member = memberService.getMemberInfo(mem_id);
 					session.setAttribute("member", member);	//세션으로 공유설정
-					session.setAttribute("mem_num", member.getMem_num());	//세션으로 공유설정
+					session.setAttribute("mem_num", member.getMem_num());
 					System.out.println("등록된 ID입니다.");
 					
 					return "home/home";

@@ -51,6 +51,21 @@
 			<br>
 			<br>
 		<table id="bbslist_t" border=1 style="table-layout:fixed;">
+			<c:forEach var="info" items="${infoTrailerlist}">
+				<tr>
+					<td rowspan="3" width="200">${info.board_filter}</td>
+					<td style="text-align:left;"><a href="trailerDetail?page=${page}&board_num=${info.board_num}">${info.board_title} </a></td>
+				</tr>
+				<tr>
+					<td style="text-align:left;"> 댓글 : ${info.re_count} | 조회수 : ${info.board_count} | 추천 : ${info.board_good} |
+						<fmt:formatDate value="${info.board_date}"
+							pattern="yyyy/MM/dd HH:mm:ss" />
+						</td>
+				</tr>
+				<tr>
+						<td  style="text-align:left;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${info.board_cont}</td>
+				</tr>
+			</c:forEach>
 			<c:forEach var="trailerlist" items="${trailerlist}">
 				<tr>
 					<td rowspan="3" width="200"><img alt="" src="http://i.ytimg.com/vi/${trailerlist.board_video}/hqdefault.jpg" width="160" height="120"></td>
@@ -69,7 +84,9 @@
 		</table>
 		<br>		
 	    <div id="bbslist_w" align="center" valign="middle" style="float:right; padding-right:40px;">
+	    	<c:if test="${mem_num == 1 }">
 			<button class="btn signup" onclick="location='writeTrailerForm'">글쓰기</button>	
+			</c:if>
 		</div>
 	    <form action="searchboard" method="post">
 		    <input type="hidden" name="board_filter">

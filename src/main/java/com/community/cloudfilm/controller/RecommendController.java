@@ -148,6 +148,8 @@ public class RecommendController {
 			model.addAttribute("board_filter", board_filter);
 		}
 		
+		List<BoardVO> recommendinfolist = recommendService.getrecommendinfolist();
+		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
 		
@@ -168,6 +170,7 @@ public class RecommendController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("recommendlist", recommendlist);
+		model.addAttribute("recommendinfolist", recommendinfolist);
 		
 		return "recommend/recommend_list";
 	}

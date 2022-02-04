@@ -91,7 +91,6 @@ public class AdminService {
 		// 카테고리를 받아온다면
 		if (request.getParameter("cate_num") != null) {
 			cate_num = Integer.parseInt(request.getParameter("cate_num"));
-			
 		}
 		// 정지, 안정지??!?
 		if (request.getParameter("board_yn") != null) {
@@ -340,6 +339,4 @@ public class AdminService {
 	public void deleteInfo(int board_num) {
 		adminDAO.deleteInfo(board_num);
 	}
-
-
 }

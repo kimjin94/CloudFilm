@@ -46,13 +46,11 @@ public class AdminDAO {
 	public void setBoardYN(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String yn = request.getParameter("yn");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		System.out.println("관리자게시글삭제");
-		System.out.println(yn);
 		if(yn.equals("y")) {
 			System.out.println("y를 n으로");
 			sqlSession.update("adminMapper.setN", board_num);
 		}else if(yn.equals("n")) {
-			System.out.println("y를 n으로");
+			System.out.println("n을 y으로");
 			sqlSession.update("adminMapper.setY", board_num);
 		}
 	}

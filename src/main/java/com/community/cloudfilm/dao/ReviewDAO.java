@@ -106,10 +106,11 @@ public class ReviewDAO {
 		
 		return sqlSession.selectOne("trailer.checkTrailerBad", parameterMap);
 	}
-//	public List<BoardVO> getinfoList(int page) {
-//		List<BoardVO> infolist = sqlSession.selectList("reviewMapper.review_infolist", page);
-//		return infolist;
-//	}
+	
+	// 리뷰게시판 공지 가져오기
+	public List<BoardVO> getinforeviewlist() {
+		return sqlSession.selectList("infoMapper.getinforeviewlist");
+	}
 	
 
 	

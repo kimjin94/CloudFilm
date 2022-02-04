@@ -6,6 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>예고편 게시판 글 수정</title>
+<script type="text/javascript">
+function check(){
+	if($.trim($("#board_title").val())==""){
+		alert("제목을 채워주세요.");
+		$("#board_title").val("").focus();
+		return false;
+	}
+	if($.trim($("#board_filter").val())==""){
+		alert("장르를 선택해 주세요.");
+		$("#board_filter").val("").focus();
+		return false;
+	}
+	if($.trim($("#board_cont").val())==""){
+		alert("내용을 채워주세요.");
+		$("#board_cont").val("").focus();
+		return false;
+	}
+	if($.trim($("#board_video").val())==""){
+		alert("영상 링크를 작성해 주세요.");
+		$("#board_video").val("").focus();
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>  
@@ -13,14 +37,14 @@
 <div class="row">
   <div class="leftcolumn" align="center">
     <div class="container">
-		<form action="updateTrailer" method="post">
+		<form action="updateTrailer" method="post" onsubmit="return check()">
 			<input type="hidden" id="board_num" name="board_num" value="${board_num }">
 			<input type="hidden" id="page" name="page" value="${page}">
 			<table id="bbslist_t"  border=1>
 				<h2>예고편  글 수정</h2>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="board_title" size="90" style="width:100%;" value="${board.board_title}"></td>
+					<td><input type="text" id="board_title" name="board_title" size="90" style="width:100%;" value="${board.board_title}"></td>
 					<th>장르</th>
 					<td>
 						<select id="board_filter" name="board_filter" >
@@ -45,12 +69,12 @@
 				<tr>
 				<th>내용</th>
 					<td colspan="4">
-						<textarea name="board_cont" rows="20" cols="150">${board.board_cont}</textarea>
+						<textarea id="board_cont" name="board_cont" rows="20" cols="150">${board.board_cont}</textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>동영상 링크</th>
-					<td colspan="3"><input type="text" name="board_video" style="float:left;" value="https://youtu.be/${board.board_video}"></td>
+					<td colspan="3"><input type="text" id="board_video" name="board_video" style="float:left;" value="https://youtu.be/${board.board_video}"></td>
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align: center;">

@@ -10,6 +10,22 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/board/goodandbad.js"></script>
+<script type="text/javascript">
+function check(){
+	if($.trim($("#re_cont").val())==""){
+		alert("댓글 내용을 입력해 주세요.");
+		$("#re_cont").val("").focus();
+		return false;
+	}
+}
+
+function del(page,board_num){
+	var chk = confirm("정말 삭제하시겠습니까?");
+	if (chk) {
+		location.href='trailerDelete?page='+ page + '&board_num='+board_num;
+	}
+}
+</script>
 </head>
 <body>
 	<%@ include file="../layout/header.jsp" %>
@@ -38,7 +54,13 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/${board.board_video}"></iframe> <br>
+					<c:choose>
+						<c:when test="${board.board_video == null}">
+						</c:when>
+						<c:when test="${board.board_video != null}">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/${board.board_video}"></iframe> <br>
+						</c:when>
+					</c:choose>
 					<div style="text-align: left; font-size:16px;"> 
 					${board_cont}
 					</div>
@@ -47,7 +69,7 @@
 		</table>
 					<c:choose>
 						<%-- 비회원인경우 --%>
-						<c:when test="${mem_num == 0 }">
+						<c:when test="${mem_num == null || mem_num == 0 }">
 							<div id="goodandbad">
 								<button class="btn regood" onclick="login()" >추천 : ${board.board_good} </button>
 								<button class="btn rebad" onclick="login()" >비추 : ${board.board_bad}</button>
@@ -75,12 +97,12 @@
 		<c:if test="${mem_num == 1}">
 		<div style="float:right; padding-right:35px;" >
 				<button class="btn signup" type="button" onclick="location.href='trailerUpdateForm?page=${page}&board_num=${board.board_num}'">수정</button>
-				<button class="btn signup" type="button" onclick="location.href='trailerDelete?page=${page}&board_num=${board.board_num}'">삭제</button>
+				<button class="btn signup" type="button" onclick="del(${page},${board.board_num})">삭제</button>
 			</div>
 			</c:if>
 			<br>
 			<br>
-		<form action="replywrite" method="post">
+		<form action="replywrite" method="post" onsubmit="return check()">
 			<table id="bbslist_t" border=1> 
 				<%@ include file="../reply/replylist.jsp" %>
 				<tr>

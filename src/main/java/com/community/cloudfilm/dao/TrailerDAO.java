@@ -229,6 +229,10 @@ public class TrailerDAO {
 		sqlSession.update("trailer.deleteTrailer", board_num);
 	}
 
+	public List<BoardVO> getInfoTrailerlist() {
+		return sqlSession.selectList("infoMapper.getInfoTrailerlist");
+	}
+
 	
 	
 }

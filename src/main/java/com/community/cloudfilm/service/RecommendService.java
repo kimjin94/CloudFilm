@@ -140,4 +140,7 @@ public class RecommendService {
 			return resultMap;
 
 		}
+		public List<BoardVO> getrecommendinfolist() {
+			return recommendDAO.recommendinfolist();
+		}
 }

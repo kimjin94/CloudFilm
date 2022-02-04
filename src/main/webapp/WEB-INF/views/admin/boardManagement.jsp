@@ -114,8 +114,10 @@ style="font-family: Tahoma; font-size: 11pt;"
 						</c:choose>
 					</td>
 					<td style="">
-						<span style="float:left;width:70%; text-align: left;">[${boardlist.board_filter}] ${boardlist.board_title}  </span> 
-						<span style="float:right;width:29%; text-align: right;">| 조회수 : ${boardlist.board_count} | 추천 : ${boardlist.board_good} |</span>
+						<a href="boardManagementDetail?board_num=${boardlist.board_num}"> 
+							<span style="float:left;width:70%; text-align: left;">[${boardlist.board_filter}] ${boardlist.board_title}  </span> 
+							<span style="float:right;width:29%; text-align: right;">| 조회수 : ${boardlist.board_count} | 추천 : ${boardlist.board_good} |</span>
+						</a>
 					</td>
 					<td >
 						${boardlist.board_bad}

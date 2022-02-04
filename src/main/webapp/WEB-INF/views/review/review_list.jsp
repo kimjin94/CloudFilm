@@ -54,6 +54,48 @@
                <div align="center">조회수</div>
             </th>
          </tr>
+         
+         <!-- 반복문 시작 -->
+         <c:forEach var="info" items="${inforeviewlist}">
+         <tr align="center" valign="middle">
+            <td height="23" style="font-family: Tahoma; font-size: 10pt;">           
+            	  ${info.board_filter}    
+            </td>
+            <td style="font-family: Tahoma; font-size: 10pt;">
+               <div align="center">                     
+               <!-- 필터 출력 부분 -->   
+                     ${info.board_filter}
+               </div>
+            </td>
+            <td style="font-family: Tahoma; font-size: 10pt;">
+               <div align="left">                     
+                  
+               <!-- 제목 출력 부분 -->   
+               <a href="review_cont?board_num=${info.board_num}&page=${page}">
+                     ${info.board_title}
+                     <i class="fas fa-comments"></i>${info.re_count}&nbsp;
+                     <i class="fas fa-thumbs-up"></i>${info.board_good}
+               </a>
+               </div>
+            </td>
+
+            <td style="font-family: Tahoma; font-size: 10pt;">
+               <div align="center">${info.mem_nick}</div>
+            </td>
+            <td style="font-family: Tahoma; font-size: 10pt;">
+               <div align="center">
+               
+               <fmt:formatDate value="${info.board_date}"
+                   pattern="yyyy-MM-dd HH:mm:ss"/>               
+               
+               </div>
+            </td>
+            <td style="font-family: Tahoma; font-size: 10pt;">
+               <div align="center">
+               <i class="fas fa-eye"></i>${info.board_count}</div>
+            </td>
+         </tr>
+         </c:forEach>
 	
          <!-- 화면 출력 번호  변수 정의 -->      
          <c:set var="num" value="${listcount-(page-1)*10}"/>

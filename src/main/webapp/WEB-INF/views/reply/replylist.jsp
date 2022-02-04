@@ -66,41 +66,51 @@
 	/* 댓글 수정 저장 */
 	function updateReply(re_num) {
 		var re_contupdate = $("#re_contupdate").val();
-		$.ajax({
-	   	    url : 'replyUpdate', // 요청 할 주소
-	   	    type : 'post', // GET, PUT
-	   	    dataType : 'text',
-	   	    data : {
-	   	    	"re_num" : re_num,
-	   	    	"re_contupdate" : re_contupdate
-	   	    },
-	   	    success : function(data) {
-	   	    	$('#reply'+re_num).html(data);
-	   	    }, // 요청 완료 시
-	   	    error :function(xhr,status,error){
-					console.log("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
-					alert(xhr.status);
-			}
-		})
+		if(re_contupdate == ""){
+			alert("댓글 내용을 채워주세요.");
+			$("#re_contupdate").val("").focus();
+			return false;
+		}else {
+			$.ajax({
+		   	    url : 'replyUpdate', // 요청 할 주소
+		   	    type : 'post', // GET, PUT
+		   	    dataType : 'text',
+		   	    data : {
+		   	    	"re_num" : re_num,
+		   	    	"re_contupdate" : re_contupdate
+		   	    },
+		   	    success : function(data) {
+		   	    	$('#reply'+re_num).html(data);
+		   	    }, // 요청 완료 시
+		   	    error :function(xhr,status,error){
+						console.log("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
+						alert(xhr.status);
+				}
+			})
+		}
+		
 	}
 	
 	/* 댓글 삭제 */
 	function deleteReply(re_num) {
-		$.ajax({
-	   	    url : 'deleteReply', // 요청 할 주소
-	   	    type : 'post', // GET, PUT
-	   	    dataType : 'text',
-	   	    data : {
-	   	    	"re_num" : re_num
-	   	    },
-	   	    success : function(data) {
-	   	    	$('#reply'+re_num).html(data);
-	   	    }, // 요청 완료 시
-	   	    error :function(xhr,status,error){
-					console.log("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
-					alert(xhr.status);
-			}
-		})
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			$.ajax({
+		   	    url : 'deleteReply', // 요청 할 주소
+		   	    type : 'post', // GET, PUT
+		   	    dataType : 'text',
+		   	    data : {
+		   	    	"re_num" : re_num
+		   	    },
+		   	    success : function(data) {
+		   	    	$('#reply'+re_num).html(data);
+		   	    }, // 요청 완료 시
+		   	    error :function(xhr,status,error){
+						console.log("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
+						alert(xhr.status);
+				}
+			})
+		}
 	}
 	
 </script>

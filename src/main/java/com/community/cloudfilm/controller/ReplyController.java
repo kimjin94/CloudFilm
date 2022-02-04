@@ -34,7 +34,7 @@ public class ReplyController {
       if(board.getCate_num() == 1) {
          index = "review_cont";
       }else if(board.getCate_num() == 2) {
-         index = "";
+         index = "recommend_cont";
       }else if(board.getCate_num() == 3) {
          index = "trailerDetail";
       }

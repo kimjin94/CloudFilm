@@ -6,6 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>예고편 게시판 글 수정</title>
+<script type="text/javascript">
+function check(){
+	if($.trim($("#board_title").val())==""){
+		alert("제목을 채워주세요.");
+		$("#board_title").val("").focus();
+		return false;
+	}
+	if($.trim($("#cate_num").val())==""){
+		alert("게시판을 선택해 주세요.");
+		$("#cate_num").val("").focus();
+		return false;
+	}
+	if($.trim($("#board_cont").val())==""){
+		alert("내용을 채워주세요.");
+		$("#board_cont").val("").focus();
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>
@@ -13,14 +32,14 @@
 <%@ include file="../layout/tab.jsp" %>  
 <div class="row">
   	  <div class="leftcolumn" align="center">
-			<form action="updateInfo" method="post">
+			<form action="updateInfo" method="post" onsubmit="return check()">
 				<input type="hidden" id="board_num" name="board_num" value="${board_num }">
 				<input type="hidden" id="page" name="page" value="${page}">
 				<table border=1>
 					<caption>예고편  글 수정</caption>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="board_title" value="${board.board_title}"></td>
+						<td><input type="text" id="board_title" name="board_title" value="${board.board_title}"></td>
 						<th>게시판 분류</th>
 						<td>
 							<select id="cate_num" name="cate_num" >
@@ -33,7 +52,7 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<textarea name="board_cont" rows="20" cols="60">${board.board_cont}</textarea>
+							<textarea id="board_cont" name="board_cont" rows="20" cols="60">${board.board_cont}</textarea>
 						</td>
 					</tr>
 					<tr>

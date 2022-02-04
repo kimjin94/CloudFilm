@@ -105,5 +105,10 @@ public class RecommendDAO {
 		public int getSearchListCount(Map<String, Object> javaMap) {
 			return sqlSession.selectOne("recommendMapper.recommendSearch_count", javaMap);
 		}
+		
+		// 추천게시판 공지 긁어오기
+		public List<BoardVO> recommendinfolist() {
+			return sqlSession.selectList("infoMapper.getrecommendinfolist");
+		}
 	
 }

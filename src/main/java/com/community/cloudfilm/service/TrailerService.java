@@ -57,7 +57,9 @@ public class TrailerService {
 
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
-
+		
+		List<BoardVO> infoTrailerlist = trailerDAO.getInfoTrailerlist();
+		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		resultMap.put("page", page);
@@ -66,6 +68,7 @@ public class TrailerService {
 		resultMap.put("maxpage", maxpage);
 		resultMap.put("listcount", listcount);
 		resultMap.put("trailerlist", trailerlist);
+		resultMap.put("infoTrailerlist", infoTrailerlist);
 		
 		return resultMap;
 	}
