@@ -254,11 +254,10 @@ margin-top : 5px;
 </div> -->
 
 <div class="topnav">
-  <a href="home"><img src="<%=request.getContextPath()%>/resources/images/logo/logo2.png"></a>
-  <a href="review_list">리뷰</a>
-  <a href="recommend_list">추천</a>
-  <a href="trailerlist">예고편</a>
-  <a href="#">영화월드컵</a>
+  <a href="boardManagement">게시글관리</a>
+  <a href="memberManagement">회원관리</a>
+  <a href="trailerlist">공지관리</a>
+  <a href="#">영화월드컵관리</a>
  <!--  
   <a href="adminhome">어드민홈</a> -->
 </div>

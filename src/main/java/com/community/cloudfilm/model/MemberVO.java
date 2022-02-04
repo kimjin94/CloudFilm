@@ -12,6 +12,8 @@ public class MemberVO {
 	private int mem_grade;
 	private String mem_yn;
 	private String mem_nick;
+	private int board_writecount;
+	private int re_writecount;
 	
 	public int getMem_num() {
 		return mem_num;
@@ -66,5 +68,17 @@ public class MemberVO {
 	}
 	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
+	}
+	public int getBoard_writecount() {
+		return board_writecount;
+	}
+	public int getRe_writecount() {
+		return re_writecount;
+	}
+	public void setBoard_writecount(int board_writecount) {
+		this.board_writecount = board_writecount;
+	}
+	public void setRe_writecount(int re_writecount) {
+		this.re_writecount = re_writecount;
 	}
 }
