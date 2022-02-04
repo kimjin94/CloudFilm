@@ -121,7 +121,7 @@
                   ${trailerlist.board_filter}
                </td>
                <td style="text-align: left;">
-                   <a href="trailerDetail?board_num=${trailerlist.board_num}&page=${page}">
+                   <a href="trailerDetail?board_num=${trailerlist.board_num}&page=1">
                   <span style="float:left;">${trailerlist.board_title}  </span> </a>
                   <span style="float:right;">| <i class="fas fa-eye"></i>: ${trailerlist.board_count} | <i class="fas fa-thumbs-up"></i>: ${trailerlist.board_good} | </span>
                </td>
