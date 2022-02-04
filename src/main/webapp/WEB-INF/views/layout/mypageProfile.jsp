@@ -51,7 +51,7 @@
 <br>
 <br>
   <div style="float:right; padding-right:35px;">
-  <button type="button" class="btn signup" onclick="/">수정</button>
+  <button type="button" class="btn signup" onclick="location.href='passReCheck'">수정</button>
   <button type="button" class="btn det" onclick="location.href='member_delete'">탈퇴</button>
   </div>
  </form>

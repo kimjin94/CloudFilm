@@ -21,8 +21,6 @@
   <h2 style="text-align:center">마이페이지 홈</h2>
 <%@ include file="../layout/mypageProfile.jsp" %>	
 <div class="container">
-<div><%@ include file="../member/member_update.jsp" %></div>	
-  
   </div>	
 </div> 
 <%@ include file="../layout/myPageBar.jsp" %>	

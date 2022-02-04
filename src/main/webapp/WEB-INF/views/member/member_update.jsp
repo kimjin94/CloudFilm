@@ -327,12 +327,16 @@ $("#mem_nick").blur(function() {
 	</script>
 </head>
 <body>
-	<article class="container">
+<%@ include file="../layout/header.jsp" %>  
+<%@ include file="../layout/tab.jsp" %>  
+
+<div class="row">
+  <div class="leftcolumn" align="center">
+  <h2 style="text-align:center">회원정보 수정</h2>
+<%@ include file="../layout/mypageProfile.jsp" %>	
+<div class="container">
 		<div class="page-header">
 			<div class="col-md-6 col-md-offset-3">
-				<div align=center>
-					<h2>회원정보 수정</h2>
-				</div>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
@@ -385,6 +389,10 @@ $("#mem_nick").blur(function() {
 				</div>
 			</form>
 		</div>
-	</article>
+  </div>	
+</div> 
+<%@ include file="../layout/myPageBar.jsp" %>	
+</div>
+<%@ include file="../layout/footer.jsp" %>	
 </body>
 </html>
