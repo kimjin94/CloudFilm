@@ -291,6 +291,9 @@ margin-top : 5px;
   <a href="recommend_list">추천</a>
   <a href="trailerlist">예고편</a>
   <a href="#">영화월드컵</a>
+  <c:if test="${mem_num == 1}">
+  <a href="adminhome">어드민홈</a>
+  </c:if>
 </div>
 
 

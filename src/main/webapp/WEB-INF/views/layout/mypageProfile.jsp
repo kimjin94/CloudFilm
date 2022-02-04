@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@
 <br>
 <br>
   <div style="float:right; padding-right:35px;">
-  <button type="button" class="btn signup" onclick="location.href='update_ok'">수정</button>
+  <button type="button" class="btn signup" onclick="/">수정</button>
   <button type="button" class="btn det" onclick="location.href='member_delete'">탈퇴</button>
   </div>
  </form>

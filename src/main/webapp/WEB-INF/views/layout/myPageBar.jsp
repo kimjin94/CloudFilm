@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib  prefix="spring" uri="http://www.springframework.org/tags" %> 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@
 	<tr>
 	<td><a href="myGoodList">내가 좋아요한 글</a></td>
 	</tr>
-	<c:if test="${mem_num == 1}">
+	<c:if test="${mem_grade == 99}">
 	<tr>
 	<th>------관리자-----</th>
 	<td><a href="test">테스트</a></td>
