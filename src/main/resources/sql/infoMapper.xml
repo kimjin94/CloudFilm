@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="infoMapper">
+	
+	<!-- 리뷰게시판 공지 가져오기 -->
+	<select id="getinforeviewlist" parameterType="int" resultType="board">
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and c.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 1
+		        	and board_yn ='y'
+		        	and info_yn ='y'
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= 1  and rnum <= 5 
+		]]>
+	</select>
+
+
+	<!--  추천 게시판 공지  가져오기 -->
+	<select id="getrecommendinfolist" parameterType="int" resultType="board">
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and c.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 2
+		        	and board_yn ='y'
+		        	and info_yn ='y'
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= 1  and rnum <= 5 
+		]]>
+	</select>
+	
+	<!-- 예고편 게시판 공지 -->
+	<select id="getInfoTrailerlist" parameterType="int" resultType="board">
+		select *
+		from 
+		(
+		    select rownum rnum, board.* 
+		    from  
+		    (
+		        select 
+		        a.BOARD_NUM, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+		        a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, 
+		        a.CATE_NUM, a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        , count(b.gb_sort) as board_good
+		        , count(c.gb_sort) as board_bad
+		        , count(d.re_num) as re_count
+		        from board a
+		            left join goodandbad b
+		                on a.board_num = b.board_num
+		                and b.gb_sort = 'g'
+		            left join goodandbad c
+		                on a.board_num = c.board_num 
+		                and c.gb_sort = 'b'
+		            left join reply d
+		                on a.board_num = d.board_num
+		            left join member e
+		                on a.mem_num = e.mem_num
+		        where a.cate_num = 3
+		        	and board_yn ='y'
+		        	and info_yn ='y'
+		        group by 
+	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
+					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
+					 a.BOARD_YN, a.INFO_YN, a.MEM_NUM, e.mem_nick
+		        order by a.BOARD_num desc
+		    ) board
+		)
+		<![CDATA[ 
+		where rnum >= 1  and rnum <= 5 
+		]]>
+	
+	</select>
+	
+</mapper>

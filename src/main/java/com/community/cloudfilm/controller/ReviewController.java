@@ -149,6 +149,8 @@ public class ReviewController {
 		}
 		/* if(request.get) */
 		
+		List<BoardVO> inforeviewlist = reviewService.getinforeviewlist();
+		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
 		
@@ -170,6 +172,7 @@ public class ReviewController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("reviewlist", reviewlist);
+		model.addAttribute("inforeviewlist", inforeviewlist);
 		
 		return "review/review_list";
 	}

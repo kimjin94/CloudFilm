@@ -38,7 +38,13 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/${board.board_video}"></iframe> <br>
+					<c:choose>
+						<c:when test="${board.board_video == null}">
+						</c:when>
+						<c:when test="${board.board_video != null}">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/${board.board_video}"></iframe> <br>
+						</c:when>
+					</c:choose>
 					<div style="text-align: left; font-size:16px;"> 
 					${board_cont}
 					</div>
