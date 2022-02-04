@@ -53,6 +53,7 @@ function check(){
 				<div class="form-group text-center">
 					<button type="submit" class="btn signup"
 					onClick="passReCheck?mem_id=${prmv.mem_id}">확인</button>
+					<button type="reset" class="btn btn-primary" onclick="history.go(-1)">취소</button>
 				</div>
 			</form>
 		</div>

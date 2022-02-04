@@ -147,6 +147,7 @@ public class ReviewController {
 			
 			model.addAttribute("board_filter", board_filter);
 		}
+		/* if(request.get) */
 		
 		//총 페이지 수
 		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
@@ -355,4 +356,48 @@ public class ReviewController {
 			
 			return reviewsearchM;
 	}
+//	//리뷰게시판 공지
+//	@RequestMapping(value="review_list")
+//	public String review_info(HttpServletRequest request,BoardVO board, Model model)throws Exception {
+//		System.out.println("리뷰리스트 컨");
+//		System.out.println(request.getParameter("board_filter"));
+//		
+//		List<BoardVO> infolist = new ArrayList<BoardVO>();
+//		
+//		int page = 1;
+//		int limit = 10;	//한화면에 출력할 레코드 수
+//		
+//		if(request.getParameter("page") != null) {
+//			page = Integer.parseInt(request.getParameter("page"));
+//		}
+//		
+//			//총 리스트 수를 받아옴
+//			int listcount = reviewService.getListCount();
+//			//페이지 번호(page)를 DAO클래스에게 전달한다.
+//			infolist = reviewService.getinfoList(page);	//리스트 받아오기
+//		
+//		//총 페이지 수
+//		int maxpage = (int) ((double) listcount / limit + 0.95); //0.95더해서 올림처리
+//		
+//		//현재 페이지에 보요줄 시작 페이지수 (1,21,41..)
+//		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+//		
+//		System.out.println(page);
+//		System.out.println(startpage);
+//		//현재 페이지에 보여줄 마지막 페이지 수(20,40,60...)
+//		int endpage = maxpage;
+//		
+//		if(endpage > startpage + 10 -1)
+//			endpage = startpage + 10 -1;
+//		
+//		model.addAttribute("page", page);
+//		
+//		model.addAttribute("startpage", startpage);
+//		model.addAttribute("endpage", endpage);
+//		model.addAttribute("maxpage", maxpage);
+//		model.addAttribute("listcount", listcount);
+//		model.addAttribute("infolist", infolist);
+//		
+//		return "review/review_list";
+//	}
 }

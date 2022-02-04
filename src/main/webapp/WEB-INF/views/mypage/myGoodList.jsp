@@ -37,7 +37,7 @@
                <div align="center">작성자</div>
             </th>
             <th style="font-family: Tahoma; font-size: 11pt;" width="12%">
-               <div align="center">날짜</div>
+               <div align="center">작성날짜</div>
             </th>
             <th style="font-family: Tahoma; font-size: 11pt;" width="10%">
                <div align="center">조회수</div>
