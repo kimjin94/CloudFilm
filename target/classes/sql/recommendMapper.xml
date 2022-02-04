@@ -102,7 +102,11 @@
 	
 	<!-- 추천게시판 원문내용 -->
 	<select id="recommend_cont" resultType="board" parameterType="int">
-		select * from board where board_num =#{board_num}
+		select * from
+		 board b
+		 	left join member m
+		 		on b.mem_num = m.mem_num
+		 		where board_num =#{board_num}
 	</select>
 	
 	<!-- 게시글 조회수 증가 -->

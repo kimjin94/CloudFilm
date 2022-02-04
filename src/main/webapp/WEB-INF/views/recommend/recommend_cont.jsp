@@ -7,6 +7,11 @@
 
 <meta charset="UTF-8">
 <title>추천게시판 원문내용</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/board/goodandbad.js"></script>
@@ -45,10 +50,12 @@ function del(page,board_num){
                      <img src="<%=request.getContextPath()%>/resources/images/memberimage/defaultimg.jpg" height="50" width="50">
                   </c:otherwise>
                </c:choose>
-				${re.mem_id}
-				[${re.board_date}]				
-				<div style="float:right;">조회수 : ${re.board_count}</div>
-				</td>
+
+				${re.mem_nick}
+				[${re.board_date}]
+				<span style="float:right;"><i class="fas fa-eye"></i> ${re.board_count}</span>				
+				<span style="float:right;"> <i class="fas fa-thumbs-up"></i>${re.board_good}</span>				
+				<span style="float:right;"> <i class="fas fa-comments"></i>${re.re_count}</span>	
 			</tr>
 			<tr>
 				<td colspan="1000" style="text-align: left; font-size:16px;">

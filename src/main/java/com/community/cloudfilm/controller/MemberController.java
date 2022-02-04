@@ -161,7 +161,7 @@ public class MemberController {
 					session.setAttribute("member", member);	//세션으로 공유설정
 					System.out.println("등록된 ID입니다.");
 					
-					return "test";
+					return "home/home";
 					
 				}else {		//비번이 다를때
 					result = 2;
@@ -320,6 +320,7 @@ public class MemberController {
 			MemberVO upmv = memberService.loginCheck(mem_id);
 			
 			System.out.println("수정폼 컨트롤");
+			System.out.println(upmv.getMem_pass());
 			//정보 저장 후 페이지 이동
 			model.addAttribute("upmv", upmv);
 
@@ -370,12 +371,18 @@ public class MemberController {
 		         
 		         member.setMem_img(filename);
 		         System.out.println(path);
+		      }else {
+	    	  String mem_id = (String) session.getAttribute("mem_id");
+		    	//기존 프로필 불러오기
+		    	MemberVO oldimg = memberService.loginCheck(mem_id);
+		    	member.setMem_img(oldimg.getMem_img());
 		      }
+			 
 
 			
-		//세션 객체 안에 있는id정보 저장
-		String mem_id = (String) session.getAttribute("mem_id");
-		System.out.println("mem_id");
+		//세션 객체 안에 있는정보 저장
+		MemberVO memberup = (MemberVO) session.getAttribute("member");
+		String mem_id = memberup.getMem_id();
 		//서비스안의 메서드 호출
 		MemberVO oldmember = this.memberService.loginCheck(mem_id);
 		// member.setMem_id(mem_id);
@@ -383,13 +390,13 @@ public class MemberController {
 			member.setMem_pass(oldmember.getMem_pass());
 		}
 		
-		
 		memberService.memberUpdate(member);
 		
 		System.out.println("수정확인 컨트롤");
+		System.out.println("수정후 비밀번호:"+oldmember.getMem_pass());
 		
 		//경로는 어디로 할지 정하면 다시 지정하기
-		return "test";
+		return "home/home";
 		}
 		//회원탈퇴 폼
 		@RequestMapping(value="member_delete")

@@ -10,6 +10,11 @@
 	<meta charset="UTF-8">
 	<title>게시판 목록</title>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>  
@@ -75,7 +80,8 @@
 					<!-- 제목 출력 부분 -->	
 					<a href="recommend_cont?board_num=${re.board_num}&page=${page}">
 							${re.board_title}
-							[${re.re_count}]
+							+${re.re_count}&nbsp;
+                     <i class="fas fa-thumbs-up"></i>${re.board_good}
 					</a>
 					</div>
 				</td>
@@ -92,7 +98,8 @@
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${re.board_count}</div>
+					<div align="center">
+					<i class="fas fa-eye"></i>${re.board_count}</div>
 				</td>
 			</tr>
 			

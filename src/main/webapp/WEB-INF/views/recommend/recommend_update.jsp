@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 게시판 글수정</title>
+<title>추천 게시판 글수정</title>
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>  
@@ -15,8 +15,10 @@
 		<form action="recommend_updating" method="post">
 		<input type="hidden" name="board_num" value="${re.board_num}">
 		<input type="hidden" name="page" value="${page}"/>
+
 			<table id="bbslist_t" border=1>
 				<h2>추천 수정하기</h2>
+
 				<tr>
 					<th>제목</th>
 					<td>

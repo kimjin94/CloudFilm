@@ -106,6 +106,10 @@ public class ReviewDAO {
 		
 		return sqlSession.selectOne("trailer.checkTrailerBad", parameterMap);
 	}
+//	public List<BoardVO> getinfoList(int page) {
+//		List<BoardVO> infolist = sqlSession.selectList("reviewMapper.review_infolist", page);
+//		return infolist;
+//	}
 	
 
 	

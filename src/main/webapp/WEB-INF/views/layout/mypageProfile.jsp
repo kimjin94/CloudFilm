@@ -40,6 +40,7 @@
   <c:choose>
      <c:when test="${mem_img != null }">
         <div style="float:right;"><h5>닉네임${mem_nick}</h5><br><h6>가입날짜 | ${mem_date}</h6></div>
+
      </c:when>
      <c:otherwise>
         <div style="float:right;"><h3>닉네임${mem_nick}</h3><br><h6>가입날짜 | ${mem_date}</h6></div>
@@ -52,6 +53,7 @@
 <br>
   <div style="float:right; padding-right:35px;">
   <button type="button" class="btn signup" onclick="location.href='passReCheck'">수정</button>
+
   <button type="button" class="btn det" onclick="location.href='member_delete'">탈퇴</button>
   </div>
  </form>

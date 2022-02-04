@@ -1,5 +1,6 @@
 package com.community.cloudfilm.controller;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,10 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.community.cloudfilm.model.MemberVO;
+import com.community.cloudfilm.service.MemberService;
 import com.community.cloudfilm.service.MypageService;
 import com.community.cloudfilm.service.ReviewService;
 
@@ -22,10 +26,26 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private MemberService memberService;
 	
 	//마이페이지 메인
 	@RequestMapping(value="myPage")
-	public String myPage() {
+	public String myPage(HttpSession session,
+						MemberVO member,Model model) {
+		
+		MemberVO mypagemember = (MemberVO)session.getAttribute("member");
+		int mem_num = mypagemember.getMem_num();
+		String mem_img = mypagemember.getMem_img();
+		String mem_nick = mypagemember.getMem_nick();
+		Date mem_date = mypagemember.getMem_date();
+		
+		
+		
+		model.addAttribute("mem_num", mem_num);
+		model.addAttribute("mem_img", mem_img);
+		model.addAttribute("mem_nick", mem_nick);
+		model.addAttribute("mem_date", mem_date);
 		return "mypage/myPage";
 	}
 

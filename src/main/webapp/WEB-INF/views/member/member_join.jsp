@@ -22,7 +22,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 		// 비밀번호 정규식
 		var pwJ = /^[A-Za-z0-9]{4,12}$/;
 		// 닉네임 정규식
-		var nickJ = /^[a-z0-9가-힣][a-z0-9_\-가-힣]{5,10}$/;
+		var nickJ = /^[a-z0-9가-힣]{5,12}$/;
 		// 이메일 검사 정규식
 		var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
@@ -132,7 +132,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 			}//else if
 		});//blur
 
-		//이름 중복확인
+		//닉네임 중복확인
 		$("#mem_nick").blur(function() {
 			var mem_nick=$('#mem_nick').val();
 
@@ -141,7 +141,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 			$('#nick_check').css('color', 'red');
 			}
 			else if(nickJ.test($('#mem_nick').val())!=true){
-			$('#nick_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
+			$('#nick_check').text('5~12자 이내로 입력하세요. (대문자,특수기호, 공백 사용 불가)');
 			$('#nick_check').css('color', 'red');
 			}
 			else if($('#mem_nick').val() != '' ){ 
@@ -170,7 +170,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 							$("#usercheck").attr("disabled", true);
 						}
 					 else{
-						$('#name_check').text("한글 2~6자 이내로 입력하세요. (특수기호, 공백 사용 불가)");
+						$('#name_check').text("5~10자 이내로 입력하세요. (대문자,특수기호, 공백 사용 불가)");
 						$('#name_check').css('color', 'red');
 						$("#usercheck").attr("disabled", true);
 						} 
@@ -282,7 +282,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 			console.log(nickJ.test($(this).val()));
 			$("#nick_check").text('');
 		} else {
-			$('#nick_check').text('5~10자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
+			$('#nick_check').text('5~12자 이내로 입력하세요. (대문자,특수기호, 공백 사용 불가)');
 			$('#nick_check').css('color', 'red');
 		}
 	});

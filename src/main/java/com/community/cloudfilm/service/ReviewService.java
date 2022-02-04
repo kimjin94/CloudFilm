@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.community.cloudfilm.dao.ReviewDAO;
 import com.community.cloudfilm.model.BoardVO;
@@ -141,6 +142,11 @@ public class ReviewService {
 		return resultMap;
 
 	}
+	//리뷰게시판 공지
+//	public List<BoardVO> getinfoList(int page) {
+//		return reviewDAO.getinfoList(page);
+//	}
+	
 	
 	
 	
