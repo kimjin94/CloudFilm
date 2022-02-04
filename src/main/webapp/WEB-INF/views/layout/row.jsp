@@ -15,13 +15,11 @@
 <body>
 
 <div class="rightcolumn">
-    <div class="card">
 <c:if test="${member == null}"><button class="btn login" onClick="location='member_login'">로그인</button></c:if>
 <c:if test="${member != null}">${member.mem_id}님 안녕하세요.<br></c:if>
 <c:if test="${member != null}"><button class="btn login" onclick="location='member_logout'">로그아웃</button></c:if>
 <c:if test="${member == null}"><button class="btn signup" onClick="location='member_join'">회원가입</button></c:if>
 <c:if test="${member != null}"><button class="btn signup" onClick="location='myPage'">마이페이지</button></c:if>         
-    </div>
   </div>
 
 

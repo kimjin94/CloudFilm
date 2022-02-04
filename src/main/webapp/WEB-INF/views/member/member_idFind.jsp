@@ -45,7 +45,7 @@
       <input type="email" class="form-control" id="mem_email" name="mem_email" placeholder="이메일을 입력해주세요" maxlength="20">
     </div>
     <div class="form-group" align="center">
-    <input type="submit" class="btn signup" value="확인">
+    <input type="submit" class="btn signup" value="확인" style="width:100%;">
       </div>
 
  	</table>

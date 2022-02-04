@@ -165,6 +165,8 @@ padding-top: 12px;
 .rebad:hover {background: red; color: white;}
 
 
+
+
 /* Fake image */
 .fakeimg {
   background-color: #aaa;
@@ -256,7 +258,7 @@ margin-top : 5px;
   bottom:0;
   width: 100%;
   height:60%;
-  bottom:-350px;
+  bottom:-400px;
   overflow-x:hidden; 
 }
 

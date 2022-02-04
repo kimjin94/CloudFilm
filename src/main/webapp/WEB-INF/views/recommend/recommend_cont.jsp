@@ -114,7 +114,7 @@ function del(page,board_num){
 							<input type="hidden" name="mem_num" value="${mem_num}">
 							<input type="hidden" name="board_num" value="${re.board_num}">
 							<input type="hidden" name="page" value="${page}"> 
-							<textarea id="re_cont" name="re_cont" rows="5" cols="100" style="text-align:center; width:100%;"></textarea>
+							<textarea id="re_cont" name="re_cont" rows="5" cols="100" style="width:100%;"></textarea>
 							<button class="btn signup" type="submit">댓글 등록</button>
 						</div>
 					</td>

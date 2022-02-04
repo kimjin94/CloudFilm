@@ -54,7 +54,7 @@ function check(){
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn rebad">탈퇴</button>
-					<button type="reset" class="btn btn-primary" onclick="history.go(-1)">취소</button>
+					<button type="reset" class="btn signup" onclick="history.go(-1)">취소</button>
 				</div>
 			</form>
 		</div>

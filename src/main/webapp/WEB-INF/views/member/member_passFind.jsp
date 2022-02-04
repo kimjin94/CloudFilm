@@ -48,11 +48,11 @@
       	<a href="" > 아이디 찾기</a>
     	</div>
       <div class="form-group" align="center">
-    <input type="submit" class="btn signup" value="확인">
+    <input type="submit" class="btn signup" value="확인" style="width:100%;">
       </div>
       <div class="form-group" align="center">
     <input type="reset" class="btn signup"
-onClick="location.href=''" value="취소">
+onClick="location.href=''" value="취소" style="width:100%;">
 	  </div>
 
  	</table>

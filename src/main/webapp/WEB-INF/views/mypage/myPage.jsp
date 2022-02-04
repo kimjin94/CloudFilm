@@ -16,13 +16,11 @@
 <%@ include file="../layout/header.jsp" %>  
 <%@ include file="../layout/tab.jsp" %>  
 
-
 <div class="row">
   <div class="leftcolumn" align="center">
   <h2 style="text-align:center">마이페이지 홈</h2>
 <%@ include file="../layout/mypageProfile.jsp" %>	
 <div class="container">
-
   </div>	
 </div> 
 <%@ include file="../layout/myPageBar.jsp" %>	

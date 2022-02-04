@@ -379,7 +379,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 				  <span>만 14세 이상입니다.&nbsp;<strong>(필수)</strong></span><br><br>
 				
 					<div class="form-group text-center">
-					<button class="btn signup" type="submit" class="btn btn-primary form-control">회원가입</button>
+					<button class="btn signup" type="submit" style="width:100%;">회원가입</button>
 				</div>
 				
 <!--------------------------------------약관 모달 창 개길어------------------------------------------------------------------------------------------>
@@ -530,7 +530,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button class="btn signup" type="button" class="close" data-dismiss="modal">&times;</button>
+          <button class="btn signup" type="button" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">개인정보 수집 및 이용 동의(필수)</h4>
         </div>
         <div class="modal-body">
@@ -596,7 +596,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 <p>① 이 개인정보처리방침은 2021년 12월 12부터 적용됩니다.</p>
         </div>
         <div class="modal-footer">
-          <button class="btn signup" type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+          <button class="btn signup" type="button" data-dismiss="modal">확인</button>
         </div>
       </div>
       

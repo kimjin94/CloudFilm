@@ -45,11 +45,11 @@
     	<div class="form-group">
       	<a href="member_idFind" > 아이디 찾기</a> | <a href="member_passFind">비밀번호 찾기</a>
     	</div>
-      <div class="form-group">
-    <input type="submit" class="btn login" value="로그인">
+      <div class="form-group" >
+    <input type="submit" class="btn login" style="width:100%;" value="로그인">
       </div>
-      <div class="form-group">
-    <input type="button" class="btn signup"
+      <div class="form-group" >
+    <input type="button" class="btn signup" style="width:100%;"
 onClick="location.href='<%=request.getContextPath() %>/member_join'" value="회원가입">
 	  </div>
 

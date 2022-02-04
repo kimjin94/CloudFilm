@@ -8,8 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>홈</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <%@ include file="../layout/header.jsp" %>
@@ -42,8 +45,8 @@
 						${reviewlist.board_filter}
 					</td>
 					<td style="text-align: left;">
-						<span style="float:left;width:74%;">${reviewlist.board_title}  </span> 
-						<span style="float:right;width:24%;">| 조회수 : ${reviewlist.board_count} | 추천 : ${reviewlist.board_good} |</span>
+						<span style="float:left;width:74%;"><a href="review_cont?board_num=${re.board_num}&page=${page}">${reviewlist.board_title}</a></span> 
+						<span style="float:right;width:24%;">| <i class="fas fa-eye"></i> : ${reviewlist.board_count} |<i class="fas fa-thumbs-up"></i>: ${reviewlist.board_good} |</span>
 					</td>
 					<td>
 						${reviewlist.mem_nick}
@@ -78,8 +81,8 @@
 						${recommendlist.board_filter}
 					</td>
 					<td style="text-align: left;">
-						<span style="float:left;width:74%;">${recommendlist.board_title}  </span> 
-						<span style="float:right;width:24%;">| 조회수 : ${recommendlist.board_count} | 추천 : ${recommendlist.board_good} | </span>
+						<a href="recommend_cont?board_num=${re.board_num}&page=${page}"><span style="float:left;width:74%;">${recommendlist.board_title}</span></a> 
+						<span style="float:right;width:24%;">|<i class="fas fa-eye"></i> : ${recommendlist.board_count} | <i class="fas fa-thumbs-up"></i> : ${recommendlist.board_good} | </span>
 					</td>
 					<td>
 						${recommendlist.mem_nick}
@@ -114,7 +117,7 @@
 					</td>
 					<td style="text-align: left;">
 						<span style="float:left;width:74%;">${trailerlist.board_title}  </span> 
-						<span style="float:right;width:24%;">| 조회수 : ${trailerlist.board_count} | 추천 : ${trailerlist.board_good} | </span>
+						<span style="float:right;width:24%;">| <i class="fas fa-eye"></i>: ${trailerlist.board_count} | <i class="fas fa-thumbs-up"></i>: ${trailerlist.board_good} | </span>
 					</td>
 					<td>
 						${trailerlist.mem_nick}
