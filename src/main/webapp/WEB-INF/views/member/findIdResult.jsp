@@ -28,9 +28,9 @@
   <br>
   <table>
   <tr>
-  <th>
+  <td>
  <h1>회원님의 아이디는 ${mem_id} 입니다.</h1>
-  </th>
+  </td>
   </tr>
   </table>
 	  <br>
