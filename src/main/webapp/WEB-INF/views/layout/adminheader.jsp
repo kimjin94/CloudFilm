@@ -38,17 +38,15 @@ body {
 }
 
 /* Style the top navigation bar */
-.topnav {
+.topnavi {
+ padding-left:18%;	
   position:relative;
-  overflow: hidden;
-  margin:0 auto;
-  text-align:center;
   background-color: #333;
   font-size: 24px;
 }
 
 /* Style the topnav links */
-.topnav a {
+.topnavi a {
   display: inline-block;
   color: #f2f2f2;
   text-align: center;
@@ -239,7 +237,7 @@ margin-top : 5px;
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
-  .topnav a {
+  .topnavi a {
     float: none;
     width: 100%;
   }
@@ -253,7 +251,7 @@ margin-top : 5px;
   <p>Resize the browser window to see the effect.</p>
 </div> -->
 
-<div class="topnav">
+<div class="topnavi">
   <a href="boardManagement">게시글관리</a>
   <a href="memberManagement">회원관리</a>
   <a href="infoManagement">공지관리</a>
