@@ -20,7 +20,19 @@
 <c:if test="${member != null}"><button class="btn login" onclick="location='member_logout'">로그아웃</button></c:if>
 <c:if test="${member == null}"><button class="btn signup" onClick="location='member_join'">회원가입</button></c:if>
 <c:if test="${member != null}"><button class="btn signup" onClick="location='myPage'">마이페이지</button></c:if>         
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="card">
+<p> </p>
+<p>광고</p>
+<p> </p>
+</div>
   </div>
+
+
 
 
 </body>

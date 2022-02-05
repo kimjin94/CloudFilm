@@ -174,9 +174,15 @@ padding-top: 12px;
 
 /* Add a card effect for articles */
 .card {
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
+  /* background-color: #e7e7e7; */
+  color:black;
+  font-size:25px;
+  padding-top: 200px;
+  height: 500px;
+  width: 50%;
+  margin-left:113px;
+  text-align: center;
+  
 }
 
 /* Clear floats after the columns */
