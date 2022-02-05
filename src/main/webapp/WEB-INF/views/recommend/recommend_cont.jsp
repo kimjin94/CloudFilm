@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,10 +53,10 @@ function del(page,board_num){
                </c:choose>
 
 				${re.mem_nick}
-				[${re.board_date}]
 				<span style="float:right;"><i class="fas fa-eye"></i> ${re.board_count}</span>				
 				<span style="float:right;"> <i class="fas fa-thumbs-up"></i>${re.board_good}</span>				
 				<span style="float:right;"> <i class="fas fa-comments"></i>${re.re_count}</span>	
+				<span style="float:right;"><fmt:formatDate value="${re.board_date}" pattern="yyyy/MM/dd HH:mm:ss" />&nbsp;&nbsp;</span>		
 			</tr>
 			<tr>
 				<td colspan="1000" style="text-align: left; font-size:16px;">

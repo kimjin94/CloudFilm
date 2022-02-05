@@ -122,7 +122,7 @@
 					<!-- 제목 출력 부분 -->	
 					<a href="recommend_cont?board_num=${re.board_num}&page=${page}">
 							${re.board_title}
-							+${re.re_count}&nbsp;
+					<i class="fas fa-comments"></i>${re.re_count}&nbsp;
                      <i class="fas fa-thumbs-up"></i>${re.board_good}
 					</a>
 					</div>

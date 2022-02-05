@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>예고편</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 </head>
@@ -72,7 +77,7 @@
 					<td style="text-align:left;"><a href="trailerDetail?page=${page}&board_num=${trailerlist.board_num}">${trailerlist.board_title} </a></td>
 				</tr>
 				<tr>
-					<td style="text-align:left;"> 댓글 : ${trailerlist.re_count} | 조회수 : ${trailerlist.board_count} | 추천 : ${trailerlist.board_good} |
+					<td style="text-align:left;"> <i class="fas fa-comments"></i> : ${trailerlist.re_count} | <i class="fas fa-eye"></i> : ${trailerlist.board_count} | <i class="fas fa-thumbs-up"></i>: ${trailerlist.board_good} |
 						<fmt:formatDate value="${trailerlist.board_date}"
 							pattern="yyyy/MM/dd HH:mm:ss" />
 						</td>
