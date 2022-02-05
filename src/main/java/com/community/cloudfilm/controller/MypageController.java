@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.community.cloudfilm.model.BoardVO;
 import com.community.cloudfilm.model.MemberVO;
 import com.community.cloudfilm.service.MemberService;
 import com.community.cloudfilm.service.MypageService;
@@ -90,5 +91,24 @@ public class MypageController {
 		
 		mygoodlistM.addAllObjects(mygoodlist);
 		return mygoodlistM;
+	}
+	
+	//글들 상세보기
+	@RequestMapping(value="MyBoard_cont")
+	public String MyBoard_cont(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		int board_num =Integer.parseInt(request.getParameter("board_num"));
+		int page =1;
+		//게시글 상세정보 가져오기
+		BoardVO board = reviewService.getReviewCont(board_num);
+		String index ="";
+		if(board.getCate_num()  == 1 ) {
+			index = "review_cont";
+		}else if(board.getCate_num() == 2) {
+			index ="recommend_cont";
+		}else if(board.getCate_num() ==3) {
+			index = "trailerDetail";
+		}
+		
+		return "redirect:"+index+"?page="+page+"&board_num="+board_num;
 	}
 }
