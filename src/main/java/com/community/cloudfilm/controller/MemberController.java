@@ -397,7 +397,7 @@ public class MemberController {
 		System.out.println("수정후 비밀번호:"+oldmember.getMem_pass());
 		
 		//경로는 어디로 할지 정하면 다시 지정하기
-		return "home/home";
+		return "redirect:home";
 		}
 		//회원탈퇴 폼
 		@RequestMapping(value="member_delete")
@@ -434,7 +434,7 @@ public class MemberController {
 				session.invalidate();		//세션만료 
 				System.out.println("탈퇴 컨트롤러");
 				
-				return "redirect:member_login";
+				return "redirect:home";
 				
 			}
 			

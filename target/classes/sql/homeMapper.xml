@@ -31,6 +31,7 @@
 		                on a.mem_num = e.mem_num
 		        where a.cate_num = 1 
 		        	and board_yn ='y'
+		        	and info_yn ='n'
 		        group by 
 	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
@@ -71,6 +72,7 @@
 		                on a.mem_num = e.mem_num
 		        where a.cate_num = 2 
 		        	and board_yn ='y'
+		        	and info_yn ='n'
 		        group by 
 	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
@@ -111,6 +113,7 @@
 		                on a.mem_num = e.mem_num
 		        where a.cate_num = 3 
 		        	and board_yn ='y'
+		        	and info_yn ='n'
 		        group by 
 	        		 a.board_num, a.MEM_ID, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_IMG, 
 					 a.BOARD_VIDEO, a.BOARD_FILTER, a.BOARD_DATE, a.BOARD_COUNT, a.CATE_NUM, 
