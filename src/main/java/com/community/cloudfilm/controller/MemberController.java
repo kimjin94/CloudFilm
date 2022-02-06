@@ -378,14 +378,14 @@ public class MemberController {
 		    	MemberVO oldimg = memberService.loginCheck(mem_id);
 		    	member.setMem_img(oldimg.getMem_img());
 		      }
-			 
 
-			
 		//세션 객체 안에 있는정보 저장
 		MemberVO memberup = (MemberVO) session.getAttribute("member");
 		String mem_id = memberup.getMem_id();
 		//서비스안의 메서드 호출
 		MemberVO oldmember = this.memberService.loginCheck(mem_id);
+		// member의 비어있는 mem_num에 기존 mem_num 담기
+		member.setMem_num(oldmember.getMem_num());
 		// member.setMem_id(mem_id);
 		if(member.getMem_pass() == "") {
 			member.setMem_pass(oldmember.getMem_pass());
