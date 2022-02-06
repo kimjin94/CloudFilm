@@ -64,7 +64,7 @@ public class MemberService {
 	//회원 수정
 	public void memberUpdate(MemberVO member)throws Exception {
 		memberDAO.memberUpdate(member);
-		System.out.println("수정폼 서비스");
+		System.out.println("수정 서비스");
 	}
 	//회원 삭제
 	public void deleteMember(MemberVO delmv) throws Exception{

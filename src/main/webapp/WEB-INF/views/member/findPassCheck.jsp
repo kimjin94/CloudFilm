@@ -3,6 +3,6 @@
 
 
 <script>
-	alert("회원아이디와 이름이 맞지 않습니다!");
+	alert("회원아이디와 이메일이 맞지 않습니다!");
 	history.go(-1);
 </script>

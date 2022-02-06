@@ -31,7 +31,8 @@
 <div class="container">
 <div class="col-lg-4"></div>
 <div class="col-lg-4">
-  <div align="center"><h2>아이디 찾기</h2></div><br>
+  <div align="center"><br><br><br><br><br><br><br><br>
+  <h2>아이디 찾기</h2></div><br>
 
   
   <form method="post" action="id_find" onSubmit="return check()">
@@ -44,9 +45,15 @@
     <label for="mem_email">이메일</label>
       <input type="email" class="form-control" id="mem_email" name="mem_email" placeholder="이메일을 입력해주세요" maxlength="20">
     </div>
+    <div class="form-group" style="text-align:right">
+      	<a href="member_passFind" > 비밀번호 찾기</a>
+    	</div>
     <div class="form-group" align="center">
-    <input type="submit" class="btn signup" value="확인" style="width:100%;">
+    <input type="submit" class="btn rebad" value="확인" style="width:100%;">
       </div>
+       <div class="form-group" align="center">
+    <input type="reset" class="btn signup" onClick="history.go(-1)" value="취소" style="width:100%;">
+	  </div>
 
  	</table>
   </form>
