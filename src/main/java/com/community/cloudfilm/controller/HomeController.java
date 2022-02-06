@@ -12,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.community.cloudfilm.model.BoardVO;
 import com.community.cloudfilm.service.HomeService;
-import com.community.cloudfilm.service.TrailerService;
 
 @Controller
 public class HomeController {
@@ -25,7 +23,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	// 홈페이지로 이동
-	@RequestMapping(value = "/home")
+	@RequestMapping(value = "/")
 	public ModelAndView homeM(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ModelAndView homeM = new ModelAndView("home/home");
 		
@@ -44,5 +42,26 @@ public class HomeController {
 		
 		return homeM;
 	}
+	
+	// 홈페이지로 이동
+		@RequestMapping(value = "/home")
+		public ModelAndView home(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			ModelAndView homeM = new ModelAndView("home/home");
+			
+			// 최근 리뷰 가져오기
+			Map<String, Object> reviewlist = homeService.getreviewlist(request, response);
+			
+			// 최근 추천 가져오기
+			Map<String, Object> recommendlist = homeService.getrecommendlist(request, response);
+			
+			// 최근 예고편 가져오기
+			Map<String, Object> trailerlist = homeService.gettrailerlist(request, response);
+			
+			homeM.addAllObjects(reviewlist);
+			homeM.addAllObjects(recommendlist);
+			homeM.addAllObjects(trailerlist);
+			
+			return homeM;
+		}
 }
 
