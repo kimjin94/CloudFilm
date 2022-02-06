@@ -156,14 +156,22 @@ public class MemberController {
 				
 			}else {			//등록된 회원일때
 				if(mv.getMem_pass().equals(mem_pass)) {	//비밀번호가 같을 떄
-					session.setAttribute("mem_id", mem_id);	//세션으로 공유설정
-					MemberVO member = memberService.getMemberInfo(mem_id);
-					session.setAttribute("member", member);	//세션으로 공유설정
-					session.setAttribute("mem_num", member.getMem_num());
-					System.out.println("등록된 ID입니다.");
-					
-					return "redirect:home";
-					
+					if(mv.getMem_yn().equals("y")) {
+						session.setAttribute("mem_id", mem_id);	//세션으로 공유설정
+						MemberVO member = memberService.getMemberInfo(mem_id);
+						session.setAttribute("member", member);	//세션으로 공유설정
+						session.setAttribute("mem_num", member.getMem_num());
+						System.out.println("등록된 ID입니다.");
+						
+						return "redirect:home";
+					}else {
+						result = 3;
+						
+						model.addAttribute("result", result);
+						
+						System.out.println("탈퇴 또는 정지된 회원입니다.");
+						return "member/loginOk";
+					}
 				}else {		//비번이 다를때
 					result = 2;
 					model.addAttribute("result", result);

@@ -15,3 +15,10 @@
 		history.go(-1);
 	</script>
 </c:if>
+
+<c:if test="${result == 3 }">
+	<script>
+		alert("탈퇴 또는 정지된 회원입니다. \n관리자에게 문의하시기 바랍니다. ");
+		history.go(-1);
+	</script>
+</c:if>
