@@ -395,7 +395,7 @@ public class MemberController {
 		// member의 비어있는 mem_num에 기존 mem_num 담기
 		member.setMem_num(oldmember.getMem_num());
 		// member.setMem_id(mem_id);
-		if(member.getMem_pass() == "") {
+		if(member.getMem_pass().isEmpty()) {
 			member.setMem_pass(oldmember.getMem_pass());
 		}
 		
