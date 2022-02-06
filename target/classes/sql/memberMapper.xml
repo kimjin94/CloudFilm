@@ -57,7 +57,7 @@
 	<update id="update" parameterType="member">
 	update member set
 	mem_pass = #{mem_pass}, mem_nick=#{mem_nick}, mem_email=#{mem_email},
-	mem_img=#{mem_img} where mem_id=#{mem_id} and mem_pass=#{mem_pass}
+	mem_img=#{mem_img} where mem_id=#{mem_id} 
 	</update>
 	
 	<!-- 회원 삭제 -->

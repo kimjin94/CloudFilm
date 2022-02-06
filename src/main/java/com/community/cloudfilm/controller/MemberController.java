@@ -265,8 +265,6 @@ public class MemberController {
 				} catch (Exception e) {
 					System.out.println(e);
 				}
-
-				model.addAttribute("pwdok", "등록된 Email을 통해 비밀번호를 확인해 주세요.");
 				return "member/findPassResult";
 			}
 		}
@@ -378,15 +376,13 @@ public class MemberController {
 		    	MemberVO oldimg = memberService.loginCheck(mem_id);
 		    	member.setMem_img(oldimg.getMem_img());
 		      }
-			 
-
 			
 		//세션 객체 안에 있는정보 저장
-		MemberVO memberup = (MemberVO) session.getAttribute("member");
-		String mem_id = memberup.getMem_id();
+		 String mem_id = (String) session.getAttribute("mem_id");
+		System.out.println(mem_id);
 		//서비스안의 메서드 호출
+		//member.setMem_id(mem_id);
 		MemberVO oldmember = this.memberService.loginCheck(mem_id);
-		// member.setMem_id(mem_id);
 		if(member.getMem_pass() == "") {
 			member.setMem_pass(oldmember.getMem_pass());
 		}
@@ -397,7 +393,7 @@ public class MemberController {
 		System.out.println("수정후 비밀번호:"+oldmember.getMem_pass());
 		
 		//경로는 어디로 할지 정하면 다시 지정하기
-		return "redirect:home";
+		return "mypage/myPage";
 		}
 		//회원탈퇴 폼
 		@RequestMapping(value="member_delete")

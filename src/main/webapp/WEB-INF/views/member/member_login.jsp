@@ -33,7 +33,8 @@
  <div class="container" align="center">
 <div class="col-lg-4"></div>
 <div class="col-lg-4">
-  <div align="center"><h2>로그인</h2></div>
+  <div align="center"><br><br><br><br><br><br>
+  						<h2>로그인</h2></div>
   <form method="post" action="login_ok" onsubmit="return check()">
    <table class="table table-bordered table-hover" align="center" >
     <div class="form-group">

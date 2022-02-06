@@ -357,13 +357,13 @@ $("#mem_nick").blur(function() {
 				<div class="form-group">
 					<label for="mem_pass">새 비밀번호&nbsp; </label> <input type="password" 
 						class="form-control" id="mem_pass" name="mem_pass"
-						placeholder="PASSWORD">
+						placeholder="New PASSWORD">
 					<div class="check_font" id="pw_check"><h6>&nbsp;4~12자의 숫자 , 문자로만 사용 가능합니다.</h6></div>
 				</div>
 				<div class="form-group">
 					<label for="mem_pass2">새 비밀번호 확인</label> <input type="password"
 						class="form-control" id="mem_pass2" name="mem_pass2"
-						placeholder="Confirm Password">
+						placeholder="Confirm New Password">
 					<div class="check_font" id="pw2_check"></div>
 				</div>
 				<div class="form-group">
