@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		 <setting name="jdbcTypeForNull" value="NULL" />
+	 </settings>
+	<typeAliases>
+		<typeAlias type="java.lang.Integer" alias="Integer"/>
+ 		<typeAlias type="java.lang.String" alias="String"/>
+ 		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias alias="board" type="com.community.cloudfilm.model.BoardVO" />
+		<typeAlias alias="member" type="com.community.cloudfilm.model.MemberVO" />
+		<typeAlias alias="reply" type="com.community.cloudfilm.model.ReplyVO" />
+		<typeAlias alias="goodandbad" type="com.community.cloudfilm.model.GoodAndBadVO" />
+	</typeAliases>
+</configuration>
+
