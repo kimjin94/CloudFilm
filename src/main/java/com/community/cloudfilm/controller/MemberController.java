@@ -224,11 +224,11 @@ public class MemberController {
 				// Mail Server 설정
 				String charSet = "utf-8";
 				String hostSMTP = "smtp.naver.com";
-				String hostSMTPid = "choongang_mart@naver.com";
-				String hostSMTPpwd = "choongang1969!"; // 비밀번호 입력해야함
+				String hostSMTPid = "";
+				String hostSMTPpwd = "!"; // 비밀번호 입력해야함
 
 				// 보내는 사람 EMail, 제목, 내용
-				String fromEmail = "choongang_mart@naver.com";
+				String fromEmail = "";
 				String fromName = "Cmarket";
 				String subject = "[Cmarket] " + vo.getMem_id()+"님 비밀번호 찾기 메일입니다.";
 
