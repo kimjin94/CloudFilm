@@ -247,7 +247,7 @@ public class MemberController {
 				String hostSMTPpwd = ""; // 비밀번호 입력해야함
 
 				// 보내는 사람 EMail, 제목, 내용
-				String fromEmail = "choongang_mart@naver.com";
+				String fromEmail = "";
 				String fromName = "CloudFilm";
 				String subject = "[CloudFilm] " + vo.getMem_id()+"님 비밀번호 찾기 메일입니다.";
 
