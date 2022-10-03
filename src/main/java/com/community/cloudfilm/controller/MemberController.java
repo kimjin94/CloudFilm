@@ -244,7 +244,7 @@ public class MemberController {
 				String charSet = "utf-8";
 				String hostSMTP = "smtp.naver.com";
 				String hostSMTPid = "choongang_mart@naver.com";
-				String hostSMTPpwd = "choongang1969!"; // 비밀번호 입력해야함
+				String hostSMTPpwd = ""; // 비밀번호 입력해야함
 
 				// 보내는 사람 EMail, 제목, 내용
 				String fromEmail = "choongang_mart@naver.com";
